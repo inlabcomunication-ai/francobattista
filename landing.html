@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Franco Battista — Consulente d'arredo per l'eccellenza HORECA</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',sans-serif;
+    color:#1a1a1a;
+    background:#fafaf7;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .serif{font-family:'Cormorant Garamond',serif;font-weight:400;letter-spacing:-0.02em}
+  .container{max-width:1200px;margin:0 auto;padding:0 32px}
+
+  /* ===== NAVBAR ===== */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(250,250,247,0.85);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    border-bottom:1px solid rgba(0,0,0,0.06);
+    padding:18px 0;
+  }
+  nav .container{display:flex;justify-content:space-between;align-items:center}
+  .logo{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:500;letter-spacing:-0.01em}
+  .logo span{color:#a8895c}
+  .nav-cta{
+    background:#1a1a1a;color:#fff;padding:11px 22px;
+    border:none;border-radius:2px;font-size:13px;font-weight:500;
+    letter-spacing:0.05em;text-transform:uppercase;cursor:pointer;
+    transition:all 0.3s ease;text-decoration:none;display:inline-block;
+  }
+  .nav-cta:hover{background:#a8895c}
+
+  /* ===== HERO ===== */
+  .hero{
+    min-height:100vh;display:flex;align-items:center;
+    background:linear-gradient(135deg,rgba(26,26,26,0.75) 0%,rgba(26,26,26,0.5) 100%),
+      url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1920&q=80') center/cover;
+    color:#fff;padding:120px 0 80px;position:relative;
+  }
+  .hero-content{max-width:780px}
+  .hero-eyebrow{
+    display:inline-block;font-size:12px;letter-spacing:0.25em;
+    text-transform:uppercase;color:#d4b896;margin-bottom:28px;
+    padding-bottom:8px;border-bottom:1px solid #d4b896;
+  }
+  .hero h1{
+    font-family:'Cormorant Garamond',serif;font-weight:300;
+    font-size:clamp(42px,6vw,76px);line-height:1.05;
+    letter-spacing:-0.025em;margin-bottom:32px;
+  }
+  .hero h1 em{font-style:italic;color:#d4b896;font-weight:400}
+  .hero-sub{
+    font-size:19px;font-weight:300;line-height:1.65;
+    max-width:620px;margin-bottom:48px;opacity:0.92;
+  }
+  .hero-ctas{display:flex;gap:16px;flex-wrap:wrap}
+  .btn-primary{
+    background:#d4b896;color:#1a1a1a;padding:18px 36px;
+    border:none;font-size:13px;font-weight:600;letter-spacing:0.1em;
+    text-transform:uppercase;cursor:pointer;transition:all 0.3s ease;
+    text-decoration:none;display:inline-block;
+  }
+  .btn-primary:hover{background:#fff;transform:translateY(-2px)}
+  .btn-ghost{
+    background:transparent;color:#fff;padding:18px 36px;
+    border:1px solid rgba(255,255,255,0.4);font-size:13px;font-weight:500;
+    letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;
+    transition:all 0.3s ease;text-decoration:none;display:inline-block;
+  }
+  .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,0.08)}
+
+  /* ===== STATS BAR ===== */
+  .stats{
+    background:#1a1a1a;color:#fff;padding:60px 0;
+  }
+  .stats-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:40px;
+  }
+  .stat{text-align:center}
+  .stat-num{
+    font-family:'Cormorant Garamond',serif;font-size:56px;
+    font-weight:400;color:#d4b896;line-height:1;margin-bottom:8px;
+  }
+  .stat-label{
+    font-size:12px;letter-spacing:0.15em;text-transform:uppercase;
+    color:rgba(255,255,255,0.7);
+  }
+
+  /* ===== SECTION BASE ===== */
+  section{padding:120px 0}
+  .section-eyebrow{
+    font-size:11px;letter-spacing:0.3em;text-transform:uppercase;
+    color:#a8895c;margin-bottom:20px;font-weight:500;
+  }
+  .section-title{
+    font-family:'Cormorant Garamond',serif;font-weight:300;
+    font-size:clamp(36px,4.5vw,56px);line-height:1.1;
+    letter-spacing:-0.02em;margin-bottom:24px;max-width:780px;
+  }
+  .section-title em{font-style:italic;color:#a8895c}
+  .section-intro{
+    font-size:18px;color:#555;max-width:680px;line-height:1.7;
+    margin-bottom:64px;font-weight:300;
+  }
+
+  /* ===== VALUE SECTION ===== */
+  .value-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:40px;
+  }
+  .value-card{
+    background:#fff;padding:48px 36px;
+    border:1px solid rgba(0,0,0,0.06);
+    transition:all 0.4s ease;
+  }
+  .value-card:hover{
+    border-color:#a8895c;transform:translateY(-4px);
+  }
+  .value-icon{
+    width:48px;height:48px;border:1px solid #a8895c;
+    display:flex;align-items:center;justify-content:center;
+    color:#a8895c;font-size:22px;margin-bottom:28px;
+  }
+  .value-card h3{
+    font-family:'Cormorant Garamond',serif;font-weight:500;
+    font-size:26px;line-height:1.2;margin-bottom:16px;
+    letter-spacing:-0.01em;
+  }
+  .value-card p{
+    font-size:15px;color:#555;line-height:1.7;
+  }
+
+  /* ===== ABOUT FRANCO ===== */
+  .about{
+    background:#f3efe6;
+  }
+  .about-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
+  }
+  .about-image{
+    aspect-ratio:4/5;
+    background:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80') center/cover;
+    position:relative;
+  }
+  .about-image::after{
+    content:'';position:absolute;top:20px;left:20px;right:-20px;bottom:-20px;
+    border:1px solid #a8895c;z-index:-1;
+  }
+  .about-content h2{
+    font-family:'Cormorant Garamond',serif;font-weight:300;
+    font-size:clamp(34px,4vw,50px);line-height:1.1;
+    margin-bottom:28px;letter-spacing:-0.02em;
+  }
+  .about-content h2 em{font-style:italic;color:#a8895c}
+  .about-content p{
+    font-size:16px;color:#444;line-height:1.8;margin-bottom:20px;
+  }
+  .about-content .signature{
+    font-family:'Cormorant Garamond',serif;font-style:italic;
+    font-size:24px;color:#1a1a1a;margin-top:32px;
+  }
+
+  /* ===== ADVANTAGES (DARK) ===== */
+  .advantages{
+    background:#1a1a1a;color:#fff;
+  }
+  .advantages .section-eyebrow{color:#d4b896}
+  .advantages .section-title{color:#fff}
+  .advantages .section-title em{color:#d4b896}
+  .advantages .section-intro{color:rgba(255,255,255,0.7)}
+  .adv-list{
+    display:grid;grid-template-columns:1fr 1fr;gap:0;
+    border-top:1px solid rgba(255,255,255,0.1);
+  }
+  .adv-item{
+    padding:40px;border-bottom:1px solid rgba(255,255,255,0.1);
+    border-right:1px solid rgba(255,255,255,0.1);
+    transition:background 0.3s ease;
+  }
+  .adv-item:nth-child(even){border-right:none}
+  .adv-item:hover{background:rgba(212,184,150,0.05)}
+  .adv-num{
+    font-family:'Cormorant Garamond',serif;font-size:36px;
+    color:#d4b896;margin-bottom:16px;font-weight:300;
+  }
+  .adv-item h4{
+    font-family:'Cormorant Garamond',serif;font-size:24px;
+    font-weight:500;margin-bottom:12px;letter-spacing:-0.01em;
+  }
+  .adv-item p{
+    font-size:14px;color:rgba(255,255,255,0.7);line-height:1.7;
+  }
+
+  /* ===== PRODUCTS / GALLERY ===== */
+  .products{background:#fafaf7}
+  .gallery{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr;
+    grid-template-rows:280px 280px;
+    gap:16px;
+  }
+  .gallery-item{
+    position:relative;overflow:hidden;background:#1a1a1a;
+  }
+  .gallery-item img{
+    width:100%;height:100%;object-fit:cover;
+    transition:transform 0.6s ease;opacity:0.9;
+  }
+  .gallery-item:hover img{transform:scale(1.05);opacity:1}
+  .gallery-item:nth-child(1){grid-row:span 2}
+  .gallery-item:nth-child(4){grid-column:span 2}
+  .gallery-caption{
+    position:absolute;bottom:20px;left:24px;color:#fff;z-index:2;
+  }
+  .gallery-caption span{
+    font-size:11px;letter-spacing:0.2em;text-transform:uppercase;
+    color:#d4b896;display:block;margin-bottom:4px;
+  }
+  .gallery-caption h5{
+    font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;
+  }
+
+  /* ===== TESTIMONIAL ===== */
+  .testimonial{
+    background:#f3efe6;text-align:center;padding:140px 0;
+  }
+  .testimonial-quote{
+    font-family:'Cormorant Garamond',serif;font-weight:300;
+    font-size:clamp(28px,3.5vw,44px);line-height:1.3;
+    letter-spacing:-0.01em;max-width:900px;margin:0 auto 40px;
+    color:#1a1a1a;font-style:italic;
+  }
+  .testimonial-quote::before,.testimonial-quote::after{
+    content:'"';color:#a8895c;font-size:1.2em;
+  }
+  .testimonial-author{
+    font-size:13px;letter-spacing:0.2em;text-transform:uppercase;
+    color:#666;
+  }
+  .testimonial-author strong{color:#1a1a1a;font-weight:500}
+
+  /* ===== CTA / FORM ===== */
+  .cta-section{
+    background:linear-gradient(135deg,rgba(26,26,26,0.92) 0%,rgba(26,26,26,0.85) 100%),
+      url('https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=1920&q=80') center/cover fixed;
+    color:#fff;padding:120px 0;
+  }
+  .cta-grid{
+    display:grid;grid-template-columns:1fr 1.2fr;gap:80px;align-items:start;
+  }
+  .cta-left h2{
+    font-family:'Cormorant Garamond',serif;font-weight:300;
+    font-size:clamp(36px,4.5vw,56px);line-height:1.1;
+    margin-bottom:28px;letter-spacing:-0.02em;
+  }
+  .cta-left h2 em{font-style:italic;color:#d4b896}
+  .cta-left p{
+    font-size:17px;color:rgba(255,255,255,0.85);line-height:1.7;
+    margin-bottom:40px;font-weight:300;
+  }
+  .cta-bullets{list-style:none;margin-top:32px}
+  .cta-bullets li{
+    padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.12);
+    font-size:15px;color:rgba(255,255,255,0.9);
+    display:flex;align-items:center;gap:14px;
+  }
+  .cta-bullets li::before{
+    content:'';width:24px;height:1px;background:#d4b896;flex-shrink:0;
+  }
+
+  /* FORM */
+  .form-card{
+    background:#fafaf7;color:#1a1a1a;padding:48px;
+    border:1px solid rgba(212,184,150,0.3);
+  }
+  .form-card h3{
+    font-family:'Cormorant Garamond',serif;font-weight:500;
+    font-size:30px;margin-bottom:8px;letter-spacing:-0.01em;
+  }
+  .form-card .form-sub{
+    font-size:14px;color:#666;margin-bottom:32px;
+  }
+  .form-group{margin-bottom:20px}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .form-group label{
+    display:block;font-size:11px;letter-spacing:0.15em;
+    text-transform:uppercase;color:#666;margin-bottom:8px;font-weight:500;
+  }
+  .form-group label .req{color:#c44}
+  .form-group input,.form-group select,.form-group textarea{
+    width:100%;padding:14px 16px;border:1px solid rgba(0,0,0,0.15);
+    background:#fff;font-family:'Inter',sans-serif;font-size:14px;
+    color:#1a1a1a;transition:all 0.2s ease;
+  }
+  .form-group input:focus,.form-group select:focus,.form-group textarea:focus{
+    outline:none;border-color:#a8895c;
+  }
+  .form-group textarea{resize:vertical;min-height:90px}
+
+  /* CALENDARIO */
+  .calendar-section{
+    margin:24px 0;padding:24px;background:#fff;
+    border:1px solid rgba(0,0,0,0.1);
+  }
+  .cal-header{
+    display:flex;justify-content:space-between;align-items:center;
+    margin-bottom:20px;
+  }
+  .cal-title{
+    font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;
+  }
+  .cal-nav{display:flex;gap:8px}
+  .cal-nav button{
+    width:32px;height:32px;border:1px solid rgba(0,0,0,0.15);
+    background:#fff;cursor:pointer;display:flex;align-items:center;
+    justify-content:center;color:#666;transition:all 0.2s ease;
+  }
+  .cal-nav button:hover{border-color:#a8895c;color:#a8895c}
+  .cal-grid{
+    display:grid;grid-template-columns:repeat(7,1fr);gap:4px;
+  }
+  .cal-day-label{
+    text-align:center;font-size:10px;letter-spacing:0.1em;
+    text-transform:uppercase;color:#999;padding:8px 0;font-weight:500;
+  }
+  .cal-day{
+    aspect-ratio:1;display:flex;align-items:center;justify-content:center;
+    font-size:13px;cursor:pointer;border:1px solid transparent;
+    transition:all 0.15s ease;color:#333;
+  }
+  .cal-day.empty{cursor:default}
+  .cal-day.disabled{color:#ccc;cursor:not-allowed}
+  .cal-day.available{background:#f5f0e6;color:#1a1a1a;font-weight:500}
+  .cal-day.available:hover{background:#a8895c;color:#fff}
+  .cal-day.selected{background:#1a1a1a;color:#d4b896;font-weight:600}
+  .cal-day.today{border-color:#a8895c}
+
+  .time-slots{
+    margin-top:20px;display:none;
+  }
+  .time-slots.visible{display:block}
+  .time-slots-label{
+    font-size:11px;letter-spacing:0.15em;text-transform:uppercase;
+    color:#666;margin-bottom:12px;font-weight:500;
+  }
+  .time-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:8px;
+  }
+  .time-slot{
+    padding:10px;text-align:center;border:1px solid rgba(0,0,0,0.15);
+    background:#fff;font-size:13px;cursor:pointer;transition:all 0.15s ease;
+  }
+  .time-slot:hover{border-color:#a8895c;color:#a8895c}
+  .time-slot.selected{background:#1a1a1a;color:#d4b896;border-color:#1a1a1a}
+
+  .form-submit{
+    width:100%;background:#1a1a1a;color:#d4b896;padding:18px;
+    border:none;font-size:13px;font-weight:600;letter-spacing:0.15em;
+    text-transform:uppercase;cursor:pointer;transition:all 0.3s ease;
+    margin-top:12px;
+  }
+  .form-submit:hover{background:#a8895c;color:#fff}
+  .form-submit:disabled{background:#666;cursor:not-allowed;color:#aaa}
+
+  .success-message{
+    display:none;text-align:center;padding:40px 20px;
+  }
+  .success-message.visible{display:block}
+  .success-icon{
+    width:64px;height:64px;border:1px solid #a8895c;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    margin:0 auto 24px;color:#a8895c;font-size:28px;
+  }
+  .success-message h4{
+    font-family:'Cormorant Garamond',serif;font-size:28px;
+    font-weight:500;margin-bottom:12px;
+  }
+  .success-message p{color:#666;font-size:15px;line-height:1.7}
+  .success-detail{
+    margin-top:24px;padding:20px;background:#f3efe6;
+    border-left:3px solid #a8895c;text-align:left;
+  }
+  .success-detail strong{display:block;font-size:11px;letter-spacing:0.15em;
+    text-transform:uppercase;color:#a8895c;margin-bottom:4px;}
+
+  /* ===== FOOTER ===== */
+  footer{
+    background:#0f0f0f;color:rgba(255,255,255,0.6);
+    padding:60px 0 30px;
+  }
+  .footer-grid{
+    display:grid;grid-template-columns:2fr 1fr 1fr;gap:60px;
+    margin-bottom:48px;
+  }
+  .footer-brand{
+    font-family:'Cormorant Garamond',serif;font-size:28px;
+    color:#fff;margin-bottom:16px;
+  }
+  .footer-brand span{color:#a8895c}
+  .footer-brand-desc{font-size:14px;line-height:1.7;max-width:380px}
+  .footer-col h6{
+    font-size:11px;letter-spacing:0.2em;text-transform:uppercase;
+    color:#fff;margin-bottom:20px;font-weight:500;
+  }
+  .footer-col p{font-size:14px;line-height:2;margin:0}
+  .footer-bottom{
+    border-top:1px solid rgba(255,255,255,0.1);padding-top:24px;
+    display:flex;justify-content:space-between;font-size:12px;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width:900px){
+    .stats-grid,.value-grid{grid-template-columns:1fr 1fr}
+    .about-grid,.cta-grid,.footer-grid{grid-template-columns:1fr;gap:48px}
+    .gallery{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+    .gallery-item:nth-child(1),.gallery-item:nth-child(4){grid-row:auto;grid-column:auto}
+    .gallery-item{height:240px}
+    .adv-list{grid-template-columns:1fr}
+    .adv-item{border-right:none !important}
+    section{padding:80px 0}
+    .container{padding:0 24px}
+    .form-card{padding:32px 24px}
+  }
+  @media (max-width:560px){
+    .stats-grid,.value-grid{grid-template-columns:1fr}
+    .form-row{grid-template-columns:1fr}
+    .hero-ctas{flex-direction:column;align-items:stretch}
+    .btn-primary,.btn-ghost{text-align:center}
+    .time-grid{grid-template-columns:repeat(3,1fr)}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="container">
+    <div class="logo">Franco <span>Battista</span></div>
+    <a href="#contatto" class="nav-cta">Prenota consulenza</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <span class="hero-eyebrow">Consulente d'arredo HORECA · dal 1998</span>
+      <h1>L'arredo che <em>racconta</em><br>la tua ospitalità.</h1>
+      <p class="hero-sub">
+        Mobili, tovagliato e forniture per ristoranti, hotel, bar e pasticcerie d'eccellenza.
+        Un unico interlocutore. Vent'anni di esperienza. La certezza di scegliere bene la prima volta.
+      </p>
+      <div class="hero-ctas">
+        <a href="#contatto" class="btn-primary">Prenota una consulenza gratuita</a>
+        <a href="#valore" class="btn-ghost">Scopri di più</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats" style="padding:60px 0">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat">
+        <div class="stat-num">25+</div>
+        <div class="stat-label">Anni di esperienza</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">800+</div>
+        <div class="stat-label">Locali arredati</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">1</div>
+        <div class="stat-label">Unico fornitore</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">90gg</div>
+        <div class="stat-label">Dilazione pagamenti</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUE -->
+<section id="valore" class="value">
+  <div class="container">
+    <span class="section-eyebrow">Perché scegliere un consulente</span>
+    <h2 class="section-title">Tre cose che un sito web<br>non potrà <em>mai darti</em>.</h2>
+    <p class="section-intro">
+      Comprare arredo online sembra conveniente. Finché non arriva la sedia sbagliata,
+      il tavolo che non regge il lavaggio, la finitura che dopo sei mesi è da rifare.
+      Ecco cosa cambia con un professionista al tuo fianco.
+    </p>
+    <div class="value-grid">
+      <div class="value-card">
+        <div class="value-icon">①</div>
+        <h3>Know-how che protegge l'investimento</h3>
+        <p>
+          So quali finiture reggono il lavaggio quotidiano, quali sedie sopportano 50 impilamenti al giorno,
+          quali materiali hanno le certificazioni richieste per il pubblico. Un errore qui ti costa anni di reclami.
+        </p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">②</div>
+        <h3>Un solo interlocutore, mille soluzioni</h3>
+        <p>
+          Mobili, tovagliato, monouso, complementi. Tutto coordinato, tutto coerente, tutto consegnato.
+          Smetti di gestire quindici fornitori diversi: uno solo che risponde di tutto.
+        </p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">③</div>
+        <h3>Condizioni che un e-commerce non offre</h3>
+        <p>
+          Pagamenti dilazionati fino a 90 giorni, RIBA, fatturazione su misura per apertura locale.
+          Trattativa reale sul volume. E un nome e cognome che risponde se qualcosa non va.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT FRANCO -->
+<section class="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-image"></div>
+      <div class="about-content">
+        <span class="section-eyebrow">Chi sono</span>
+        <h2>Franco Battista,<br>il tuo <em>consulente</em><br>di fiducia.</h2>
+        <p>
+          Ho visto centinaia di sale nascere e rinnovarsi. Ho misurato dehor sotto la pioggia,
+          scelto tessuti accanto a chef stellati, risolto consegne urgenti il sabato sera.
+        </p>
+        <p>
+          Non vendo cataloghi. Ascolto cosa vuoi raccontare con il tuo locale,
+          e ti propongo gli arredi che funzionano davvero per il tuo concept, il tuo volume di lavoro,
+          la tua immagine. Tre opzioni giuste, non quattrocento da confrontare.
+        </p>
+        <p>
+          Lavoro con ristoranti d'autore, hotel boutique, pasticcerie artigianali, bistrot di quartiere.
+          Ognuno ha una storia. La mia è quella di chi quella storia la mette in scena.
+        </p>
+        <div class="signature">— Franco Battista</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ADVANTAGES (dark) -->
+<section class="advantages">
+  <div class="container">
+    <span class="section-eyebrow">Vantaggi concreti</span>
+    <h2 class="section-title">Sei motivi per chiamare<br><em>prima</em> di comprare.</h2>
+    <p class="section-intro">
+      Quello che ottieni lavorando con me, oltre al prodotto.
+    </p>
+    <div class="adv-list">
+      <div class="adv-item">
+        <div class="adv-num">01</div>
+        <h4>Sopralluogo gratuito e progetto su misura</h4>
+        <p>Vengo io da te. Misuro, fotografo, ascolto. Ti propongo soluzioni che funzionano nel tuo spazio reale, non in un rendering.</p>
+      </div>
+      <div class="adv-item">
+        <div class="adv-num">02</div>
+        <h4>Riduzione del rischio d'acquisto</h4>
+        <p>Quando spendi migliaia di euro in arredo, il rischio di sbagliare è reale. Vent'anni di esperienza lo annullano.</p>
+      </div>
+      <div class="adv-item">
+        <div class="adv-num">03</div>
+        <h4>Continuità della fornitura nel tempo</h4>
+        <p>Tra due anni potrai integrare le stesse sedie, gli stessi tavoli. Niente sale disomogenee perché il modello è sparito dal sito.</p>
+      </div>
+      <div class="adv-item">
+        <div class="adv-num">04</div>
+        <h4>Conoscenza normativa</h4>
+        <p>Certificazioni ignifughe, normative dehors comunali, requisiti HACCP. Compri tranquillo, non scopri dopo che non puoi usarlo.</p>
+      </div>
+      <div class="adv-item">
+        <div class="adv-num">05</div>
+        <h4>Post-vendita gestito da me</h4>
+        <p>Pezzi di ricambio, riparazioni, sostituzioni in garanzia. Se ne occupa una persona, non un ticket numerato in inglese.</p>
+      </div>
+      <div class="adv-item">
+        <div class="adv-num">06</div>
+        <h4>Pagamenti su misura</h4>
+        <p>30, 60, 90 giorni, RIBA, dilazioni dedicate per chi apre. Condizioni che nessun e-commerce ti darà mai.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="products">
+  <div class="container">
+    <span class="section-eyebrow">La gamma</span>
+    <h2 class="section-title">Tutto ciò che <em>arreda</em><br>e tutto ciò che <em>serve</em>.</h2>
+    <p class="section-intro">
+      Dalla sedia di design al tovagliolo coordinato.
+      Una sola fornitura per ogni esigenza del tuo locale.
+    </p>
+    <div class="gallery">
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1559329007-40df8a9345d8?w=1200&q=80" alt="Ristorante elegante" />
+        <div class="gallery-caption">
+          <span>Mobili HORECA</span>
+          <h5>Tavoli, sedie, dehor</h5>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1578474846511-04ba529f0b88?w=800&q=80" alt="Tovagliato" />
+        <div class="gallery-caption">
+          <span>Tovagliato</span>
+          <h5>Lino, cotone, TNT</h5>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1592861956120-e524fc739696?w=800&q=80" alt="Hotel design" />
+        <div class="gallery-caption">
+          <span>Hospitality</span>
+          <h5>Hotel & boutique</h5>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=1600&q=80" alt="Bar elegante" />
+        <div class="gallery-caption">
+          <span>Monouso premium</span>
+          <h5>Linee complete per servizio veloce</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="testimonial">
+  <div class="container">
+    <p class="testimonial-quote">
+      Con Franco ho aperto due locali in tre anni. Quello che mi dà valore non è il listino:
+      è sapere che se chiamo, lui risponde, e se c'è un problema lo risolve prima che diventi mio.
+    </p>
+    <div class="testimonial-author">
+      <strong>Lorenzo M.</strong> — Ristoratore, Milano
+    </div>
+  </div>
+</section>
+
+<!-- CTA / FORM -->
+<section class="cta-section" id="contatto">
+  <div class="container">
+    <div class="cta-grid">
+      <div class="cta-left">
+        <span class="section-eyebrow" style="color:#d4b896">Iniziamo a parlarne</span>
+        <h2>Una consulenza,<br><em>zero impegno</em>.</h2>
+        <p>
+          Raccontami il tuo progetto: un locale da aprire, una sala da rinnovare,
+          una fornitura da consolidare. Ti richiamo io e fissiamo un sopralluogo,
+          nel giorno e nell'orario che preferisci.
+        </p>
+        <ul class="cta-bullets">
+          <li>Sopralluogo e preventivo gratuiti</li>
+          <li>Risposta entro 24 ore lavorative</li>
+          <li>Riservatezza assoluta sul tuo progetto</li>
+          <li>Nessun impegno, nessuna pressione commerciale</li>
+        </ul>
+      </div>
+
+      <div class="form-card">
+        <div id="form-content">
+          <h3>Prenota la tua consulenza</h3>
+          <p class="form-sub">Compila i dati e scegli il giorno che preferisci.</p>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Nome <span class="req">*</span></label>
+              <input type="text" id="f-nome" required />
+            </div>
+            <div class="form-group">
+              <label>Cognome <span class="req">*</span></label>
+              <input type="text" id="f-cognome" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Nome del locale / attività <span class="req">*</span></label>
+            <input type="text" id="f-locale" placeholder="es. Ristorante La Vela" required />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Email <span class="req">*</span></label>
+              <input type="email" id="f-email" required />
+            </div>
+            <div class="form-group">
+              <label>Telefono <span class="req">*</span></label>
+              <input type="tel" id="f-tel" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Tipologia <span class="req">*</span></label>
+              <select id="f-tipo" required>
+                <option value="">Seleziona...</option>
+                <option>Ristorante</option>
+                <option>Hotel / B&B</option>
+                <option>Bar / Caffetteria</option>
+                <option>Pizzeria</option>
+                <option>Pasticceria / Gelateria</option>
+                <option>Bistrot / Wine bar</option>
+                <option>Altro</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Città <span class="req">*</span></label>
+              <input type="text" id="f-citta" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Interesse principale <span class="req">*</span></label>
+            <select id="f-interesse" required>
+              <option value="">Seleziona...</option>
+              <option>Arredo completo (apertura nuovo locale)</option>
+              <option>Rinnovo arredo esistente</option>
+              <option>Solo mobili (tavoli, sedie, dehor)</option>
+              <option>Tovagliato e biancheria</option>
+              <option>Monouso e forniture</option>
+              <option>Fornitura completa coordinata</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Note (opzionale)</label>
+            <textarea id="f-note" placeholder="Raccontami brevemente il tuo progetto, le tempistiche, eventuali esigenze particolari..."></textarea>
+          </div>
+
+          <!-- CALENDARIO -->
+          <div class="calendar-section">
+            <div class="cal-header">
+              <div class="cal-title" id="cal-month-label">—</div>
+              <div class="cal-nav">
+                <button onclick="changeMonth(-1)" aria-label="Mese precedente">‹</button>
+                <button onclick="changeMonth(1)" aria-label="Mese successivo">›</button>
+              </div>
+            </div>
+            <div class="cal-grid" id="cal-grid"></div>
+            <div class="time-slots" id="time-slots">
+              <div class="time-slots-label">Orario disponibile</div>
+              <div class="time-grid" id="time-grid"></div>
+            </div>
+          </div>
+
+          <button class="form-submit" id="submit-btn" onclick="submitForm()">
+            Prenota la consulenza
+          </button>
+        </div>
+
+        <div class="success-message" id="success-msg">
+          <div class="success-icon">✓</div>
+          <h4>Richiesta inviata</h4>
+          <p>Grazie per la fiducia. Franco ti contatterà entro 24 ore lavorative per confermare l'appuntamento.</p>
+          <div class="success-detail" id="success-detail"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">Franco <span>Battista</span></div>
+        <p class="footer-brand-desc">
+          Consulente d'arredo e fornitura per attività ricettive d'eccellenza.
+          Mobili HORECA, tovagliato, monouso premium.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h6>Contatti</h6>
+        <p>+39 348 000 0000<br>franco@battista-horeca.it<br>Via dell'Eccellenza 12<br>20100 Milano</p>
+      </div>
+      <div class="footer-col">
+        <h6>Servizio</h6>
+        <p>Lun — Ven<br>9:00 — 18:30<br><br>Sopralluoghi su appuntamento</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Franco Battista · P.IVA 00000000000</span>
+      <span>Privacy · Cookie · Termini</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ===== CALENDARIO LOGIC =====
+  const MONTHS_IT = ['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'];
+  const DAYS_IT = ['Lun','Mar','Mer','Gio','Ven','Sab','Dom'];
+  const TIME_SLOTS = ['09:00','10:00','11:00','12:00','14:30','15:30','16:30','17:30'];
+
+  let currentMonth = new Date().getMonth();
+  let currentYear = new Date().getFullYear();
+  let selectedDate = null;
+  let selectedTime = null;
+  let availableDays = {}; // {dateKey: true} - giorni disponibili impostati dal rappresentante
+
+  // Carica disponibilità da storage (impostata dalla dashboard)
+  async function loadAvailability() {
+    try {
+      const r = await window.storage.get('franco-availability', true);
+      if (r && r.value) {
+        availableDays = JSON.parse(r.value);
+      } else {
+        // Default: prossimi 30 giorni lun-ven disponibili
+        const today = new Date();
+        for (let i = 1; i <= 45; i++) {
+          const d = new Date(today);
+          d.setDate(today.getDate() + i);
+          const day = d.getDay();
+          if (day >= 1 && day <= 5) {
+            availableDays[dateKey(d)] = true;
+          }
+        }
+      }
+    } catch(e) {
+      // se la chiave non esiste, usa default
+      const today = new Date();
+      for (let i = 1; i <= 45; i++) {
+        const d = new Date(today);
+        d.setDate(today.getDate() + i);
+        const day = d.getDay();
+        if (day >= 1 && day <= 5) availableDays[dateKey(d)] = true;
+      }
+    }
+    renderCalendar();
+  }
+
+  function dateKey(d) {
+    return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+  }
+
+  function renderCalendar() {
+    const grid = document.getElementById('cal-grid');
+    const label = document.getElementById('cal-month-label');
+    label.textContent = `${MONTHS_IT[currentMonth]} ${currentYear}`;
+
+    let html = '';
+    DAYS_IT.forEach(d => html += `<div class="cal-day-label">${d}</div>`);
+
+    const firstDay = new Date(currentYear, currentMonth, 1);
+    let startOffset = firstDay.getDay() - 1;
+    if (startOffset < 0) startOffset = 6;
+    const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+    const today = new Date(); today.setHours(0,0,0,0);
+
+    for (let i = 0; i < startOffset; i++) html += '<div class="cal-day empty"></div>';
+
+    for (let day = 1; day <= daysInMonth; day++) {
+      const d = new Date(currentYear, currentMonth, day);
+      const k = dateKey(d);
+      const isPast = d < today;
+      const isAvailable = availableDays[k] && !isPast;
+      const isSelected = selectedDate === k;
+      const isToday = d.getTime() === today.getTime();
+
+      let cls = 'cal-day';
+      if (isPast) cls += ' disabled';
+      else if (isAvailable) cls += ' available';
+      else cls += ' disabled';
+      if (isSelected) cls += ' selected';
+      if (isToday) cls += ' today';
+
+      const onclick = isAvailable ? `onclick="selectDate('${k}')"` : '';
+      html += `<div class="${cls}" ${onclick}>${day}</div>`;
+    }
+
+    grid.innerHTML = html;
+  }
+
+  function changeMonth(delta) {
+    currentMonth += delta;
+    if (currentMonth > 11) { currentMonth = 0; currentYear++; }
+    if (currentMonth < 0) { currentMonth = 11; currentYear--; }
+    renderCalendar();
+  }
+
+  function selectDate(k) {
+    selectedDate = k;
+    selectedTime = null;
+    renderCalendar();
+    renderTimeSlots();
+  }
+
+  function renderTimeSlots() {
+    const section = document.getElementById('time-slots');
+    const grid = document.getElementById('time-grid');
+    if (!selectedDate) { section.classList.remove('visible'); return; }
+    section.classList.add('visible');
+    grid.innerHTML = TIME_SLOTS.map(t =>
+      `<div class="time-slot ${selectedTime === t ? 'selected' : ''}" onclick="selectTime('${t}')">${t}</div>`
+    ).join('');
+  }
+
+  function selectTime(t) {
+    selectedTime = t;
+    renderTimeSlots();
+  }
+
+  // ===== SUBMIT FORM =====
+  async function submitForm() {
+    const nome = document.getElementById('f-nome').value.trim();
+    const cognome = document.getElementById('f-cognome').value.trim();
+    const locale = document.getElementById('f-locale').value.trim();
+    const email = document.getElementById('f-email').value.trim();
+    const tel = document.getElementById('f-tel').value.trim();
+    const tipo = document.getElementById('f-tipo').value;
+    const citta = document.getElementById('f-citta').value.trim();
+    const interesse = document.getElementById('f-interesse').value;
+    const note = document.getElementById('f-note').value.trim();
+
+    if (!nome || !cognome || !locale || !email || !tel || !tipo || !citta || !interesse) {
+      alert('Compila tutti i campi obbligatori.');
+      return;
+    }
+    if (!selectedDate || !selectedTime) {
+      alert('Seleziona giorno e orario per l\'appuntamento.');
+      return;
+    }
+
+    const btn = document.getElementById('submit-btn');
+    btn.disabled = true;
+    btn.textContent = 'Invio in corso...';
+
+    const contact = {
+      id: 'c_' + Date.now() + '_' + Math.random().toString(36).slice(2,8),
+      nome, cognome, locale, email, tel, tipo, citta, interesse, note,
+      data: selectedDate,
+      ora: selectedTime,
+      status: 'nuovo',
+      createdAt: new Date().toISOString()
+    };
+
+    try {
+      await window.storage.set('contact:' + contact.id, JSON.stringify(contact), true);
+
+      // Mostra conferma
+      document.getElementById('form-content').style.display = 'none';
+      const successMsg = document.getElementById('success-msg');
+      successMsg.classList.add('visible');
+
+      const d = new Date(selectedDate);
+      const dataFormatted = `${d.getDate()} ${MONTHS_IT[d.getMonth()]} ${d.getFullYear()}`;
+      document.getElementById('success-detail').innerHTML = `
+        <strong>Appuntamento richiesto</strong>
+        ${dataFormatted} alle ${selectedTime}<br>
+        <span style="color:#666;font-size:13px">Riceverai conferma via email a ${email}</span>
+      `;
+      window.scrollTo({ top: successMsg.getBoundingClientRect().top + window.scrollY - 100, behavior: 'smooth' });
+    } catch(e) {
+      btn.disabled = false;
+      btn.textContent = 'Prenota la consulenza';
+      alert('Errore nell\'invio. Riprova tra qualche istante.');
+      console.error(e);
+    }
+  }
+
+  // Init
+  loadAvailability();
+</script>
+
+</body>
+</html>
