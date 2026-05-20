@@ -356,8 +356,94 @@
   .av-day.past{color:#ccc;cursor:not-allowed}
   .av-day.available{background:#a8895c;color:#fff;font-weight:500}
   .av-day.available:active{background:#1a1a1a;color:#d4b896}
+  .av-day.available.partial{
+    background:linear-gradient(135deg,#a8895c 50%,#e0c9a0 50%);
+  }
   .av-day.unavailable{color:#666}
   .av-day.unavailable:active{background:#f3efe6;border-color:#a8895c}
+  .av-day.editing{
+    box-shadow:inset 0 0 0 2px #1a1a1a;
+  }
+  .av-legend-dot.partial{
+    background:linear-gradient(135deg,#a8895c 50%,#e0c9a0 50%);
+  }
+
+  /* DAY EDITOR */
+  .day-editor{
+    background:#1a1a1a;color:#fff;padding:24px 20px;margin-top:20px;
+    border:1px solid #a8895c;
+  }
+  .day-editor-header{
+    display:flex;justify-content:space-between;align-items:flex-start;
+    gap:12px;margin-bottom:20px;padding-bottom:16px;
+    border-bottom:1px solid rgba(212,184,150,0.2);
+  }
+  .day-editor-date{
+    font-family:'Cormorant Garamond',serif;font-size:22px;
+    font-weight:500;color:#fff;line-height:1.2;margin-bottom:4px;
+  }
+  .day-editor-status{
+    font-size:11px;letter-spacing:0.1em;text-transform:uppercase;
+    color:#d4b896;font-weight:600;
+  }
+  .day-editor-close{
+    background:transparent;color:#d4b896;border:1px solid rgba(212,184,150,0.4);
+    width:34px;height:34px;cursor:pointer;font-size:14px;
+    flex-shrink:0;
+  }
+  .day-editor-close:active{background:#a8895c;color:#1a1a1a}
+  .day-toggle-btn{
+    width:100%;padding:14px;background:transparent;color:#d4b896;
+    border:1px solid #a8895c;font-size:12px;letter-spacing:0.1em;
+    text-transform:uppercase;cursor:pointer;font-family:inherit;font-weight:600;
+    min-height:50px;
+  }
+  .day-toggle-btn:active{background:#a8895c;color:#1a1a1a}
+  .day-toggle-btn.active{
+    background:rgba(204,68,68,0.1);color:#ff9999;border-color:rgba(204,68,68,0.4);
+  }
+  .day-toggle-btn.active:active{background:#c44;color:#fff}
+  .slots-editor-title{
+    font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:500;
+    margin-top:24px;margin-bottom:4px;color:#fff;
+  }
+  .slots-editor-sub{
+    font-size:12px;color:rgba(255,255,255,0.6);margin-bottom:16px;
+  }
+  .slots-editor-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:8px;
+  }
+  .slot-pill{
+    padding:14px 12px;text-align:center;
+    border:1px solid transparent;font-size:13px;font-weight:500;
+    cursor:pointer;transition:all 0.15s ease;min-height:48px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .slot-pill.free{
+    background:rgba(212,184,150,0.12);color:#d4b896;
+    border-color:rgba(212,184,150,0.3);
+  }
+  .slot-pill.free:active{background:#a8895c;color:#1a1a1a}
+  .slot-pill.blocked{
+    background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.5);
+    border-color:rgba(255,255,255,0.15);text-decoration:line-through;
+  }
+  .slot-pill.blocked:active{background:#d4b896;color:#1a1a1a}
+  .slot-pill.booked{
+    background:rgba(10,122,63,0.15);color:#7ad199;
+    border-color:rgba(10,122,63,0.3);cursor:not-allowed;
+  }
+  .slots-legend{
+    display:flex;gap:14px;margin-top:14px;font-size:11px;
+    color:rgba(255,255,255,0.7);flex-wrap:wrap;
+  }
+  .slots-legend .dot{
+    display:inline-block;width:10px;height:10px;margin-right:5px;
+    vertical-align:middle;
+  }
+  .dot-free{background:#d4b896}
+  .dot-blocked{background:rgba(255,255,255,0.2)}
+  .dot-booked{background:#7ad199}
   .av-legend{
     display:flex;gap:18px;margin-top:16px;font-size:11px;color:#666;
     flex-wrap:wrap;
@@ -616,9 +702,16 @@
         <div class="av-cal" id="av-cal-2"></div>
       </div>
 
+      <div id="day-editor" class="day-editor" style="display:none"></div>
+
       <div class="av-legend">
-        <div class="av-legend-item"><div class="av-legend-dot av"></div>Disponibile</div>
+        <div class="av-legend-item"><div class="av-legend-dot av"></div>Giorno disponibile</div>
+        <div class="av-legend-item"><div class="av-legend-dot partial"></div>Con slot bloccati</div>
         <div class="av-legend-item"><div class="av-legend-dot un"></div>Non disponibile</div>
+      </div>
+
+      <div style="margin-top:16px;padding:14px;background:#fafaf7;font-size:12px;color:#666;line-height:1.6;border-left:3px solid #a8895c">
+        💡 Tocca un giorno per gestire i singoli slot orari. Puoi attivare/disattivare il giorno intero o bloccare solo specifici orari.
       </div>
 
       <div class="save-status" id="save-status">Salvataggio automatico</div>
@@ -631,12 +724,15 @@
   const MONTHS_SHORT = ['Gen','Feb','Mar','Apr','Mag','Giu','Lug','Ago','Set','Ott','Nov','Dic'];
   const DAYS_IT = ['L','M','M','G','V','S','D'];
   const DAY_NAMES = ['Domenica','Lunedì','Martedì','Mercoledì','Giovedì','Venerdì','Sabato'];
+  const TIME_SLOTS = ['09:00','10:00','11:00','12:00','14:30','15:30','16:30','17:30'];
 
   let contacts = [];
   let availableDays = {};
+  let blockedSlots = {}; // { 'YYYY-MM-DD': ['09:00','10:00'] }
   let expandedId = null;
   let avMonth1 = new Date().getMonth();
   let avYear1 = new Date().getFullYear();
+  let editingDate = null; // giorno selezionato per modificare gli slot
 
   function dateKey(d) {
     return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
@@ -661,7 +757,7 @@
     el.classList.add('active');
     document.getElementById('panel-' + name).classList.add('active');
     window.scrollTo({top:0, behavior:'smooth'});
-    if (name === 'disponibilita') renderAvailabilityCalendars();
+    if (name === 'disponibilita') { renderAvailabilityCalendars(); renderDayEditor(); }
     if (name === 'agenda') renderAgenda();
   }
 
@@ -679,7 +775,10 @@
   async function loadAvailability() {
     try {
       const snap = await window.fbGetDoc(window.fbDoc(window.fbDb, 'config', 'availability'));
-      if (snap.exists() && snap.data().days) availableDays = snap.data().days;
+      if (snap.exists() && snap.data().days) {
+        availableDays = snap.data().days;
+        blockedSlots = snap.data().blockedSlots || {};
+      }
       else defaultAvailability();
     } catch(e) { console.warn(e); defaultAvailability(); }
   }
@@ -695,7 +794,10 @@
 
   async function saveAvailability() {
     try {
-      await window.fbSetDoc(window.fbDoc(window.fbDb, 'config', 'availability'), { days: availableDays });
+      await window.fbSetDoc(window.fbDoc(window.fbDb, 'config', 'availability'), {
+        days: availableDays,
+        blockedSlots: blockedSlots
+      });
       const status = document.getElementById('save-status');
       status.textContent = '✓ Salvato';
       status.classList.add('saved');
@@ -981,17 +1083,131 @@
       const k = dateKey(d);
       const isPast = d < today;
       const isAvailable = availableDays[k];
+      const isEditing = editingDate === k;
+      const blockedCount = (blockedSlots[k] || []).length;
+      const hasBlocked = blockedCount > 0 && isAvailable;
 
       let cls = 'av-day';
       if (isPast) cls += ' past';
       else if (isAvailable) cls += ' available';
       else cls += ' unavailable';
+      if (hasBlocked) cls += ' partial';
+      if (isEditing) cls += ' editing';
 
-      const onclick = !isPast ? `onclick="toggleAvailability('${k}')"` : '';
+      const onclick = !isPast ? `onclick="selectDayForEdit('${k}')"` : '';
       html += `<div class="${cls}" ${onclick}>${day}</div>`;
     }
     html += '</div>';
     wrap.innerHTML = html;
+  }
+
+  function selectDayForEdit(k) {
+    editingDate = k;
+    renderAvailabilityCalendars();
+    renderDayEditor();
+    // scroll su mobile
+    setTimeout(() => {
+      const ed = document.getElementById('day-editor');
+      if (ed) ed.scrollIntoView({behavior:'smooth', block:'center'});
+    }, 50);
+  }
+
+  function renderDayEditor() {
+    const wrap = document.getElementById('day-editor');
+    if (!wrap) return;
+    if (!editingDate) { wrap.style.display = 'none'; return; }
+    wrap.style.display = 'block';
+
+    const d = new Date(editingDate);
+    const dayName = DAY_NAMES[d.getDay()];
+    const dateFormatted = `${dayName} ${d.getDate()} ${MONTHS_IT[d.getMonth()]} ${d.getFullYear()}`;
+    const isDayAvailable = !!availableDays[editingDate];
+    const blocked = blockedSlots[editingDate] || [];
+
+    // Slot già prenotati
+    const booked = [];
+    contacts.forEach(c => {
+      if (c.data === editingDate) booked.push(c.ora);
+    });
+
+    let html = `
+      <div class="day-editor-header">
+        <div>
+          <div class="day-editor-date">${dateFormatted}</div>
+          <div class="day-editor-status">${isDayAvailable ? '✓ Giorno disponibile' : '✗ Giorno non disponibile'}</div>
+        </div>
+        <button class="day-editor-close" onclick="closeDayEditor()" aria-label="Chiudi">✕</button>
+      </div>
+      <button class="day-toggle-btn ${isDayAvailable ? 'active' : ''}" onclick="toggleDayAvailability()">
+        ${isDayAvailable ? 'Disattiva tutto il giorno' : 'Attiva questo giorno'}
+      </button>
+    `;
+
+    if (isDayAvailable) {
+      html += `
+        <div class="slots-editor-title">Slot orari</div>
+        <div class="slots-editor-sub">Tocca per bloccare o sbloccare uno slot</div>
+        <div class="slots-editor-grid">
+          ${TIME_SLOTS.map(t => {
+            const isBooked = booked.includes(t);
+            const isBlocked = blocked.includes(t);
+            let slotCls = 'slot-pill';
+            let label = t;
+            let onclick = `onclick="toggleSlot('${t}')"`;
+            if (isBooked) {
+              slotCls += ' booked';
+              label = `${t} · Prenotato`;
+              onclick = '';
+            } else if (isBlocked) {
+              slotCls += ' blocked';
+              label = `${t} · Bloccato`;
+            } else {
+              slotCls += ' free';
+              label = `${t} · Libero`;
+            }
+            return `<div class="${slotCls}" ${onclick}>${label}</div>`;
+          }).join('')}
+        </div>
+        <div class="slots-legend">
+          <span><span class="dot dot-free"></span>Libero</span>
+          <span><span class="dot dot-blocked"></span>Bloccato</span>
+          <span><span class="dot dot-booked"></span>Prenotato</span>
+        </div>
+      `;
+    }
+
+    wrap.innerHTML = html;
+  }
+
+  function closeDayEditor() {
+    editingDate = null;
+    renderAvailabilityCalendars();
+    renderDayEditor();
+  }
+
+  async function toggleDayAvailability() {
+    if (!editingDate) return;
+    if (availableDays[editingDate]) {
+      delete availableDays[editingDate];
+      delete blockedSlots[editingDate];
+    } else {
+      availableDays[editingDate] = true;
+    }
+    renderAvailabilityCalendars();
+    renderDayEditor();
+    await saveAvailability();
+  }
+
+  async function toggleSlot(time) {
+    if (!editingDate) return;
+    if (!blockedSlots[editingDate]) blockedSlots[editingDate] = [];
+    const idx = blockedSlots[editingDate].indexOf(time);
+    if (idx >= 0) blockedSlots[editingDate].splice(idx, 1);
+    else blockedSlots[editingDate].push(time);
+    if (blockedSlots[editingDate].length === 0) delete blockedSlots[editingDate];
+    renderAvailabilityCalendars();
+    renderDayEditor();
+    await saveAvailability();
   }
 
   function navAvCal(delta) {
@@ -999,13 +1215,6 @@
     if (avMonth1 > 11) { avMonth1 = 0; avYear1++; }
     if (avMonth1 < 0) { avMonth1 = 11; avYear1--; }
     renderAvailabilityCalendars();
-  }
-
-  async function toggleAvailability(k) {
-    if (availableDays[k]) delete availableDays[k];
-    else availableDays[k] = true;
-    renderAvailabilityCalendars();
-    await saveAvailability();
   }
 
   async function quickFill(type, days) {
@@ -1018,13 +1227,17 @@
       availableDays[dateKey(d)] = true;
     }
     renderAvailabilityCalendars();
+    if (editingDate) renderDayEditor();
     await saveAvailability();
   }
 
   async function clearAvailability() {
     if (!confirm('Rimuovere tutte le disponibilità?')) return;
     availableDays = {};
+    blockedSlots = {};
+    editingDate = null;
     renderAvailabilityCalendars();
+    renderDayEditor();
     await saveAvailability();
   }
 

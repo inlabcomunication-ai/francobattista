@@ -8,7 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-  import { getFirestore, collection, addDoc, doc, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+  import { getFirestore, collection, addDoc, doc, getDoc, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
   const firebaseConfig = {
     apiKey: "AIzaSyDBAMrXhF4UvS_ZLJnSzOMrKASNz8H8XGs",
     authDomain: "franco-battista.firebaseapp.com",
@@ -24,6 +24,7 @@
   window.fbCollection = collection;
   window.fbDoc = doc;
   window.fbGetDoc = getDoc;
+  window.fbGetDocs = getDocs;
   window.fbServerTimestamp = serverTimestamp;
   window.dispatchEvent(new Event('firebaseReady'));
 </script>
@@ -892,21 +893,40 @@
   let selectedDate = null;
   let selectedTime = null;
   let availableDays = {};
+  let blockedSlots = {}; // { 'YYYY-MM-DD': ['09:00','10:00'] } - slot bloccati da Franco
+  let bookedSlots = {};  // { 'YYYY-MM-DD': ['09:00','10:00'] } - slot già prenotati
 
   async function loadAvailability() {
     try {
+      // 1. Disponibilità giorni
       const docRef = window.fbDoc(window.fbDb, 'config', 'availability');
       const snap = await window.fbGetDoc(docRef);
       if (snap.exists() && snap.data().days) {
         availableDays = snap.data().days;
+        blockedSlots = snap.data().blockedSlots || {};
       } else {
         defaultAvailability();
       }
+
+      // 2. Slot già prenotati (da collezione contacts)
+      bookedSlots = {};
+      try {
+        const contactsSnap = await window.fbGetDocs(window.fbCollection(window.fbDb, 'contacts'));
+        contactsSnap.forEach(d => {
+          const data = d.data();
+          if (data.data && data.ora) {
+            if (!bookedSlots[data.data]) bookedSlots[data.data] = [];
+            bookedSlots[data.data].push(data.ora);
+          }
+        });
+      } catch(e) { console.warn('Impossibile caricare prenotazioni:', e); }
+
     } catch(e) {
       console.warn('Errore caricamento disponibilità, uso default:', e);
       defaultAvailability();
     }
     renderCalendar();
+    if (selectedDate) renderTimeSlots();
   }
 
   function defaultAvailability() {
@@ -986,7 +1006,18 @@
     const grid = document.getElementById('time-grid');
     if (!selectedDate) { section.classList.remove('visible'); return; }
     section.classList.add('visible');
-    grid.innerHTML = TIME_SLOTS.map(t =>
+
+    const blocked = blockedSlots[selectedDate] || [];
+    const booked = bookedSlots[selectedDate] || [];
+
+    const availableSlots = TIME_SLOTS.filter(t => !blocked.includes(t) && !booked.includes(t));
+
+    if (availableSlots.length === 0) {
+      grid.innerHTML = `<div style="grid-column:1/-1;padding:20px;text-align:center;color:#888;font-size:13px;background:#fafaf7;border:1px dashed rgba(0,0,0,0.1)">Nessun orario disponibile per questa data. Scegli un altro giorno.</div>`;
+      return;
+    }
+
+    grid.innerHTML = availableSlots.map(t =>
       `<div class="time-slot ${selectedTime === t ? 'selected' : ''}" onclick="selectTime('${t}')">${t}</div>`
     ).join('');
   }
@@ -1019,6 +1050,27 @@
 
     const btn = document.getElementById('submit-btn');
     btn.disabled = true;
+    btn.textContent = 'Verifica disponibilità...';
+
+    // Doppio check: ricarica i prenotati e verifica che lo slot sia ancora libero
+    try {
+      const contactsSnap = await window.fbGetDocs(window.fbCollection(window.fbDb, 'contacts'));
+      let alreadyBooked = false;
+      contactsSnap.forEach(d => {
+        const data = d.data();
+        if (data.data === selectedDate && data.ora === selectedTime) alreadyBooked = true;
+      });
+      if (alreadyBooked) {
+        alert('Questo orario è stato appena prenotato da qualcun altro. Scegli un altro slot.');
+        await loadAvailability();
+        selectedTime = null;
+        renderTimeSlots();
+        btn.disabled = false;
+        btn.textContent = 'Prenota la consulenza';
+        return;
+      }
+    } catch(e) { console.warn(e); }
+
     btn.textContent = 'Invio in corso...';
 
     const contact = {
