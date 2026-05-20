@@ -426,6 +426,39 @@
 </head>
 <body>
 
+<!-- LOGIN OVERLAY -->
+<div id="login-overlay" style="position:fixed;inset:0;background:#1a1a1a;z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px">
+  <div style="max-width:380px;width:100%;text-align:center">
+    <div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:500;color:#fff;margin-bottom:8px">Franco <span style="color:#d4b896">Battista</span></div>
+    <div style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:40px">Dashboard riservata</div>
+    <input type="password" id="login-pw" placeholder="Password"
+      style="width:100%;padding:16px;background:transparent;border:1px solid rgba(212,184,150,0.4);color:#fff;font-size:16px;text-align:center;letter-spacing:0.05em;margin-bottom:16px"
+      onkeydown="if(event.key==='Enter')checkLogin()" />
+    <button onclick="checkLogin()"
+      style="width:100%;padding:16px;background:#d4b896;color:#1a1a1a;border:none;font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;min-height:52px">Accedi</button>
+    <div id="login-err" style="color:#e88;font-size:13px;margin-top:16px;min-height:20px"></div>
+  </div>
+</div>
+
+<script>
+  const DASHBOARD_PW = 'francobattista2026';
+  function checkLogin() {
+    const pw = document.getElementById('login-pw').value;
+    if (pw === DASHBOARD_PW) {
+      sessionStorage.setItem('fb_auth', '1');
+      document.getElementById('login-overlay').style.display = 'none';
+    } else {
+      document.getElementById('login-err').textContent = 'Password errata';
+      document.getElementById('login-pw').value = '';
+    }
+  }
+  if (sessionStorage.getItem('fb_auth') === '1') {
+    document.getElementById('login-overlay').style.display = 'none';
+  } else {
+    setTimeout(() => document.getElementById('login-pw').focus(), 100);
+  }
+</script>
+
 <header>
   <div>
     <div class="header-brand">Franco <span>Battista</span></div>
