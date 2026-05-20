@@ -2,266 +2,401 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+<meta name="theme-color" content="#1a1a1a" />
 <title>Dashboard · Franco Battista</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  *{margin:0;padding:0;box-sizing:border-box}
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html{-webkit-text-size-adjust:100%}
   body{
     font-family:'Inter',sans-serif;
     background:#f7f5f0;
     color:#1a1a1a;
     min-height:100vh;
     -webkit-font-smoothing:antialiased;
+    padding-bottom:env(safe-area-inset-bottom);
   }
-  .serif{font-family:'Cormorant Garamond',serif}
+  button,input,select,textarea{font-family:inherit;font-size:16px}
 
-  /* HEADER */
+  /* ===== HEADER MOBILE ===== */
   header{
-    background:#1a1a1a;color:#fff;padding:24px 40px;
+    background:#1a1a1a;color:#fff;padding:16px 20px;
     display:flex;justify-content:space-between;align-items:center;
     border-bottom:1px solid #a8895c;
+    position:sticky;top:0;z-index:50;
   }
   .header-brand{
-    font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:500;
+    font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;
   }
   .header-brand span{color:#d4b896}
   .header-sub{
-    font-size:11px;letter-spacing:0.2em;text-transform:uppercase;
-    color:rgba(255,255,255,0.5);margin-top:4px;
+    font-size:9px;letter-spacing:0.2em;text-transform:uppercase;
+    color:rgba(255,255,255,0.5);margin-top:2px;
   }
-  .header-actions{display:flex;gap:12px;align-items:center}
   .refresh-btn{
     background:transparent;color:#d4b896;border:1px solid #a8895c;
-    padding:10px 18px;font-size:12px;letter-spacing:0.1em;
-    text-transform:uppercase;cursor:pointer;transition:all 0.3s ease;
-    font-family:inherit;
+    padding:8px 12px;font-size:11px;letter-spacing:0.08em;
+    text-transform:uppercase;cursor:pointer;
+    font-family:inherit;font-weight:500;
+    min-height:38px;min-width:64px;
   }
-  .refresh-btn:hover{background:#a8895c;color:#1a1a1a}
+  .refresh-btn:active{background:#a8895c;color:#1a1a1a}
 
-  /* TABS */
+  /* ===== TABS MOBILE - SCROLL ORIZZONTALE ===== */
   .tabs{
     background:#fff;border-bottom:1px solid rgba(0,0,0,0.08);
-    padding:0 40px;display:flex;gap:0;
+    display:flex;gap:0;overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    position:sticky;top:65px;z-index:40;
   }
+  .tabs::-webkit-scrollbar{display:none}
   .tab{
-    padding:18px 28px;cursor:pointer;font-size:13px;
-    letter-spacing:0.08em;text-transform:uppercase;color:#888;
+    padding:14px 18px;cursor:pointer;font-size:12px;
+    letter-spacing:0.06em;text-transform:uppercase;color:#888;
     border-bottom:2px solid transparent;transition:all 0.2s ease;
-    font-weight:500;
+    font-weight:500;white-space:nowrap;flex-shrink:0;
   }
-  .tab:hover{color:#1a1a1a}
+  .tab:active{color:#1a1a1a}
   .tab.active{color:#1a1a1a;border-bottom-color:#a8895c}
   .tab-badge{
-    display:inline-block;background:#a8895c;color:#fff;font-size:11px;
-    padding:2px 8px;border-radius:10px;margin-left:8px;font-weight:600;
+    display:inline-block;background:#a8895c;color:#fff;font-size:10px;
+    padding:2px 7px;border-radius:10px;margin-left:6px;font-weight:600;
     letter-spacing:0;
   }
 
-  /* MAIN */
-  main{padding:40px}
+  /* ===== MAIN ===== */
+  main{padding:20px}
   .panel{display:none}
   .panel.active{display:block}
 
-  /* STATS */
+  .panel-title{
+    font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:500;
+    margin-bottom:6px;
+  }
+  .panel-sub{
+    color:#666;font-size:13px;margin-bottom:24px;line-height:1.5;
+  }
+
+  /* ===== STATS ===== */
   .stats-row{
-    display:grid;grid-template-columns:repeat(4,1fr);gap:20px;
-    margin-bottom:32px;
+    display:grid;grid-template-columns:1fr 1fr;gap:10px;
+    margin-bottom:24px;
   }
   .stat-card{
-    background:#fff;padding:24px;border:1px solid rgba(0,0,0,0.06);
+    background:#fff;padding:16px 14px;border:1px solid rgba(0,0,0,0.06);
   }
   .stat-card-label{
-    font-size:11px;letter-spacing:0.15em;text-transform:uppercase;
-    color:#888;margin-bottom:12px;font-weight:500;
+    font-size:10px;letter-spacing:0.12em;text-transform:uppercase;
+    color:#888;margin-bottom:8px;font-weight:600;
   }
   .stat-card-num{
-    font-family:'Cormorant Garamond',serif;font-size:42px;
+    font-family:'Cormorant Garamond',serif;font-size:32px;
     color:#1a1a1a;font-weight:500;line-height:1;
   }
   .stat-card-num.accent{color:#a8895c}
+  .stat-card-num.small{font-size:18px;line-height:1.2}
   .stat-card-sub{
-    font-size:12px;color:#888;margin-top:8px;
+    font-size:11px;color:#888;margin-top:6px;
   }
 
-  /* FILTERS */
+  /* ===== FILTERS ===== */
   .filters{
-    display:flex;gap:12px;margin-bottom:24px;flex-wrap:wrap;align-items:center;
+    display:flex;flex-direction:column;gap:10px;margin-bottom:20px;
   }
   .search-box{
-    flex:1;min-width:240px;padding:12px 16px;
+    width:100%;padding:12px 14px;
     border:1px solid rgba(0,0,0,0.12);background:#fff;
-    font-size:14px;font-family:inherit;
+    font-size:16px;min-height:46px;
   }
   .search-box:focus{outline:none;border-color:#a8895c}
+  .filter-row{display:flex;gap:8px}
   .filter-select{
-    padding:12px 16px;border:1px solid rgba(0,0,0,0.12);background:#fff;
-    font-size:13px;font-family:inherit;cursor:pointer;color:#1a1a1a;
+    flex:1;padding:12px 14px;border:1px solid rgba(0,0,0,0.12);background:#fff;
+    font-size:14px;cursor:pointer;color:#1a1a1a;
+    -webkit-appearance:none;appearance:none;min-height:46px;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%23666' d='M5 6L0 0h10z'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 14px center;
+    padding-right:36px;
   }
   .filter-select:focus{outline:none;border-color:#a8895c}
 
-  /* TABLE */
-  .table-wrap{
-    background:#fff;border:1px solid rgba(0,0,0,0.06);overflow:hidden;
+  /* ===== CONTACT CARDS (MOBILE VIEW) ===== */
+  .contacts-list{
+    display:flex;flex-direction:column;gap:10px;
   }
-  table{width:100%;border-collapse:collapse}
-  thead{background:#fafaf7;border-bottom:1px solid rgba(0,0,0,0.08)}
-  th{
-    text-align:left;padding:16px 20px;font-size:11px;
-    letter-spacing:0.12em;text-transform:uppercase;color:#666;
-    font-weight:600;
+  .contact-card{
+    background:#fff;border:1px solid rgba(0,0,0,0.06);
+    overflow:hidden;
   }
-  td{
-    padding:18px 20px;border-bottom:1px solid rgba(0,0,0,0.04);
-    font-size:14px;vertical-align:middle;
+  .cc-header{
+    padding:16px;cursor:pointer;
+    display:flex;justify-content:space-between;align-items:flex-start;
+    gap:12px;
   }
-  tbody tr{transition:background 0.15s ease;cursor:pointer}
-  tbody tr:hover{background:#fafaf7}
-  tbody tr.expanded{background:#f7f0e3}
-  td .nome-cell{font-weight:500;color:#1a1a1a}
-  td .locale-cell{font-size:13px;color:#666;margin-top:2px}
-  td .meta{font-size:12px;color:#888}
-  .badge{
-    display:inline-block;padding:4px 10px;border-radius:2px;
-    font-size:11px;letter-spacing:0.05em;font-weight:600;
-    text-transform:uppercase;
+  .cc-header:active{background:#fafaf7}
+  .cc-main{flex:1;min-width:0}
+  .cc-name{
+    font-weight:600;font-size:15px;color:#1a1a1a;margin-bottom:3px;
   }
-  .badge-new{background:#f3e8d4;color:#7a5a2e}
-  .badge-date{
-    font-family:'Cormorant Garamond',serif;font-size:16px;
-    color:#a8895c;font-weight:600;letter-spacing:0;text-transform:none;
+  .cc-locale{
+    font-size:13px;color:#666;margin-bottom:8px;
+    overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  }
+  .cc-meta{
+    display:flex;gap:8px;flex-wrap:wrap;align-items:center;
+    font-size:11px;
   }
   .tipo-pill{
-    display:inline-block;padding:3px 10px;border:1px solid rgba(168,137,92,0.4);
-    color:#7a5a2e;font-size:11px;letter-spacing:0.05em;border-radius:2px;
+    display:inline-block;padding:3px 8px;border:1px solid rgba(168,137,92,0.4);
+    color:#7a5a2e;font-size:10px;letter-spacing:0.05em;
     background:rgba(243,232,212,0.4);
+    text-transform:uppercase;font-weight:600;
+  }
+  .cc-city{color:#888;font-size:11px}
+  .cc-right{
+    text-align:right;flex-shrink:0;
+  }
+  .cc-date{
+    font-family:'Cormorant Garamond',serif;font-size:18px;
+    color:#a8895c;font-weight:600;line-height:1;
+  }
+  .cc-time{
+    font-size:12px;color:#666;margin-top:3px;
+  }
+  .cc-ago{
+    font-size:10px;color:#999;margin-top:8px;
+    letter-spacing:0.05em;
+  }
+  .cc-arrow{
+    color:#a8895c;font-size:16px;margin-left:4px;
   }
 
-  /* EXPANDED ROW */
-  .detail-row{display:none}
-  .detail-row.visible{display:table-row}
-  .detail-row td{padding:0;background:#fafaf7;border-bottom:1px solid rgba(0,0,0,0.08)}
-  .detail-content{
-    padding:24px 32px;display:grid;grid-template-columns:1fr 1fr;gap:32px;
+  .cc-expand{
+    display:none;padding:0 16px 16px;
+    border-top:1px solid rgba(0,0,0,0.06);background:#fafaf7;
   }
-  .detail-section h5{
-    font-size:11px;letter-spacing:0.15em;text-transform:uppercase;
-    color:#a8895c;margin-bottom:12px;font-weight:600;
+  .cc-expand.visible{display:block}
+  .cc-section{padding:16px 0;border-bottom:1px solid rgba(0,0,0,0.05)}
+  .cc-section:last-child{border-bottom:none}
+  .cc-section-title{
+    font-size:10px;letter-spacing:0.15em;text-transform:uppercase;
+    color:#a8895c;margin-bottom:10px;font-weight:700;
   }
-  .detail-row-item{
-    display:flex;justify-content:space-between;padding:8px 0;
-    border-bottom:1px solid rgba(0,0,0,0.05);font-size:13px;
+  .cc-info-row{
+    display:flex;justify-content:space-between;padding:6px 0;
+    font-size:13px;gap:12px;
   }
-  .detail-row-item .lbl{color:#666}
-  .detail-row-item .val{color:#1a1a1a;font-weight:500;text-align:right}
-  .detail-note{
-    background:#fff;padding:16px;border-left:3px solid #a8895c;
-    font-size:13px;line-height:1.7;color:#444;margin-top:8px;
-    font-style:italic;
+  .cc-info-row .lbl{color:#888;flex-shrink:0}
+  .cc-info-row .val{
+    color:#1a1a1a;font-weight:500;text-align:right;
+    word-break:break-word;
   }
-  .quick-actions{
-    display:flex;gap:8px;margin-top:16px;
+  .cc-info-row .val a{color:#a8895c;text-decoration:none}
+  .cc-note{
+    background:#fff;padding:14px;border-left:3px solid #a8895c;
+    font-size:13px;line-height:1.6;color:#444;
+    font-style:italic;margin-top:10px;
+  }
+  .cc-actions{
+    display:grid;grid-template-columns:1fr 1fr;gap:8px;
+    padding-top:16px;
   }
   .qa-btn{
-    flex:1;padding:10px;background:#1a1a1a;color:#d4b896;
+    padding:14px 12px;background:#1a1a1a;color:#d4b896;
     border:none;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;
     cursor:pointer;font-family:inherit;font-weight:600;
-    text-decoration:none;text-align:center;transition:all 0.2s ease;
+    text-decoration:none;text-align:center;
     display:flex;align-items:center;justify-content:center;
+    min-height:46px;
   }
-  .qa-btn:hover{background:#a8895c;color:#fff}
-  .qa-btn.danger{background:#fff;color:#c44;border:1px solid #c44}
-  .qa-btn.danger:hover{background:#c44;color:#fff}
+  .qa-btn:active{background:#a8895c;color:#fff;transform:scale(0.97)}
+  .qa-btn.danger{
+    grid-column:span 2;
+    background:#fff;color:#c44;border:1px solid #c44;
+  }
+  .qa-btn.danger:active{background:#c44;color:#fff}
 
+  /* ===== EMPTY STATE ===== */
   .empty-state{
-    text-align:center;padding:80px 40px;color:#999;
+    text-align:center;padding:60px 24px;color:#999;
+    background:#fff;border:1px solid rgba(0,0,0,0.06);
   }
   .empty-state h3{
-    font-family:'Cormorant Garamond',serif;font-size:28px;
-    color:#1a1a1a;margin-bottom:12px;font-weight:500;
+    font-family:'Cormorant Garamond',serif;font-size:22px;
+    color:#1a1a1a;margin-bottom:10px;font-weight:500;
   }
-  .empty-state p{font-size:14px}
+  .empty-state p{font-size:13px;line-height:1.6}
 
-  /* CALENDARIO DISPONIBILITÀ */
-  .availability-section{
-    background:#fff;padding:32px;border:1px solid rgba(0,0,0,0.06);
+  /* ===== AGENDA MOBILE ===== */
+  .agenda-day{margin-bottom:24px}
+  .agenda-day-header{
+    display:flex;align-items:baseline;gap:14px;
+    margin-bottom:12px;padding-bottom:10px;
+    border-bottom:1px solid rgba(0,0,0,0.08);
   }
-  .av-header{
-    display:flex;justify-content:space-between;align-items:center;
-    margin-bottom:8px;
+  .agenda-day-num{
+    font-family:'Cormorant Garamond',serif;font-size:28px;
+    color:#a8895c;font-weight:500;line-height:1;
+  }
+  .agenda-day-name{
+    font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:500;
+  }
+  .agenda-day-month{
+    font-size:10px;color:#888;letter-spacing:0.1em;
+    text-transform:uppercase;margin-top:2px;
+  }
+  .agenda-item{
+    background:#fff;border:1px solid rgba(0,0,0,0.06);
+    padding:14px;margin-bottom:8px;
+    display:flex;gap:14px;align-items:flex-start;
+  }
+  .agenda-time{
+    font-family:'Cormorant Garamond',serif;font-size:20px;
+    color:#1a1a1a;font-weight:500;flex-shrink:0;
+    min-width:50px;
+  }
+  .agenda-info{flex:1;min-width:0}
+  .agenda-name{
+    font-weight:600;font-size:14px;margin-bottom:2px;
+  }
+  .agenda-locale{
+    color:#666;font-size:12px;margin-bottom:6px;
+    overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  }
+  .agenda-actions{
+    display:flex;gap:6px;margin-top:10px;
+  }
+  .agenda-actions .qa-btn{
+    flex:1;padding:10px 8px;font-size:10px;min-height:38px;
+  }
+
+  /* ===== AVAILABILITY CALENDAR MOBILE ===== */
+  .availability-section{
+    background:#fff;padding:20px 16px;border:1px solid rgba(0,0,0,0.06);
   }
   .av-title{
-    font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:500;
+    font-family:'Cormorant Garamond',serif;font-size:24px;
+    font-weight:500;margin-bottom:6px;
   }
   .av-sub{
-    color:#666;font-size:14px;margin-bottom:24px;line-height:1.6;
+    color:#666;font-size:13px;margin-bottom:20px;line-height:1.5;
   }
   .av-quick-actions{
-    display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap;
+    display:flex;flex-direction:column;gap:8px;margin-bottom:24px;
   }
   .av-quick-btn{
-    padding:10px 16px;background:#fafaf7;color:#1a1a1a;
-    border:1px solid rgba(0,0,0,0.1);font-size:12px;letter-spacing:0.05em;
-    cursor:pointer;font-family:inherit;transition:all 0.2s ease;
+    padding:12px 14px;background:#fafaf7;color:#1a1a1a;
+    border:1px solid rgba(0,0,0,0.1);font-size:13px;
+    cursor:pointer;font-family:inherit;
+    min-height:44px;text-align:left;
   }
-  .av-quick-btn:hover{border-color:#a8895c;color:#a8895c}
+  .av-quick-btn:active{border-color:#a8895c;color:#a8895c}
+  .av-quick-btn.danger{color:#c44;border-color:rgba(204,68,68,0.3)}
   .av-cal-container{
-    display:grid;grid-template-columns:1fr 1fr;gap:32px;
+    display:flex;flex-direction:column;gap:20px;
   }
   .av-cal{
-    border:1px solid rgba(0,0,0,0.08);padding:20px;
+    border:1px solid rgba(0,0,0,0.08);padding:14px;
   }
   .av-cal-header{
     display:flex;justify-content:space-between;align-items:center;
-    margin-bottom:16px;
+    margin-bottom:12px;
   }
   .av-cal-title{
-    font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:500;
+    font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:500;
   }
   .av-cal-nav{display:flex;gap:6px}
   .av-cal-nav button{
-    width:28px;height:28px;border:1px solid rgba(0,0,0,0.15);
-    background:#fff;cursor:pointer;color:#666;
+    width:34px;height:34px;border:1px solid rgba(0,0,0,0.15);
+    background:#fff;cursor:pointer;color:#666;font-size:16px;
   }
-  .av-cal-nav button:hover{border-color:#a8895c;color:#a8895c}
+  .av-cal-nav button:active{background:#a8895c;color:#fff;border-color:#a8895c}
   .av-cal-grid{
     display:grid;grid-template-columns:repeat(7,1fr);gap:3px;
   }
   .av-day-label{
-    text-align:center;font-size:10px;letter-spacing:0.1em;
-    text-transform:uppercase;color:#999;padding:6px 0;font-weight:500;
+    text-align:center;font-size:10px;letter-spacing:0.08em;
+    text-transform:uppercase;color:#999;padding:6px 0;font-weight:600;
   }
   .av-day{
     aspect-ratio:1;display:flex;align-items:center;justify-content:center;
     font-size:13px;cursor:pointer;border:1px solid transparent;
-    transition:all 0.15s ease;
+    transition:all 0.15s ease;min-height:38px;
   }
   .av-day.empty{cursor:default}
   .av-day.past{color:#ccc;cursor:not-allowed}
   .av-day.available{background:#a8895c;color:#fff;font-weight:500}
-  .av-day.available:hover{background:#1a1a1a;color:#d4b896}
+  .av-day.available:active{background:#1a1a1a;color:#d4b896}
   .av-day.unavailable{color:#666}
-  .av-day.unavailable:hover{background:#f3efe6;border-color:#a8895c}
+  .av-day.unavailable:active{background:#f3efe6;border-color:#a8895c}
   .av-legend{
-    display:flex;gap:24px;margin-top:20px;font-size:12px;color:#666;
+    display:flex;gap:18px;margin-top:16px;font-size:11px;color:#666;
+    flex-wrap:wrap;
   }
-  .av-legend-item{display:flex;align-items:center;gap:8px}
-  .av-legend-dot{width:14px;height:14px}
+  .av-legend-item{display:flex;align-items:center;gap:6px}
+  .av-legend-dot{width:12px;height:12px;flex-shrink:0}
   .av-legend-dot.av{background:#a8895c}
   .av-legend-dot.un{background:#f0f0f0;border:1px solid #ccc}
 
   .save-status{
-    text-align:center;margin-top:16px;font-size:12px;color:#888;
+    text-align:center;margin-top:14px;font-size:11px;color:#888;
   }
   .save-status.saved{color:#0a7a3f}
 
-  @media (max-width:1000px){
-    .stats-row{grid-template-columns:repeat(2,1fr)}
-    .av-cal-container{grid-template-columns:1fr}
-    .detail-content{grid-template-columns:1fr}
-    main{padding:24px}
-    header{padding:20px 24px}
-    .tabs{padding:0 24px;overflow-x:auto}
+  /* ===== TABLET (>= 600px) ===== */
+  @media (min-width:600px){
+    main{padding:32px}
+    header{padding:20px 32px}
+    .header-brand{font-size:24px}
+    .tabs{padding:0 32px}
+    .stats-row{grid-template-columns:repeat(4,1fr);gap:16px}
+    .stat-card{padding:20px}
+    .stat-card-num{font-size:38px}
+    .filters{flex-direction:row;align-items:center}
+    .search-box{flex:1}
+    .filter-row{flex:0 0 auto}
+    .panel-title{font-size:32px}
+    .av-quick-actions{flex-direction:row;flex-wrap:wrap}
+    .av-quick-btn{flex:0 0 auto}
+    .av-cal-container{display:grid;grid-template-columns:1fr 1fr}
+    .agenda-item{padding:18px;gap:20px}
+    .agenda-time{font-size:24px;min-width:60px}
+    .agenda-actions{margin-top:0;flex-direction:row}
+    .agenda-item{align-items:center}
+  }
+
+  /* ===== DESKTOP TABLE VIEW (>= 900px) ===== */
+  @media (min-width:900px){
+    .contacts-list{display:none}
+    .contacts-table-wrap{
+      display:block;background:#fff;border:1px solid rgba(0,0,0,0.06);overflow:hidden;
+    }
+    .contacts-table-wrap table{width:100%;border-collapse:collapse}
+    .contacts-table-wrap thead{background:#fafaf7;border-bottom:1px solid rgba(0,0,0,0.08)}
+    .contacts-table-wrap th{
+      text-align:left;padding:14px 18px;font-size:11px;
+      letter-spacing:0.12em;text-transform:uppercase;color:#666;font-weight:600;
+    }
+    .contacts-table-wrap td{
+      padding:16px 18px;border-bottom:1px solid rgba(0,0,0,0.04);
+      font-size:14px;vertical-align:middle;
+    }
+    .contacts-table-wrap tbody tr{transition:background 0.15s ease;cursor:pointer}
+    .contacts-table-wrap tbody tr:hover{background:#fafaf7}
+    .contacts-table-wrap tbody tr.expanded{background:#f7f0e3}
+    .detail-row{display:none}
+    .detail-row.visible{display:table-row}
+    .detail-row td{padding:0;background:#fafaf7}
+    .detail-content{
+      padding:24px 32px;display:grid;grid-template-columns:1fr 1fr;gap:32px;
+    }
+  }
+  .contacts-table-wrap{display:none}
+
+  @media (min-width:900px){
+    .panel-title{font-size:36px}
   }
 </style>
 </head>
@@ -270,11 +405,9 @@
 <header>
   <div>
     <div class="header-brand">Franco <span>Battista</span></div>
-    <div class="header-sub">Dashboard contatti</div>
+    <div class="header-sub">Dashboard</div>
   </div>
-  <div class="header-actions">
-    <button class="refresh-btn" onclick="reload()">↻ Aggiorna</button>
-  </div>
+  <button class="refresh-btn" onclick="reload()">↻</button>
 </header>
 
 <div class="tabs">
@@ -282,10 +415,10 @@
     Contatti <span class="tab-badge" id="contacts-count">0</span>
   </div>
   <div class="tab" onclick="switchTab('agenda', this)">
-    Agenda appuntamenti
+    Agenda
   </div>
   <div class="tab" onclick="switchTab('disponibilita', this)">
-    Disponibilità calendario
+    Disponibilità
   </div>
 </div>
 
@@ -294,9 +427,9 @@
   <section class="panel active" id="panel-contatti">
     <div class="stats-row">
       <div class="stat-card">
-        <div class="stat-card-label">Totale contatti</div>
+        <div class="stat-card-label">Totale</div>
         <div class="stat-card-num accent" id="stat-totale">0</div>
-        <div class="stat-card-sub">Dal lancio della landing</div>
+        <div class="stat-card-sub">Contatti ricevuti</div>
       </div>
       <div class="stat-card">
         <div class="stat-card-label">Ultima settimana</div>
@@ -304,37 +437,43 @@
         <div class="stat-card-sub">Nuove richieste</div>
       </div>
       <div class="stat-card">
-        <div class="stat-card-label">Prossimi 7 giorni</div>
+        <div class="stat-card-label">Prossimi 7gg</div>
         <div class="stat-card-num" id="stat-prossimi">0</div>
         <div class="stat-card-sub">Appuntamenti</div>
       </div>
       <div class="stat-card">
-        <div class="stat-card-label">Tipologia top</div>
-        <div class="stat-card-num" style="font-size:24px;line-height:1.2" id="stat-top">—</div>
-        <div class="stat-card-sub" id="stat-top-sub">Richieste più frequenti</div>
+        <div class="stat-card-label">Top tipologia</div>
+        <div class="stat-card-num small" id="stat-top">—</div>
+        <div class="stat-card-sub" id="stat-top-sub">—</div>
       </div>
     </div>
 
     <div class="filters">
-      <input type="text" class="search-box" id="search" placeholder="Cerca per nome, locale, città, email..." oninput="renderContacts()" />
-      <select class="filter-select" id="filter-tipo" onchange="renderContacts()">
-        <option value="">Tutte le tipologie</option>
-        <option>Ristorante</option>
-        <option>Hotel / B&B</option>
-        <option>Bar / Caffetteria</option>
-        <option>Pizzeria</option>
-        <option>Pasticceria / Gelateria</option>
-        <option>Bistrot / Wine bar</option>
-        <option>Altro</option>
-      </select>
-      <select class="filter-select" id="filter-order" onchange="renderContacts()">
-        <option value="newest">Più recenti</option>
-        <option value="oldest">Meno recenti</option>
-        <option value="appointment">Per data appuntamento</option>
-      </select>
+      <input type="text" class="search-box" id="search" placeholder="Cerca nome, locale, città..." oninput="renderContacts()" />
+      <div class="filter-row">
+        <select class="filter-select" id="filter-tipo" onchange="renderContacts()">
+          <option value="">Tutte tipologie</option>
+          <option>Ristorante</option>
+          <option>Hotel / B&B</option>
+          <option>Bar / Caffetteria</option>
+          <option>Pizzeria</option>
+          <option>Pasticceria / Gelateria</option>
+          <option>Bistrot / Wine bar</option>
+          <option>Altro</option>
+        </select>
+        <select class="filter-select" id="filter-order" onchange="renderContacts()">
+          <option value="newest">Più recenti</option>
+          <option value="oldest">Meno recenti</option>
+          <option value="appointment">Per appuntamento</option>
+        </select>
+      </div>
     </div>
 
-    <div class="table-wrap">
+    <!-- Mobile cards view -->
+    <div class="contacts-list" id="contacts-list"></div>
+
+    <!-- Desktop table view -->
+    <div class="contacts-table-wrap">
       <table>
         <thead>
           <tr>
@@ -348,36 +487,35 @@
         </thead>
         <tbody id="contacts-body"></tbody>
       </table>
-      <div class="empty-state" id="empty-contacts" style="display:none">
-        <h3>Ancora nessun contatto</h3>
-        <p>I contatti raccolti dalla landing appariranno qui in tempo reale.</p>
-      </div>
+    </div>
+
+    <div class="empty-state" id="empty-contacts" style="display:none">
+      <h3>Ancora nessun contatto</h3>
+      <p>I contatti raccolti dalla landing appariranno qui in tempo reale.</p>
     </div>
   </section>
 
   <!-- PANEL: AGENDA -->
   <section class="panel" id="panel-agenda">
-    <h2 style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:500;margin-bottom:8px">Prossimi appuntamenti</h2>
-    <p style="color:#666;margin-bottom:32px">Tutti gli appuntamenti confermati, in ordine cronologico.</p>
+    <h2 class="panel-title">Prossimi appuntamenti</h2>
+    <p class="panel-sub">Tutti gli appuntamenti confermati, in ordine cronologico.</p>
     <div id="agenda-list"></div>
   </section>
 
   <!-- PANEL: DISPONIBILITÀ -->
   <section class="panel" id="panel-disponibilita">
     <div class="availability-section">
-      <div class="av-header">
-        <div class="av-title">Gestione disponibilità</div>
-      </div>
+      <div class="av-title">Gestione disponibilità</div>
       <p class="av-sub">
-        Clicca sui giorni per attivare o disattivare la disponibilità. I giorni in oro sono visibili
-        e prenotabili dai clienti sulla landing page.
+        Tocca i giorni per attivare o disattivare la disponibilità. I giorni in oro sono
+        prenotabili dai clienti sulla landing.
       </p>
 
       <div class="av-quick-actions">
         <button class="av-quick-btn" onclick="quickFill('weekdays', 30)">Lun-Ven prossimi 30 giorni</button>
         <button class="av-quick-btn" onclick="quickFill('weekdays', 60)">Lun-Ven prossimi 60 giorni</button>
         <button class="av-quick-btn" onclick="quickFill('all', 30)">Tutti i giorni 30gg</button>
-        <button class="av-quick-btn" onclick="clearAvailability()">Cancella tutto</button>
+        <button class="av-quick-btn danger" onclick="clearAvailability()">Cancella tutto</button>
       </div>
 
       <div class="av-cal-container">
@@ -386,11 +524,11 @@
       </div>
 
       <div class="av-legend">
-        <div class="av-legend-item"><div class="av-legend-dot av"></div>Disponibile sulla landing</div>
+        <div class="av-legend-item"><div class="av-legend-dot av"></div>Disponibile</div>
         <div class="av-legend-item"><div class="av-legend-dot un"></div>Non disponibile</div>
       </div>
 
-      <div class="save-status" id="save-status">Le modifiche vengono salvate automaticamente</div>
+      <div class="save-status" id="save-status">Salvataggio automatico</div>
     </div>
   </section>
 </main>
@@ -398,7 +536,8 @@
 <script>
   const MONTHS_IT = ['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'];
   const MONTHS_SHORT = ['Gen','Feb','Mar','Apr','Mag','Giu','Lug','Ago','Set','Ott','Nov','Dic'];
-  const DAYS_IT = ['Lun','Mar','Mer','Gio','Ven','Sab','Dom'];
+  const DAYS_IT = ['L','M','M','G','V','S','D'];
+  const DAY_NAMES = ['Domenica','Lunedì','Martedì','Mercoledì','Giovedì','Venerdì','Sabato'];
 
   let contacts = [];
   let availableDays = {};
@@ -409,17 +548,13 @@
   function dateKey(d) {
     return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
   }
-
   function formatDate(dStr) {
     const d = new Date(dStr);
     return `${d.getDate()} ${MONTHS_SHORT[d.getMonth()]} ${d.getFullYear()}`;
   }
-
   function timeAgo(iso) {
-    const now = new Date();
-    const then = new Date(iso);
-    const diff = (now - then) / 1000;
-    if (diff < 60) return 'pochi secondi fa';
+    const diff = (new Date() - new Date(iso)) / 1000;
+    if (diff < 60) return 'pochi sec fa';
     if (diff < 3600) return `${Math.floor(diff/60)} min fa`;
     if (diff < 86400) return `${Math.floor(diff/3600)} h fa`;
     if (diff < 604800) return `${Math.floor(diff/86400)} g fa`;
@@ -432,11 +567,12 @@
     document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
     el.classList.add('active');
     document.getElementById('panel-' + name).classList.add('active');
+    window.scrollTo({top:0, behavior:'smooth'});
     if (name === 'disponibilita') renderAvailabilityCalendars();
     if (name === 'agenda') renderAgenda();
   }
 
-  // ===== LOAD DATA =====
+  // ===== LOAD =====
   async function loadContacts() {
     contacts = [];
     try {
@@ -445,40 +581,27 @@
         for (const key of list.keys) {
           try {
             const r = await window.storage.get(key, true);
-            if (r && r.value) {
-              contacts.push(JSON.parse(r.value));
-            }
-          } catch(e) { /* skip */ }
+            if (r && r.value) contacts.push(JSON.parse(r.value));
+          } catch(e) {}
         }
       }
-    } catch(e) {
-      console.error('Errore caricamento contatti:', e);
-    }
+    } catch(e) { console.error(e); }
   }
 
   async function loadAvailability() {
     try {
       const r = await window.storage.get('franco-availability', true);
-      if (r && r.value) {
-        availableDays = JSON.parse(r.value);
-      } else {
-        // default: prossimi 30 giorni lun-ven
-        const today = new Date();
-        for (let i = 1; i <= 45; i++) {
-          const d = new Date(today);
-          d.setDate(today.getDate() + i);
-          const day = d.getDay();
-          if (day >= 1 && day <= 5) availableDays[dateKey(d)] = true;
-        }
-      }
-    } catch(e) {
-      const today = new Date();
-      for (let i = 1; i <= 45; i++) {
-        const d = new Date(today);
-        d.setDate(today.getDate() + i);
-        const day = d.getDay();
-        if (day >= 1 && day <= 5) availableDays[dateKey(d)] = true;
-      }
+      if (r && r.value) availableDays = JSON.parse(r.value);
+      else defaultAvailability();
+    } catch(e) { defaultAvailability(); }
+  }
+  function defaultAvailability() {
+    const today = new Date();
+    for (let i = 1; i <= 45; i++) {
+      const d = new Date(today);
+      d.setDate(today.getDate() + i);
+      const day = d.getDay();
+      if (day >= 1 && day <= 5) availableDays[dateKey(d)] = true;
     }
   }
 
@@ -486,15 +609,13 @@
     try {
       await window.storage.set('franco-availability', JSON.stringify(availableDays), true);
       const status = document.getElementById('save-status');
-      status.textContent = '✓ Modifiche salvate';
+      status.textContent = '✓ Salvato';
       status.classList.add('saved');
       setTimeout(() => {
-        status.textContent = 'Le modifiche vengono salvate automaticamente';
+        status.textContent = 'Salvataggio automatico';
         status.classList.remove('saved');
-      }, 2000);
-    } catch(e) {
-      console.error('Errore salvataggio:', e);
-    }
+      }, 1500);
+    } catch(e) { console.error(e); }
   }
 
   // ===== STATS =====
@@ -503,16 +624,16 @@
     document.getElementById('contacts-count').textContent = contacts.length;
 
     const weekAgo = new Date(); weekAgo.setDate(weekAgo.getDate() - 7);
-    const settimana = contacts.filter(c => new Date(c.createdAt) >= weekAgo).length;
-    document.getElementById('stat-settimana').textContent = settimana;
+    document.getElementById('stat-settimana').textContent =
+      contacts.filter(c => new Date(c.createdAt) >= weekAgo).length;
 
     const today = new Date(); today.setHours(0,0,0,0);
     const in7 = new Date(today); in7.setDate(today.getDate() + 7);
-    const prossimi = contacts.filter(c => {
-      const d = new Date(c.data);
-      return d >= today && d <= in7;
-    }).length;
-    document.getElementById('stat-prossimi').textContent = prossimi;
+    document.getElementById('stat-prossimi').textContent =
+      contacts.filter(c => {
+        const d = new Date(c.data);
+        return d >= today && d <= in7;
+      }).length;
 
     const tipi = {};
     contacts.forEach(c => { tipi[c.tipo] = (tipi[c.tipo] || 0) + 1; });
@@ -526,10 +647,8 @@
     }
   }
 
-  // ===== TABLE CONTATTI =====
-  function renderContacts() {
-    const body = document.getElementById('contacts-body');
-    const empty = document.getElementById('empty-contacts');
+  // ===== CONTACTS =====
+  function getFiltered() {
     const search = document.getElementById('search').value.toLowerCase().trim();
     const filterTipo = document.getElementById('filter-tipo').value;
     const order = document.getElementById('filter-order').value;
@@ -548,55 +667,112 @@
     if (order === 'newest') filtered.sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt));
     else if (order === 'oldest') filtered.sort((a,b) => new Date(a.createdAt) - new Date(b.createdAt));
     else if (order === 'appointment') filtered.sort((a,b) => new Date(a.data + 'T' + a.ora) - new Date(b.data + 'T' + b.ora));
+    return filtered;
+  }
+
+  function renderContacts() {
+    const list = document.getElementById('contacts-list');
+    const body = document.getElementById('contacts-body');
+    const empty = document.getElementById('empty-contacts');
+    const filtered = getFiltered();
 
     if (filtered.length === 0) {
+      list.innerHTML = '';
       body.innerHTML = '';
-      empty.style.display = contacts.length === 0 ? 'block' : 'none';
-      if (contacts.length > 0) {
-        body.innerHTML = `<tr><td colspan="6" style="text-align:center;padding:60px;color:#888">Nessun contatto corrisponde ai filtri.</td></tr>`;
+      if (contacts.length === 0) {
+        empty.style.display = 'block';
+      } else {
+        empty.style.display = 'block';
+        empty.querySelector('h3').textContent = 'Nessun risultato';
+        empty.querySelector('p').textContent = 'Prova a modificare i filtri di ricerca.';
       }
       return;
     }
     empty.style.display = 'none';
+    if (contacts.length > 0) {
+      empty.querySelector('h3').textContent = 'Ancora nessun contatto';
+      empty.querySelector('p').textContent = 'I contatti raccolti dalla landing appariranno qui in tempo reale.';
+    }
 
+    // MOBILE CARDS
+    list.innerHTML = filtered.map(c => `
+      <div class="contact-card">
+        <div class="cc-header" onclick="toggleExpand('${c.id}')">
+          <div class="cc-main">
+            <div class="cc-name">${c.nome} ${c.cognome}</div>
+            <div class="cc-locale">${c.locale}</div>
+            <div class="cc-meta">
+              <span class="tipo-pill">${c.tipo}</span>
+              <span class="cc-city">${c.citta}</span>
+            </div>
+          </div>
+          <div class="cc-right">
+            <div class="cc-date">${formatDate(c.data)}</div>
+            <div class="cc-time">ore ${c.ora}</div>
+            <div class="cc-ago">${timeAgo(c.createdAt)}</div>
+          </div>
+        </div>
+        <div class="cc-expand ${expandedId === c.id ? 'visible' : ''}">
+          <div class="cc-section">
+            <div class="cc-section-title">Recapiti</div>
+            <div class="cc-info-row"><span class="lbl">Email</span><span class="val"><a href="mailto:${c.email}">${c.email}</a></span></div>
+            <div class="cc-info-row"><span class="lbl">Telefono</span><span class="val"><a href="tel:${c.tel}">${c.tel}</a></span></div>
+          </div>
+          <div class="cc-section">
+            <div class="cc-section-title">Dettagli richiesta</div>
+            <div class="cc-info-row"><span class="lbl">Interesse</span><span class="val">${c.interesse}</span></div>
+            <div class="cc-info-row"><span class="lbl">Appuntamento</span><span class="val">${formatDate(c.data)} · ${c.ora}</span></div>
+            <div class="cc-info-row"><span class="lbl">Ricevuto</span><span class="val">${new Date(c.createdAt).toLocaleDateString('it-IT')}</span></div>
+            ${c.note ? `<div class="cc-note">"${c.note}"</div>` : ''}
+          </div>
+          <div class="cc-actions">
+            <a class="qa-btn" href="tel:${c.tel}">📞 Chiama</a>
+            <a class="qa-btn" href="mailto:${c.email}?subject=Consulenza - ${c.locale}">✉ Email</a>
+            <button class="qa-btn danger" onclick="event.stopPropagation();deleteContact('${c.id}')">Elimina contatto</button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+
+    // DESKTOP TABLE (riusiamo lo stesso markup ma con stile tabella)
     body.innerHTML = filtered.map(c => `
       <tr onclick="toggleExpand('${c.id}')" class="${expandedId === c.id ? 'expanded' : ''}">
         <td>
-          <div class="nome-cell">${c.nome} ${c.cognome}</div>
-          <div class="locale-cell">${c.locale}</div>
+          <div style="font-weight:500">${c.nome} ${c.cognome}</div>
+          <div style="font-size:13px;color:#666;margin-top:2px">${c.locale}</div>
         </td>
         <td><span class="tipo-pill">${c.tipo}</span></td>
         <td>${c.citta}</td>
         <td>
-          <div class="badge-date">${formatDate(c.data)}</div>
-          <div class="meta">ore ${c.ora}</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:#a8895c;font-weight:600">${formatDate(c.data)}</div>
+          <div style="font-size:12px;color:#888">ore ${c.ora}</div>
         </td>
-        <td><div class="meta">${timeAgo(c.createdAt)}</div></td>
+        <td style="font-size:12px;color:#888">${timeAgo(c.createdAt)}</td>
         <td style="text-align:right;color:#a8895c;font-size:18px">${expandedId === c.id ? '▴' : '▾'}</td>
       </tr>
       <tr class="detail-row ${expandedId === c.id ? 'visible' : ''}">
         <td colspan="6">
           <div class="detail-content">
-            <div class="detail-section">
-              <h5>Recapiti</h5>
-              <div class="detail-row-item"><span class="lbl">Email</span><span class="val">${c.email}</span></div>
-              <div class="detail-row-item"><span class="lbl">Telefono</span><span class="val">${c.tel}</span></div>
-              <div class="detail-row-item"><span class="lbl">Locale</span><span class="val">${c.locale}</span></div>
-              <div class="detail-row-item"><span class="lbl">Città</span><span class="val">${c.citta}</span></div>
-              <div class="quick-actions">
+            <div>
+              <div class="cc-section-title" style="margin-bottom:12px">Recapiti</div>
+              <div class="cc-info-row"><span class="lbl">Email</span><span class="val"><a href="mailto:${c.email}" style="color:#a8895c;text-decoration:none">${c.email}</a></span></div>
+              <div class="cc-info-row"><span class="lbl">Telefono</span><span class="val"><a href="tel:${c.tel}" style="color:#a8895c;text-decoration:none">${c.tel}</a></span></div>
+              <div class="cc-info-row"><span class="lbl">Locale</span><span class="val">${c.locale}</span></div>
+              <div class="cc-info-row"><span class="lbl">Città</span><span class="val">${c.citta}</span></div>
+              <div class="cc-actions" style="grid-template-columns:1fr 1fr;margin-top:16px">
                 <a class="qa-btn" href="tel:${c.tel}">Chiama</a>
-                <a class="qa-btn" href="mailto:${c.email}?subject=Richiesta consulenza - ${c.locale}">Email</a>
+                <a class="qa-btn" href="mailto:${c.email}?subject=Consulenza - ${c.locale}">Email</a>
               </div>
             </div>
-            <div class="detail-section">
-              <h5>Dettagli richiesta</h5>
-              <div class="detail-row-item"><span class="lbl">Tipologia</span><span class="val">${c.tipo}</span></div>
-              <div class="detail-row-item"><span class="lbl">Interesse</span><span class="val">${c.interesse}</span></div>
-              <div class="detail-row-item"><span class="lbl">Appuntamento</span><span class="val">${formatDate(c.data)} · ${c.ora}</span></div>
-              <div class="detail-row-item"><span class="lbl">Ricevuto il</span><span class="val">${new Date(c.createdAt).toLocaleString('it-IT')}</span></div>
-              ${c.note ? `<div class="detail-note">"${c.note}"</div>` : '<div style="margin-top:12px;color:#999;font-size:12px;font-style:italic">Nessuna nota aggiuntiva</div>'}
-              <div class="quick-actions">
-                <button class="qa-btn danger" onclick="event.stopPropagation();deleteContact('${c.id}')">Elimina contatto</button>
+            <div>
+              <div class="cc-section-title" style="margin-bottom:12px">Dettagli richiesta</div>
+              <div class="cc-info-row"><span class="lbl">Tipologia</span><span class="val">${c.tipo}</span></div>
+              <div class="cc-info-row"><span class="lbl">Interesse</span><span class="val">${c.interesse}</span></div>
+              <div class="cc-info-row"><span class="lbl">Appuntamento</span><span class="val">${formatDate(c.data)} · ${c.ora}</span></div>
+              <div class="cc-info-row"><span class="lbl">Ricevuto</span><span class="val">${new Date(c.createdAt).toLocaleString('it-IT')}</span></div>
+              ${c.note ? `<div class="cc-note">"${c.note}"</div>` : '<div style="margin-top:12px;color:#999;font-size:12px;font-style:italic">Nessuna nota</div>'}
+              <div style="margin-top:16px">
+                <button class="qa-btn danger" style="grid-column:auto;width:100%" onclick="event.stopPropagation();deleteContact('${c.id}')">Elimina contatto</button>
               </div>
             </div>
           </div>
@@ -618,7 +794,7 @@
       renderStats();
       renderContacts();
       renderAgenda();
-    } catch(e) { alert('Errore nell\'eliminazione'); }
+    } catch(e) { alert('Errore'); }
   }
 
   // ===== AGENDA =====
@@ -630,11 +806,10 @@
       .sort((a,b) => new Date(a.data + 'T' + a.ora) - new Date(b.data + 'T' + b.ora));
 
     if (future.length === 0) {
-      wrap.innerHTML = `<div class="empty-state"><h3>Nessun appuntamento in programma</h3><p>Quando un cliente prenoterà, lo vedrai qui.</p></div>`;
+      wrap.innerHTML = `<div class="empty-state"><h3>Nessun appuntamento</h3><p>Quando un cliente prenoterà, lo vedrai qui.</p></div>`;
       return;
     }
 
-    // raggruppa per data
     const grouped = {};
     future.forEach(c => {
       if (!grouped[c.data]) grouped[c.data] = [];
@@ -643,27 +818,26 @@
 
     wrap.innerHTML = Object.entries(grouped).map(([date, list]) => {
       const d = new Date(date);
-      const dayName = ['Domenica','Lunedì','Martedì','Mercoledì','Giovedì','Venerdì','Sabato'][d.getDay()];
       return `
-        <div style="margin-bottom:32px">
-          <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid rgba(0,0,0,0.08)">
-            <div style="font-family:'Cormorant Garamond',serif;font-size:32px;color:#a8895c;font-weight:500">${d.getDate()}</div>
+        <div class="agenda-day">
+          <div class="agenda-day-header">
+            <div class="agenda-day-num">${d.getDate()}</div>
             <div>
-              <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500">${dayName}</div>
-              <div style="font-size:12px;color:#888;letter-spacing:0.1em;text-transform:uppercase">${MONTHS_IT[d.getMonth()]} ${d.getFullYear()}</div>
+              <div class="agenda-day-name">${DAY_NAMES[d.getDay()]}</div>
+              <div class="agenda-day-month">${MONTHS_IT[d.getMonth()]} ${d.getFullYear()}</div>
             </div>
           </div>
           ${list.sort((a,b) => a.ora.localeCompare(b.ora)).map(c => `
-            <div style="background:#fff;border:1px solid rgba(0,0,0,0.06);padding:20px;margin-bottom:8px;display:grid;grid-template-columns:80px 1fr auto;gap:24px;align-items:center">
-              <div style="font-family:'Cormorant Garamond',serif;font-size:24px;color:#1a1a1a;font-weight:500">${c.ora}</div>
-              <div>
-                <div style="font-weight:500;font-size:15px">${c.nome} ${c.cognome}</div>
-                <div style="color:#666;font-size:13px;margin-top:2px">${c.locale} · ${c.citta}</div>
-                <div style="margin-top:8px"><span class="tipo-pill">${c.tipo}</span> <span style="color:#888;font-size:12px;margin-left:6px">${c.interesse}</span></div>
-              </div>
-              <div style="display:flex;gap:6px">
-                <a class="qa-btn" style="padding:8px 14px" href="tel:${c.tel}">Chiama</a>
-                <a class="qa-btn" style="padding:8px 14px" href="mailto:${c.email}">Email</a>
+            <div class="agenda-item">
+              <div class="agenda-time">${c.ora}</div>
+              <div class="agenda-info">
+                <div class="agenda-name">${c.nome} ${c.cognome}</div>
+                <div class="agenda-locale">${c.locale} · ${c.citta}</div>
+                <div style="margin-top:6px"><span class="tipo-pill">${c.tipo}</span></div>
+                <div class="agenda-actions">
+                  <a class="qa-btn" href="tel:${c.tel}">Chiama</a>
+                  <a class="qa-btn" href="mailto:${c.email}">Email</a>
+                </div>
               </div>
             </div>
           `).join('')}
@@ -672,7 +846,7 @@
     }).join('');
   }
 
-  // ===== AVAILABILITY CALENDAR =====
+  // ===== AVAILABILITY =====
   function renderAvailabilityCalendars() {
     renderAvCal('av-cal-1', avMonth1, avYear1, 0);
     let m2 = avMonth1 + 1, y2 = avYear1;
@@ -695,7 +869,6 @@
       <div class="av-cal-grid">
         ${DAYS_IT.map(d => `<div class="av-day-label">${d}</div>`).join('')}
     `;
-
     const firstDay = new Date(year, month, 1);
     let startOffset = firstDay.getDay() - 1;
     if (startOffset < 0) startOffset = 6;
@@ -750,13 +923,13 @@
   }
 
   async function clearAvailability() {
-    if (!confirm('Rimuovere tutte le disponibilità? I clienti non potranno più prenotare.')) return;
+    if (!confirm('Rimuovere tutte le disponibilità?')) return;
     availableDays = {};
     renderAvailabilityCalendars();
     await saveAvailability();
   }
 
-  // ===== INIT & REFRESH =====
+  // ===== INIT =====
   async function reload() {
     await loadContacts();
     await loadAvailability();
@@ -765,9 +938,7 @@
     renderAgenda();
     renderAvailabilityCalendars();
   }
-
   reload();
-  // Auto refresh ogni 30 secondi
   setInterval(reload, 30000);
 </script>
 

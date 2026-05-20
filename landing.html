@@ -2,169 +2,169 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+<meta name="theme-color" content="#1a1a1a" />
 <title>Franco Battista — Consulente d'arredo per l'eccellenza HORECA</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
   body{
     font-family:'Inter',sans-serif;
     color:#1a1a1a;
     background:#fafaf7;
     line-height:1.6;
     -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
   }
-  .serif{font-family:'Cormorant Garamond',serif;font-weight:400;letter-spacing:-0.02em}
-  .container{max-width:1200px;margin:0 auto;padding:0 32px}
+  img{max-width:100%;display:block}
+  button,input,select,textarea{font-family:inherit;font-size:16px} /* 16px evita zoom iOS */
+  .container{max-width:1200px;margin:0 auto;padding:0 20px}
 
-  /* ===== NAVBAR ===== */
+  /* ===== NAVBAR MOBILE-FIRST ===== */
   nav{
     position:fixed;top:0;left:0;right:0;z-index:100;
-    background:rgba(250,250,247,0.85);
+    background:rgba(250,250,247,0.95);
     backdrop-filter:blur(20px);
     -webkit-backdrop-filter:blur(20px);
     border-bottom:1px solid rgba(0,0,0,0.06);
-    padding:18px 0;
+    padding:14px 0;
   }
-  nav .container{display:flex;justify-content:space-between;align-items:center}
-  .logo{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:500;letter-spacing:-0.01em}
+  nav .container{display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .logo{
+    font-family:'Cormorant Garamond',serif;
+    font-size:20px;font-weight:500;letter-spacing:-0.01em;
+    white-space:nowrap;
+  }
   .logo span{color:#a8895c}
   .nav-cta{
-    background:#1a1a1a;color:#fff;padding:11px 22px;
-    border:none;border-radius:2px;font-size:13px;font-weight:500;
-    letter-spacing:0.05em;text-transform:uppercase;cursor:pointer;
+    background:#1a1a1a;color:#fff;padding:10px 16px;
+    border:none;border-radius:2px;font-size:11px;font-weight:600;
+    letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;
     transition:all 0.3s ease;text-decoration:none;display:inline-block;
+    white-space:nowrap;
   }
-  .nav-cta:hover{background:#a8895c}
+  .nav-cta:active{background:#a8895c;transform:scale(0.97)}
 
-  /* ===== HERO ===== */
+  /* ===== HERO MOBILE-FIRST ===== */
   .hero{
-    min-height:100vh;display:flex;align-items:center;
-    background:linear-gradient(135deg,rgba(26,26,26,0.75) 0%,rgba(26,26,26,0.5) 100%),
-      url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1920&q=80') center/cover;
-    color:#fff;padding:120px 0 80px;position:relative;
+    min-height:100vh;min-height:100svh;
+    display:flex;align-items:center;
+    background:linear-gradient(180deg,rgba(26,26,26,0.55) 0%,rgba(26,26,26,0.85) 100%),
+      url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&q=80') center/cover;
+    color:#fff;padding:100px 0 60px;position:relative;
   }
   .hero-content{max-width:780px}
   .hero-eyebrow{
-    display:inline-block;font-size:12px;letter-spacing:0.25em;
-    text-transform:uppercase;color:#d4b896;margin-bottom:28px;
-    padding-bottom:8px;border-bottom:1px solid #d4b896;
+    display:inline-block;font-size:10px;letter-spacing:0.2em;
+    text-transform:uppercase;color:#d4b896;margin-bottom:20px;
+    padding-bottom:6px;border-bottom:1px solid #d4b896;
   }
   .hero h1{
     font-family:'Cormorant Garamond',serif;font-weight:300;
-    font-size:clamp(42px,6vw,76px);line-height:1.05;
-    letter-spacing:-0.025em;margin-bottom:32px;
+    font-size:42px;line-height:1.05;
+    letter-spacing:-0.02em;margin-bottom:24px;
   }
   .hero h1 em{font-style:italic;color:#d4b896;font-weight:400}
   .hero-sub{
-    font-size:19px;font-weight:300;line-height:1.65;
-    max-width:620px;margin-bottom:48px;opacity:0.92;
+    font-size:16px;font-weight:300;line-height:1.6;
+    max-width:620px;margin-bottom:32px;opacity:0.92;
   }
-  .hero-ctas{display:flex;gap:16px;flex-wrap:wrap}
+  .hero-ctas{display:flex;flex-direction:column;gap:12px}
   .btn-primary{
-    background:#d4b896;color:#1a1a1a;padding:18px 36px;
-    border:none;font-size:13px;font-weight:600;letter-spacing:0.1em;
+    background:#d4b896;color:#1a1a1a;padding:18px 28px;
+    border:none;font-size:12px;font-weight:600;letter-spacing:0.1em;
     text-transform:uppercase;cursor:pointer;transition:all 0.3s ease;
-    text-decoration:none;display:inline-block;
+    text-decoration:none;display:block;text-align:center;
+    min-height:52px;
   }
-  .btn-primary:hover{background:#fff;transform:translateY(-2px)}
+  .btn-primary:active{background:#fff;transform:scale(0.98)}
   .btn-ghost{
-    background:transparent;color:#fff;padding:18px 36px;
-    border:1px solid rgba(255,255,255,0.4);font-size:13px;font-weight:500;
+    background:transparent;color:#fff;padding:18px 28px;
+    border:1px solid rgba(255,255,255,0.5);font-size:12px;font-weight:500;
     letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;
-    transition:all 0.3s ease;text-decoration:none;display:inline-block;
+    transition:all 0.3s ease;text-decoration:none;display:block;text-align:center;
+    min-height:52px;
   }
-  .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,0.08)}
+  .btn-ghost:active{background:rgba(255,255,255,0.1)}
 
   /* ===== STATS BAR ===== */
   .stats{
-    background:#1a1a1a;color:#fff;padding:60px 0;
+    background:#1a1a1a;color:#fff;padding:40px 0;
   }
   .stats-grid{
-    display:grid;grid-template-columns:repeat(4,1fr);gap:40px;
+    display:grid;grid-template-columns:1fr 1fr;gap:32px 20px;
   }
   .stat{text-align:center}
   .stat-num{
-    font-family:'Cormorant Garamond',serif;font-size:56px;
-    font-weight:400;color:#d4b896;line-height:1;margin-bottom:8px;
+    font-family:'Cormorant Garamond',serif;font-size:44px;
+    font-weight:400;color:#d4b896;line-height:1;margin-bottom:6px;
   }
   .stat-label{
-    font-size:12px;letter-spacing:0.15em;text-transform:uppercase;
+    font-size:10px;letter-spacing:0.12em;text-transform:uppercase;
     color:rgba(255,255,255,0.7);
   }
 
   /* ===== SECTION BASE ===== */
-  section{padding:120px 0}
+  section{padding:64px 0}
   .section-eyebrow{
-    font-size:11px;letter-spacing:0.3em;text-transform:uppercase;
-    color:#a8895c;margin-bottom:20px;font-weight:500;
+    font-size:10px;letter-spacing:0.25em;text-transform:uppercase;
+    color:#a8895c;margin-bottom:14px;font-weight:500;
   }
   .section-title{
     font-family:'Cormorant Garamond',serif;font-weight:300;
-    font-size:clamp(36px,4.5vw,56px);line-height:1.1;
-    letter-spacing:-0.02em;margin-bottom:24px;max-width:780px;
+    font-size:34px;line-height:1.1;
+    letter-spacing:-0.02em;margin-bottom:18px;
   }
   .section-title em{font-style:italic;color:#a8895c}
   .section-intro{
-    font-size:18px;color:#555;max-width:680px;line-height:1.7;
-    margin-bottom:64px;font-weight:300;
+    font-size:15px;color:#555;line-height:1.7;
+    margin-bottom:40px;font-weight:300;
   }
 
   /* ===== VALUE SECTION ===== */
   .value-grid{
-    display:grid;grid-template-columns:repeat(3,1fr);gap:40px;
+    display:flex;flex-direction:column;gap:20px;
   }
   .value-card{
-    background:#fff;padding:48px 36px;
+    background:#fff;padding:32px 24px;
     border:1px solid rgba(0,0,0,0.06);
-    transition:all 0.4s ease;
-  }
-  .value-card:hover{
-    border-color:#a8895c;transform:translateY(-4px);
   }
   .value-icon{
-    width:48px;height:48px;border:1px solid #a8895c;
+    width:42px;height:42px;border:1px solid #a8895c;
     display:flex;align-items:center;justify-content:center;
-    color:#a8895c;font-size:22px;margin-bottom:28px;
+    color:#a8895c;font-size:20px;margin-bottom:20px;
   }
   .value-card h3{
     font-family:'Cormorant Garamond',serif;font-weight:500;
-    font-size:26px;line-height:1.2;margin-bottom:16px;
+    font-size:22px;line-height:1.25;margin-bottom:12px;
     letter-spacing:-0.01em;
   }
   .value-card p{
-    font-size:15px;color:#555;line-height:1.7;
+    font-size:14px;color:#555;line-height:1.7;
   }
 
   /* ===== ABOUT FRANCO ===== */
   .about{
     background:#f3efe6;
   }
-  .about-grid{
-    display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
-  }
   .about-image{
     aspect-ratio:4/5;
     background:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80') center/cover;
-    position:relative;
-  }
-  .about-image::after{
-    content:'';position:absolute;top:20px;left:20px;right:-20px;bottom:-20px;
-    border:1px solid #a8895c;z-index:-1;
+    margin-bottom:32px;max-width:380px;
   }
   .about-content h2{
     font-family:'Cormorant Garamond',serif;font-weight:300;
-    font-size:clamp(34px,4vw,50px);line-height:1.1;
-    margin-bottom:28px;letter-spacing:-0.02em;
+    font-size:32px;line-height:1.1;
+    margin-bottom:20px;letter-spacing:-0.02em;
   }
   .about-content h2 em{font-style:italic;color:#a8895c}
   .about-content p{
-    font-size:16px;color:#444;line-height:1.8;margin-bottom:20px;
+    font-size:15px;color:#444;line-height:1.75;margin-bottom:16px;
   }
   .about-content .signature{
     font-family:'Cormorant Garamond',serif;font-style:italic;
-    font-size:24px;color:#1a1a1a;margin-top:32px;
+    font-size:20px;color:#1a1a1a;margin-top:24px;
   }
 
   /* ===== ADVANTAGES (DARK) ===== */
@@ -176,23 +176,19 @@
   .advantages .section-title em{color:#d4b896}
   .advantages .section-intro{color:rgba(255,255,255,0.7)}
   .adv-list{
-    display:grid;grid-template-columns:1fr 1fr;gap:0;
+    display:flex;flex-direction:column;
     border-top:1px solid rgba(255,255,255,0.1);
   }
   .adv-item{
-    padding:40px;border-bottom:1px solid rgba(255,255,255,0.1);
-    border-right:1px solid rgba(255,255,255,0.1);
-    transition:background 0.3s ease;
+    padding:28px 0;border-bottom:1px solid rgba(255,255,255,0.1);
   }
-  .adv-item:nth-child(even){border-right:none}
-  .adv-item:hover{background:rgba(212,184,150,0.05)}
   .adv-num{
-    font-family:'Cormorant Garamond',serif;font-size:36px;
-    color:#d4b896;margin-bottom:16px;font-weight:300;
+    font-family:'Cormorant Garamond',serif;font-size:30px;
+    color:#d4b896;margin-bottom:10px;font-weight:300;
   }
   .adv-item h4{
-    font-family:'Cormorant Garamond',serif;font-size:24px;
-    font-weight:500;margin-bottom:12px;letter-spacing:-0.01em;
+    font-family:'Cormorant Garamond',serif;font-size:20px;
+    font-weight:500;margin-bottom:10px;letter-spacing:-0.01em;
   }
   .adv-item p{
     font-size:14px;color:rgba(255,255,255,0.7);line-height:1.7;
@@ -201,144 +197,146 @@
   /* ===== PRODUCTS / GALLERY ===== */
   .products{background:#fafaf7}
   .gallery{
-    display:grid;
-    grid-template-columns:2fr 1fr 1fr;
-    grid-template-rows:280px 280px;
-    gap:16px;
+    display:flex;flex-direction:column;gap:12px;
   }
   .gallery-item{
     position:relative;overflow:hidden;background:#1a1a1a;
+    aspect-ratio:16/10;
   }
   .gallery-item img{
     width:100%;height:100%;object-fit:cover;
-    transition:transform 0.6s ease;opacity:0.9;
+    opacity:0.92;
   }
-  .gallery-item:hover img{transform:scale(1.05);opacity:1}
-  .gallery-item:nth-child(1){grid-row:span 2}
-  .gallery-item:nth-child(4){grid-column:span 2}
   .gallery-caption{
-    position:absolute;bottom:20px;left:24px;color:#fff;z-index:2;
+    position:absolute;bottom:18px;left:20px;right:20px;color:#fff;z-index:2;
   }
   .gallery-caption span{
-    font-size:11px;letter-spacing:0.2em;text-transform:uppercase;
+    font-size:10px;letter-spacing:0.18em;text-transform:uppercase;
     color:#d4b896;display:block;margin-bottom:4px;
   }
   .gallery-caption h5{
-    font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;
+    font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;
   }
 
   /* ===== TESTIMONIAL ===== */
   .testimonial{
-    background:#f3efe6;text-align:center;padding:140px 0;
+    background:#f3efe6;text-align:center;padding:80px 0;
   }
   .testimonial-quote{
     font-family:'Cormorant Garamond',serif;font-weight:300;
-    font-size:clamp(28px,3.5vw,44px);line-height:1.3;
-    letter-spacing:-0.01em;max-width:900px;margin:0 auto 40px;
+    font-size:24px;line-height:1.35;
+    letter-spacing:-0.01em;margin-bottom:28px;
     color:#1a1a1a;font-style:italic;
   }
   .testimonial-quote::before,.testimonial-quote::after{
     content:'"';color:#a8895c;font-size:1.2em;
   }
   .testimonial-author{
-    font-size:13px;letter-spacing:0.2em;text-transform:uppercase;
+    font-size:11px;letter-spacing:0.18em;text-transform:uppercase;
     color:#666;
   }
-  .testimonial-author strong{color:#1a1a1a;font-weight:500}
+  .testimonial-author strong{color:#1a1a1a;font-weight:600}
 
   /* ===== CTA / FORM ===== */
   .cta-section{
-    background:linear-gradient(135deg,rgba(26,26,26,0.92) 0%,rgba(26,26,26,0.85) 100%),
-      url('https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=1920&q=80') center/cover fixed;
-    color:#fff;padding:120px 0;
+    background:linear-gradient(180deg,rgba(26,26,26,0.92) 0%,rgba(26,26,26,0.95) 100%),
+      url('https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=1200&q=80') center/cover;
+    color:#fff;padding:64px 0;
   }
-  .cta-grid{
-    display:grid;grid-template-columns:1fr 1.2fr;gap:80px;align-items:start;
-  }
+  .cta-left{margin-bottom:40px}
   .cta-left h2{
     font-family:'Cormorant Garamond',serif;font-weight:300;
-    font-size:clamp(36px,4.5vw,56px);line-height:1.1;
-    margin-bottom:28px;letter-spacing:-0.02em;
+    font-size:34px;line-height:1.1;
+    margin-bottom:20px;letter-spacing:-0.02em;
   }
   .cta-left h2 em{font-style:italic;color:#d4b896}
   .cta-left p{
-    font-size:17px;color:rgba(255,255,255,0.85);line-height:1.7;
-    margin-bottom:40px;font-weight:300;
+    font-size:15px;color:rgba(255,255,255,0.85);line-height:1.7;
+    margin-bottom:24px;font-weight:300;
   }
-  .cta-bullets{list-style:none;margin-top:32px}
+  .cta-bullets{list-style:none;margin-top:20px}
   .cta-bullets li{
-    padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.12);
-    font-size:15px;color:rgba(255,255,255,0.9);
-    display:flex;align-items:center;gap:14px;
+    padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.12);
+    font-size:14px;color:rgba(255,255,255,0.9);
+    display:flex;align-items:center;gap:12px;
   }
   .cta-bullets li::before{
-    content:'';width:24px;height:1px;background:#d4b896;flex-shrink:0;
+    content:'';width:18px;height:1px;background:#d4b896;flex-shrink:0;
   }
 
   /* FORM */
   .form-card{
-    background:#fafaf7;color:#1a1a1a;padding:48px;
+    background:#fafaf7;color:#1a1a1a;padding:32px 24px;
     border:1px solid rgba(212,184,150,0.3);
   }
   .form-card h3{
     font-family:'Cormorant Garamond',serif;font-weight:500;
-    font-size:30px;margin-bottom:8px;letter-spacing:-0.01em;
+    font-size:26px;margin-bottom:6px;letter-spacing:-0.01em;
   }
   .form-card .form-sub{
-    font-size:14px;color:#666;margin-bottom:32px;
+    font-size:13px;color:#666;margin-bottom:24px;
   }
-  .form-group{margin-bottom:20px}
-  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .form-group{margin-bottom:16px}
+  .form-row{display:flex;flex-direction:column;gap:0}
+  .form-row .form-group{margin-bottom:16px}
   .form-group label{
-    display:block;font-size:11px;letter-spacing:0.15em;
-    text-transform:uppercase;color:#666;margin-bottom:8px;font-weight:500;
+    display:block;font-size:10px;letter-spacing:0.15em;
+    text-transform:uppercase;color:#666;margin-bottom:6px;font-weight:600;
   }
   .form-group label .req{color:#c44}
   .form-group input,.form-group select,.form-group textarea{
-    width:100%;padding:14px 16px;border:1px solid rgba(0,0,0,0.15);
-    background:#fff;font-family:'Inter',sans-serif;font-size:14px;
+    width:100%;padding:14px 14px;border:1px solid rgba(0,0,0,0.15);
+    background:#fff;font-size:16px;
     color:#1a1a1a;transition:all 0.2s ease;
+    border-radius:0;-webkit-appearance:none;appearance:none;
+    min-height:50px;
   }
+  .form-group select{
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23666' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 16px center;
+    padding-right:40px;
+  }
+  .form-group textarea{resize:vertical;min-height:90px}
   .form-group input:focus,.form-group select:focus,.form-group textarea:focus{
     outline:none;border-color:#a8895c;
   }
-  .form-group textarea{resize:vertical;min-height:90px}
 
-  /* CALENDARIO */
+  /* CALENDARIO MOBILE */
   .calendar-section{
-    margin:24px 0;padding:24px;background:#fff;
+    margin:24px 0;padding:20px 16px;background:#fff;
     border:1px solid rgba(0,0,0,0.1);
   }
   .cal-header{
     display:flex;justify-content:space-between;align-items:center;
-    margin-bottom:20px;
+    margin-bottom:16px;
   }
   .cal-title{
-    font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;
+    font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:500;
   }
-  .cal-nav{display:flex;gap:8px}
+  .cal-nav{display:flex;gap:6px}
   .cal-nav button{
-    width:32px;height:32px;border:1px solid rgba(0,0,0,0.15);
+    width:38px;height:38px;border:1px solid rgba(0,0,0,0.15);
     background:#fff;cursor:pointer;display:flex;align-items:center;
     justify-content:center;color:#666;transition:all 0.2s ease;
+    font-size:18px;
   }
-  .cal-nav button:hover{border-color:#a8895c;color:#a8895c}
+  .cal-nav button:active{background:#a8895c;color:#fff;border-color:#a8895c}
   .cal-grid{
-    display:grid;grid-template-columns:repeat(7,1fr);gap:4px;
+    display:grid;grid-template-columns:repeat(7,1fr);gap:3px;
   }
   .cal-day-label{
-    text-align:center;font-size:10px;letter-spacing:0.1em;
-    text-transform:uppercase;color:#999;padding:8px 0;font-weight:500;
+    text-align:center;font-size:10px;letter-spacing:0.08em;
+    text-transform:uppercase;color:#999;padding:6px 0;font-weight:600;
   }
   .cal-day{
     aspect-ratio:1;display:flex;align-items:center;justify-content:center;
-    font-size:13px;cursor:pointer;border:1px solid transparent;
-    transition:all 0.15s ease;color:#333;
+    font-size:14px;cursor:pointer;border:1px solid transparent;
+    transition:all 0.15s ease;color:#333;min-height:42px;
   }
   .cal-day.empty{cursor:default}
   .cal-day.disabled{color:#ccc;cursor:not-allowed}
   .cal-day.available{background:#f5f0e6;color:#1a1a1a;font-weight:500}
-  .cal-day.available:hover{background:#a8895c;color:#fff}
+  .cal-day.available:active{background:#a8895c;color:#fff}
   .cal-day.selected{background:#1a1a1a;color:#d4b896;font-weight:600}
   .cal-day.today{border-color:#a8895c}
 
@@ -347,93 +345,151 @@
   }
   .time-slots.visible{display:block}
   .time-slots-label{
-    font-size:11px;letter-spacing:0.15em;text-transform:uppercase;
-    color:#666;margin-bottom:12px;font-weight:500;
+    font-size:10px;letter-spacing:0.15em;text-transform:uppercase;
+    color:#666;margin-bottom:10px;font-weight:600;
   }
   .time-grid{
-    display:grid;grid-template-columns:repeat(4,1fr);gap:8px;
+    display:grid;grid-template-columns:repeat(3,1fr);gap:8px;
   }
   .time-slot{
-    padding:10px;text-align:center;border:1px solid rgba(0,0,0,0.15);
-    background:#fff;font-size:13px;cursor:pointer;transition:all 0.15s ease;
+    padding:14px 8px;text-align:center;border:1px solid rgba(0,0,0,0.15);
+    background:#fff;font-size:14px;cursor:pointer;transition:all 0.15s ease;
+    min-height:48px;display:flex;align-items:center;justify-content:center;
   }
-  .time-slot:hover{border-color:#a8895c;color:#a8895c}
+  .time-slot:active{background:#a8895c;color:#fff;border-color:#a8895c}
   .time-slot.selected{background:#1a1a1a;color:#d4b896;border-color:#1a1a1a}
 
   .form-submit{
     width:100%;background:#1a1a1a;color:#d4b896;padding:18px;
-    border:none;font-size:13px;font-weight:600;letter-spacing:0.15em;
+    border:none;font-size:13px;font-weight:600;letter-spacing:0.12em;
     text-transform:uppercase;cursor:pointer;transition:all 0.3s ease;
-    margin-top:12px;
+    margin-top:12px;min-height:56px;
   }
-  .form-submit:hover{background:#a8895c;color:#fff}
+  .form-submit:active{background:#a8895c;color:#fff;transform:scale(0.98)}
   .form-submit:disabled{background:#666;cursor:not-allowed;color:#aaa}
 
   .success-message{
-    display:none;text-align:center;padding:40px 20px;
+    display:none;text-align:center;padding:32px 16px;
   }
   .success-message.visible{display:block}
   .success-icon{
-    width:64px;height:64px;border:1px solid #a8895c;border-radius:50%;
+    width:60px;height:60px;border:1px solid #a8895c;border-radius:50%;
     display:flex;align-items:center;justify-content:center;
-    margin:0 auto 24px;color:#a8895c;font-size:28px;
+    margin:0 auto 20px;color:#a8895c;font-size:26px;
   }
   .success-message h4{
-    font-family:'Cormorant Garamond',serif;font-size:28px;
-    font-weight:500;margin-bottom:12px;
+    font-family:'Cormorant Garamond',serif;font-size:24px;
+    font-weight:500;margin-bottom:10px;
   }
-  .success-message p{color:#666;font-size:15px;line-height:1.7}
+  .success-message p{color:#666;font-size:14px;line-height:1.7}
   .success-detail{
-    margin-top:24px;padding:20px;background:#f3efe6;
+    margin-top:20px;padding:16px;background:#f3efe6;
     border-left:3px solid #a8895c;text-align:left;
   }
-  .success-detail strong{display:block;font-size:11px;letter-spacing:0.15em;
+  .success-detail strong{display:block;font-size:10px;letter-spacing:0.15em;
     text-transform:uppercase;color:#a8895c;margin-bottom:4px;}
 
   /* ===== FOOTER ===== */
   footer{
     background:#0f0f0f;color:rgba(255,255,255,0.6);
-    padding:60px 0 30px;
+    padding:48px 0 24px;
   }
   .footer-grid{
-    display:grid;grid-template-columns:2fr 1fr 1fr;gap:60px;
-    margin-bottom:48px;
+    display:flex;flex-direction:column;gap:32px;margin-bottom:32px;
   }
   .footer-brand{
-    font-family:'Cormorant Garamond',serif;font-size:28px;
-    color:#fff;margin-bottom:16px;
+    font-family:'Cormorant Garamond',serif;font-size:24px;
+    color:#fff;margin-bottom:12px;
   }
   .footer-brand span{color:#a8895c}
-  .footer-brand-desc{font-size:14px;line-height:1.7;max-width:380px}
+  .footer-brand-desc{font-size:13px;line-height:1.7}
   .footer-col h6{
-    font-size:11px;letter-spacing:0.2em;text-transform:uppercase;
-    color:#fff;margin-bottom:20px;font-weight:500;
+    font-size:10px;letter-spacing:0.2em;text-transform:uppercase;
+    color:#fff;margin-bottom:14px;font-weight:600;
   }
-  .footer-col p{font-size:14px;line-height:2;margin:0}
+  .footer-col p{font-size:13px;line-height:1.9;margin:0}
   .footer-bottom{
-    border-top:1px solid rgba(255,255,255,0.1);padding-top:24px;
-    display:flex;justify-content:space-between;font-size:12px;
+    border-top:1px solid rgba(255,255,255,0.1);padding-top:20px;
+    display:flex;flex-direction:column;gap:8px;font-size:11px;
   }
 
-  /* ===== RESPONSIVE ===== */
-  @media (max-width:900px){
-    .stats-grid,.value-grid{grid-template-columns:1fr 1fr}
-    .about-grid,.cta-grid,.footer-grid{grid-template-columns:1fr;gap:48px}
-    .gallery{grid-template-columns:1fr 1fr;grid-template-rows:auto}
-    .gallery-item:nth-child(1),.gallery-item:nth-child(4){grid-row:auto;grid-column:auto}
-    .gallery-item{height:240px}
-    .adv-list{grid-template-columns:1fr}
-    .adv-item{border-right:none !important}
-    section{padding:80px 0}
-    .container{padding:0 24px}
-    .form-card{padding:32px 24px}
+  /* STICKY MOBILE CTA */
+  .mobile-sticky{
+    position:fixed;bottom:0;left:0;right:0;z-index:90;
+    background:rgba(26,26,26,0.96);backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    padding:12px 16px;
+    border-top:1px solid rgba(212,184,150,0.3);
+    display:none;
   }
-  @media (max-width:560px){
-    .stats-grid,.value-grid{grid-template-columns:1fr}
-    .form-row{grid-template-columns:1fr}
-    .hero-ctas{flex-direction:column;align-items:stretch}
-    .btn-primary,.btn-ghost{text-align:center}
-    .time-grid{grid-template-columns:repeat(3,1fr)}
+  .mobile-sticky a{
+    display:block;background:#d4b896;color:#1a1a1a;
+    padding:14px;text-align:center;text-decoration:none;
+    font-size:13px;font-weight:600;letter-spacing:0.1em;
+    text-transform:uppercase;
+  }
+  .mobile-sticky.visible{display:block}
+
+  /* ===== TABLET ===== */
+  @media (min-width:600px){
+    .container{padding:0 32px}
+    .hero h1{font-size:56px}
+    .hero-sub{font-size:18px}
+    .hero-ctas{flex-direction:row}
+    .stats-grid{grid-template-columns:repeat(4,1fr)}
+    .stat-num{font-size:52px}
+    .section-title{font-size:42px}
+    .section-intro{font-size:17px}
+    .value-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    .gallery{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .time-grid{grid-template-columns:repeat(4,1fr)}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .form-row .form-group{margin-bottom:16px}
+    .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px}
+    .footer-bottom{flex-direction:row;justify-content:space-between}
+    section{padding:80px 0}
+    .adv-list{display:grid;grid-template-columns:1fr 1fr;gap:0}
+    .adv-item{padding:32px;border:1px solid rgba(255,255,255,0.1);margin:-1px 0 0 -1px}
+  }
+
+  /* ===== DESKTOP ===== */
+  @media (min-width:1000px){
+    nav{padding:18px 0}
+    .logo{font-size:24px}
+    .nav-cta{padding:11px 22px;font-size:13px}
+    .hero{padding:120px 0 80px}
+    .hero-eyebrow{font-size:12px}
+    .hero h1{font-size:72px;margin-bottom:32px}
+    .hero-sub{font-size:19px;margin-bottom:48px}
+    section{padding:120px 0}
+    .section-eyebrow{font-size:11px}
+    .section-title{font-size:52px;margin-bottom:24px}
+    .section-intro{font-size:18px;max-width:680px;margin-bottom:64px}
+    .value-grid{grid-template-columns:repeat(3,1fr);gap:40px}
+    .value-card{padding:48px 36px}
+    .value-card h3{font-size:26px}
+    .about{padding:120px 0}
+    .about-grid-desktop{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+    .about-image{margin-bottom:0;max-width:none}
+    .about-content h2{font-size:48px;margin-bottom:28px}
+    .about-content p{font-size:16px}
+    .gallery{
+      grid-template-columns:2fr 1fr 1fr;
+      grid-template-rows:280px 280px;gap:16px;
+    }
+    .gallery-item{aspect-ratio:auto}
+    .gallery-item:nth-child(1){grid-row:span 2}
+    .gallery-item:nth-child(4){grid-column:span 2}
+    .testimonial{padding:140px 0}
+    .testimonial-quote{font-size:42px}
+    .cta-grid-desktop{display:grid;grid-template-columns:1fr 1.2fr;gap:80px;align-items:start}
+    .cta-left{margin-bottom:0}
+    .cta-left h2{font-size:52px;margin-bottom:28px}
+    .cta-left p{font-size:17px}
+    .form-card{padding:48px}
+    .form-card h3{font-size:30px}
+    .stats{padding:60px 0}
+    .stat-num{font-size:56px}
   }
 </style>
 </head>
@@ -443,7 +499,7 @@
 <nav>
   <div class="container">
     <div class="logo">Franco <span>Battista</span></div>
-    <a href="#contatto" class="nav-cta">Prenota consulenza</a>
+    <a href="#contatto" class="nav-cta">Prenota</a>
   </div>
 </nav>
 
@@ -451,14 +507,14 @@
 <section class="hero">
   <div class="container">
     <div class="hero-content">
-      <span class="hero-eyebrow">Consulente d'arredo HORECA · dal 1998</span>
-      <h1>L'arredo che <em>racconta</em><br>la tua ospitalità.</h1>
+      <span class="hero-eyebrow">Consulente HORECA · dal 1998</span>
+      <h1>L'arredo che <em>racconta</em> la tua ospitalità.</h1>
       <p class="hero-sub">
         Mobili, tovagliato e forniture per ristoranti, hotel, bar e pasticcerie d'eccellenza.
-        Un unico interlocutore. Vent'anni di esperienza. La certezza di scegliere bene la prima volta.
+        Un unico interlocutore. La certezza di scegliere bene la prima volta.
       </p>
       <div class="hero-ctas">
-        <a href="#contatto" class="btn-primary">Prenota una consulenza gratuita</a>
+        <a href="#contatto" class="btn-primary">Consulenza gratuita</a>
         <a href="#valore" class="btn-ghost">Scopri di più</a>
       </div>
     </div>
@@ -466,12 +522,12 @@
 </section>
 
 <!-- STATS -->
-<section class="stats" style="padding:60px 0">
+<section class="stats">
   <div class="container">
     <div class="stats-grid">
       <div class="stat">
         <div class="stat-num">25+</div>
-        <div class="stat-label">Anni di esperienza</div>
+        <div class="stat-label">Anni esperienza</div>
       </div>
       <div class="stat">
         <div class="stat-num">800+</div>
@@ -483,7 +539,7 @@
       </div>
       <div class="stat">
         <div class="stat-num">90gg</div>
-        <div class="stat-label">Dilazione pagamenti</div>
+        <div class="stat-label">Dilazione</div>
       </div>
     </div>
   </div>
@@ -497,7 +553,6 @@
     <p class="section-intro">
       Comprare arredo online sembra conveniente. Finché non arriva la sedia sbagliata,
       il tavolo che non regge il lavaggio, la finitura che dopo sei mesi è da rifare.
-      Ecco cosa cambia con un professionista al tuo fianco.
     </p>
     <div class="value-grid">
       <div class="value-card">
@@ -505,23 +560,23 @@
         <h3>Know-how che protegge l'investimento</h3>
         <p>
           So quali finiture reggono il lavaggio quotidiano, quali sedie sopportano 50 impilamenti al giorno,
-          quali materiali hanno le certificazioni richieste per il pubblico. Un errore qui ti costa anni di reclami.
+          quali materiali hanno le certificazioni richieste per il pubblico.
         </p>
       </div>
       <div class="value-card">
         <div class="value-icon">②</div>
         <h3>Un solo interlocutore, mille soluzioni</h3>
         <p>
-          Mobili, tovagliato, monouso, complementi. Tutto coordinato, tutto coerente, tutto consegnato.
-          Smetti di gestire quindici fornitori diversi: uno solo che risponde di tutto.
+          Mobili, tovagliato, monouso, complementi. Tutto coordinato, tutto consegnato.
+          Smetti di gestire quindici fornitori diversi.
         </p>
       </div>
       <div class="value-card">
         <div class="value-icon">③</div>
         <h3>Condizioni che un e-commerce non offre</h3>
         <p>
-          Pagamenti dilazionati fino a 90 giorni, RIBA, fatturazione su misura per apertura locale.
-          Trattativa reale sul volume. E un nome e cognome che risponde se qualcosa non va.
+          Pagamenti dilazionati fino a 90 giorni, RIBA, fatturazione su misura.
+          E un nome e cognome che risponde se qualcosa non va.
         </p>
       </div>
     </div>
@@ -531,19 +586,18 @@
 <!-- ABOUT FRANCO -->
 <section class="about">
   <div class="container">
-    <div class="about-grid">
+    <div class="about-grid-desktop">
       <div class="about-image"></div>
       <div class="about-content">
         <span class="section-eyebrow">Chi sono</span>
-        <h2>Franco Battista,<br>il tuo <em>consulente</em><br>di fiducia.</h2>
+        <h2>Franco Battista,<br>il tuo <em>consulente</em> di fiducia.</h2>
         <p>
           Ho visto centinaia di sale nascere e rinnovarsi. Ho misurato dehor sotto la pioggia,
           scelto tessuti accanto a chef stellati, risolto consegne urgenti il sabato sera.
         </p>
         <p>
-          Non vendo cataloghi. Ascolto cosa vuoi raccontare con il tuo locale,
-          e ti propongo gli arredi che funzionano davvero per il tuo concept, il tuo volume di lavoro,
-          la tua immagine. Tre opzioni giuste, non quattrocento da confrontare.
+          Non vendo cataloghi. Ascolto cosa vuoi raccontare con il tuo locale e ti propongo
+          gli arredi che funzionano davvero. Tre opzioni giuste, non quattrocento da confrontare.
         </p>
         <p>
           Lavoro con ristoranti d'autore, hotel boutique, pasticcerie artigianali, bistrot di quartiere.
@@ -566,33 +620,33 @@
     <div class="adv-list">
       <div class="adv-item">
         <div class="adv-num">01</div>
-        <h4>Sopralluogo gratuito e progetto su misura</h4>
-        <p>Vengo io da te. Misuro, fotografo, ascolto. Ti propongo soluzioni che funzionano nel tuo spazio reale, non in un rendering.</p>
+        <h4>Sopralluogo gratuito</h4>
+        <p>Vengo io da te. Misuro, fotografo, ascolto. Ti propongo soluzioni che funzionano nel tuo spazio reale.</p>
       </div>
       <div class="adv-item">
         <div class="adv-num">02</div>
-        <h4>Riduzione del rischio d'acquisto</h4>
+        <h4>Riduzione del rischio</h4>
         <p>Quando spendi migliaia di euro in arredo, il rischio di sbagliare è reale. Vent'anni di esperienza lo annullano.</p>
       </div>
       <div class="adv-item">
         <div class="adv-num">03</div>
-        <h4>Continuità della fornitura nel tempo</h4>
-        <p>Tra due anni potrai integrare le stesse sedie, gli stessi tavoli. Niente sale disomogenee perché il modello è sparito dal sito.</p>
+        <h4>Continuità nel tempo</h4>
+        <p>Tra due anni potrai integrare le stesse sedie, gli stessi tavoli. Niente sale disomogenee.</p>
       </div>
       <div class="adv-item">
         <div class="adv-num">04</div>
         <h4>Conoscenza normativa</h4>
-        <p>Certificazioni ignifughe, normative dehors comunali, requisiti HACCP. Compri tranquillo, non scopri dopo che non puoi usarlo.</p>
+        <p>Certificazioni ignifughe, dehors comunali, HACCP. Compri tranquillo, senza scoprire dopo che non puoi usarlo.</p>
       </div>
       <div class="adv-item">
         <div class="adv-num">05</div>
-        <h4>Post-vendita gestito da me</h4>
-        <p>Pezzi di ricambio, riparazioni, sostituzioni in garanzia. Se ne occupa una persona, non un ticket numerato in inglese.</p>
+        <h4>Post-vendita gestito</h4>
+        <p>Pezzi di ricambio, riparazioni, sostituzioni. Se ne occupa una persona, non un ticket numerato.</p>
       </div>
       <div class="adv-item">
         <div class="adv-num">06</div>
         <h4>Pagamenti su misura</h4>
-        <p>30, 60, 90 giorni, RIBA, dilazioni dedicate per chi apre. Condizioni che nessun e-commerce ti darà mai.</p>
+        <p>30, 60, 90 giorni, RIBA, dilazioni per chi apre. Condizioni che nessun e-commerce ti darà mai.</p>
       </div>
     </div>
   </div>
@@ -609,31 +663,31 @@
     </p>
     <div class="gallery">
       <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1559329007-40df8a9345d8?w=1200&q=80" alt="Ristorante elegante" />
+        <img src="https://images.unsplash.com/photo-1559329007-40df8a9345d8?w=900&q=80" alt="Ristorante elegante" loading="lazy" />
         <div class="gallery-caption">
           <span>Mobili HORECA</span>
           <h5>Tavoli, sedie, dehor</h5>
         </div>
       </div>
       <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1578474846511-04ba529f0b88?w=800&q=80" alt="Tovagliato" />
+        <img src="https://images.unsplash.com/photo-1578474846511-04ba529f0b88?w=800&q=80" alt="Tovagliato" loading="lazy" />
         <div class="gallery-caption">
           <span>Tovagliato</span>
           <h5>Lino, cotone, TNT</h5>
         </div>
       </div>
       <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1592861956120-e524fc739696?w=800&q=80" alt="Hotel design" />
+        <img src="https://images.unsplash.com/photo-1592861956120-e524fc739696?w=800&q=80" alt="Hotel design" loading="lazy" />
         <div class="gallery-caption">
           <span>Hospitality</span>
           <h5>Hotel & boutique</h5>
         </div>
       </div>
       <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=1600&q=80" alt="Bar elegante" />
+        <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=1200&q=80" alt="Bar elegante" loading="lazy" />
         <div class="gallery-caption">
           <span>Monouso premium</span>
-          <h5>Linee complete per servizio veloce</h5>
+          <h5>Servizio veloce</h5>
         </div>
       </div>
     </div>
@@ -644,7 +698,7 @@
 <section class="testimonial">
   <div class="container">
     <p class="testimonial-quote">
-      Con Franco ho aperto due locali in tre anni. Quello che mi dà valore non è il listino:
+      Con Franco ho aperto due locali in tre anni. Il valore non è il listino:
       è sapere che se chiamo, lui risponde, e se c'è un problema lo risolve prima che diventi mio.
     </p>
     <div class="testimonial-author">
@@ -656,52 +710,51 @@
 <!-- CTA / FORM -->
 <section class="cta-section" id="contatto">
   <div class="container">
-    <div class="cta-grid">
+    <div class="cta-grid-desktop">
       <div class="cta-left">
         <span class="section-eyebrow" style="color:#d4b896">Iniziamo a parlarne</span>
         <h2>Una consulenza,<br><em>zero impegno</em>.</h2>
         <p>
           Raccontami il tuo progetto: un locale da aprire, una sala da rinnovare,
-          una fornitura da consolidare. Ti richiamo io e fissiamo un sopralluogo,
-          nel giorno e nell'orario che preferisci.
+          una fornitura da consolidare. Fissiamo un sopralluogo nel giorno e nell'orario che preferisci.
         </p>
         <ul class="cta-bullets">
           <li>Sopralluogo e preventivo gratuiti</li>
           <li>Risposta entro 24 ore lavorative</li>
-          <li>Riservatezza assoluta sul tuo progetto</li>
-          <li>Nessun impegno, nessuna pressione commerciale</li>
+          <li>Riservatezza assoluta</li>
+          <li>Nessuna pressione commerciale</li>
         </ul>
       </div>
 
       <div class="form-card">
         <div id="form-content">
           <h3>Prenota la tua consulenza</h3>
-          <p class="form-sub">Compila i dati e scegli il giorno che preferisci.</p>
+          <p class="form-sub">Compila i dati e scegli il giorno.</p>
 
           <div class="form-row">
             <div class="form-group">
               <label>Nome <span class="req">*</span></label>
-              <input type="text" id="f-nome" required />
+              <input type="text" id="f-nome" autocomplete="given-name" required />
             </div>
             <div class="form-group">
               <label>Cognome <span class="req">*</span></label>
-              <input type="text" id="f-cognome" required />
+              <input type="text" id="f-cognome" autocomplete="family-name" required />
             </div>
           </div>
 
           <div class="form-group">
-            <label>Nome del locale / attività <span class="req">*</span></label>
+            <label>Nome del locale <span class="req">*</span></label>
             <input type="text" id="f-locale" placeholder="es. Ristorante La Vela" required />
           </div>
 
           <div class="form-row">
             <div class="form-group">
               <label>Email <span class="req">*</span></label>
-              <input type="email" id="f-email" required />
+              <input type="email" id="f-email" autocomplete="email" inputmode="email" required />
             </div>
             <div class="form-group">
               <label>Telefono <span class="req">*</span></label>
-              <input type="tel" id="f-tel" required />
+              <input type="tel" id="f-tel" autocomplete="tel" inputmode="tel" required />
             </div>
           </div>
 
@@ -721,7 +774,7 @@
             </div>
             <div class="form-group">
               <label>Città <span class="req">*</span></label>
-              <input type="text" id="f-citta" required />
+              <input type="text" id="f-citta" autocomplete="address-level2" required />
             </div>
           </div>
 
@@ -740,7 +793,7 @@
 
           <div class="form-group">
             <label>Note (opzionale)</label>
-            <textarea id="f-note" placeholder="Raccontami brevemente il tuo progetto, le tempistiche, eventuali esigenze particolari..."></textarea>
+            <textarea id="f-note" placeholder="Raccontami brevemente il tuo progetto..."></textarea>
           </div>
 
           <!-- CALENDARIO -->
@@ -802,47 +855,45 @@
   </div>
 </footer>
 
+<!-- STICKY MOBILE CTA -->
+<div class="mobile-sticky" id="mobile-sticky">
+  <a href="#contatto">Prenota consulenza gratuita</a>
+</div>
+
 <script>
   // ===== CALENDARIO LOGIC =====
   const MONTHS_IT = ['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'];
-  const DAYS_IT = ['Lun','Mar','Mer','Gio','Ven','Sab','Dom'];
+  const DAYS_IT = ['L','M','M','G','V','S','D'];
   const TIME_SLOTS = ['09:00','10:00','11:00','12:00','14:30','15:30','16:30','17:30'];
 
   let currentMonth = new Date().getMonth();
   let currentYear = new Date().getFullYear();
   let selectedDate = null;
   let selectedTime = null;
-  let availableDays = {}; // {dateKey: true} - giorni disponibili impostati dal rappresentante
+  let availableDays = {};
 
-  // Carica disponibilità da storage (impostata dalla dashboard)
   async function loadAvailability() {
     try {
       const r = await window.storage.get('franco-availability', true);
       if (r && r.value) {
         availableDays = JSON.parse(r.value);
       } else {
-        // Default: prossimi 30 giorni lun-ven disponibili
-        const today = new Date();
-        for (let i = 1; i <= 45; i++) {
-          const d = new Date(today);
-          d.setDate(today.getDate() + i);
-          const day = d.getDay();
-          if (day >= 1 && day <= 5) {
-            availableDays[dateKey(d)] = true;
-          }
-        }
+        defaultAvailability();
       }
     } catch(e) {
-      // se la chiave non esiste, usa default
-      const today = new Date();
-      for (let i = 1; i <= 45; i++) {
-        const d = new Date(today);
-        d.setDate(today.getDate() + i);
-        const day = d.getDay();
-        if (day >= 1 && day <= 5) availableDays[dateKey(d)] = true;
-      }
+      defaultAvailability();
     }
     renderCalendar();
+  }
+
+  function defaultAvailability() {
+    const today = new Date();
+    for (let i = 1; i <= 45; i++) {
+      const d = new Date(today);
+      d.setDate(today.getDate() + i);
+      const day = d.getDay();
+      if (day >= 1 && day <= 5) availableDays[dateKey(d)] = true;
+    }
   }
 
   function dateKey(d) {
@@ -883,7 +934,6 @@
       const onclick = isAvailable ? `onclick="selectDate('${k}')"` : '';
       html += `<div class="${cls}" ${onclick}>${day}</div>`;
     }
-
     grid.innerHTML = html;
   }
 
@@ -899,6 +949,13 @@
     selectedTime = null;
     renderCalendar();
     renderTimeSlots();
+    // scroll to time slots su mobile
+    setTimeout(() => {
+      const ts = document.getElementById('time-slots');
+      if (ts.classList.contains('visible')) {
+        ts.scrollIntoView({behavior:'smooth', block:'nearest'});
+      }
+    }, 100);
   }
 
   function renderTimeSlots() {
@@ -953,7 +1010,6 @@
     try {
       await window.storage.set('contact:' + contact.id, JSON.stringify(contact), true);
 
-      // Mostra conferma
       document.getElementById('form-content').style.display = 'none';
       const successMsg = document.getElementById('success-msg');
       successMsg.classList.add('visible');
@@ -966,6 +1022,9 @@
         <span style="color:#666;font-size:13px">Riceverai conferma via email a ${email}</span>
       `;
       window.scrollTo({ top: successMsg.getBoundingClientRect().top + window.scrollY - 100, behavior: 'smooth' });
+
+      // nascondi sticky CTA dopo invio
+      document.getElementById('mobile-sticky').style.display = 'none';
     } catch(e) {
       btn.disabled = false;
       btn.textContent = 'Prenota la consulenza';
@@ -973,6 +1032,22 @@
       console.error(e);
     }
   }
+
+  // ===== STICKY CTA MOBILE =====
+  function handleScroll() {
+    if (window.innerWidth >= 1000) return; // solo mobile/tablet
+    const sticky = document.getElementById('mobile-sticky');
+    const contactSection = document.getElementById('contatto');
+    const heroBottom = window.innerHeight * 0.7;
+    const contactTop = contactSection.getBoundingClientRect().top;
+
+    if (window.scrollY > heroBottom && contactTop > window.innerHeight) {
+      sticky.classList.add('visible');
+    } else {
+      sticky.classList.remove('visible');
+    }
+  }
+  window.addEventListener('scroll', handleScroll, {passive:true});
 
   // Init
   loadAvailability();
