@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
 <meta name="theme-color" content="#1a1a1a" />
-<title>Franco Battista — Consulente d'arredo per l'eccellenza HORECA</title>
+<title>IDEAR — La soluzione su misura · Horeca & Contract · Francesco Battista</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
@@ -59,6 +59,8 @@
     white-space:nowrap;
   }
   .logo span{color:#a8895c}
+  .logo-img{display:flex;align-items:center;text-decoration:none}
+  .logo-img img{height:34px;width:auto;display:block}
   .nav-cta{
     background:#1a1a1a;color:#fff;padding:10px 16px;
     border:none;border-radius:2px;font-size:11px;font-weight:600;
@@ -424,6 +426,7 @@
     color:#fff;margin-bottom:12px;
   }
   .footer-brand span{color:#a8895c}
+  .footer-logo{height:90px;width:auto;display:block;margin-bottom:16px}
   .footer-brand-desc{font-size:13px;line-height:1.7}
   .footer-col h6{
     font-size:10px;letter-spacing:0.2em;text-transform:uppercase;
@@ -478,6 +481,7 @@
   @media (min-width:1000px){
     nav{padding:18px 0}
     .logo{font-size:24px}
+    .logo-img img{height:40px}
     .nav-cta{padding:11px 22px;font-size:13px}
     .hero{padding:120px 0 80px}
     .hero-eyebrow{font-size:12px}
@@ -496,12 +500,10 @@
     .about-content h2{font-size:48px;margin-bottom:28px}
     .about-content p{font-size:16px}
     .gallery{
-      grid-template-columns:2fr 1fr 1fr;
-      grid-template-rows:280px 280px;gap:16px;
+      grid-template-columns:repeat(3,1fr);
+      grid-auto-rows:280px;gap:16px;
     }
     .gallery-item{aspect-ratio:auto}
-    .gallery-item:nth-child(1){grid-row:span 2}
-    .gallery-item:nth-child(4){grid-column:span 2}
     .testimonial{padding:140px 0}
     .testimonial-quote{font-size:42px}
     .cta-grid-desktop{display:grid;grid-template-columns:1fr 1.2fr;gap:80px;align-items:start}
@@ -520,7 +522,9 @@
 <!-- NAVBAR -->
 <nav>
   <div class="container">
-    <div class="logo">Franco <span>Battista</span></div>
+    <a href="#" class="logo-img" aria-label="IDEAR — La soluzione su misura">
+      <img src="img/logo-idear-onLight.png" alt="IDEAR" />
+    </a>
     <a href="#contatto" class="nav-cta">Prenota</a>
   </div>
 </nav>
@@ -529,11 +533,11 @@
 <section class="hero">
   <div class="container">
     <div class="hero-content">
-      <span class="hero-eyebrow">Consulente HORECA · dal 1998</span>
-      <h1>L'arredo che <em>racconta</em> la tua ospitalità.</h1>
+      <span class="hero-eyebrow">Horeca &amp; Contract · La soluzione su misura</span>
+      <h1>L'arredo che <em>racconta</em> la tua attività.</h1>
       <p class="hero-sub">
-        Mobili, tovagliato e forniture per ristoranti, hotel, bar e pasticcerie d'eccellenza.
-        Un unico interlocutore. La certezza di scegliere bene la prima volta.
+        Arredi contract e residenziali, indoor e outdoor — più tutte le forniture professionali no-food.
+        Un solo referente che ti fa acquistare meglio, perdere meno tempo, commettere meno errori.
       </p>
       <div class="hero-ctas">
         <a href="#contatto" class="btn-primary">Consulenza gratuita</a>
@@ -543,7 +547,8 @@
   </div>
 </section>
 
-<!-- STATS -->
+<!-- STATS — RIMOSSA su richiesta (la barra 25+/800+/1/90gg non rispecchia il posizionamento).
+     Se in futuro si vorranno reintrodurre numeri concreti, riattivare e ripopolare.
 <section class="stats">
   <div class="container">
     <div class="stats-grid">
@@ -566,38 +571,41 @@
     </div>
   </div>
 </section>
+-->
+
 
 <!-- VALUE -->
 <section id="valore" class="value">
   <div class="container">
     <span class="section-eyebrow">Perché scegliere un consulente</span>
-    <h2 class="section-title">Tre cose che un sito web<br>non potrà <em>mai darti</em>.</h2>
+    <h2 class="section-title">Tre cose che il web<br>non potrà <em>mai darti</em>.</h2>
     <p class="section-intro">
-      Comprare arredo online sembra conveniente. Finché non arriva la sedia sbagliata,
-      il tavolo che non regge il lavaggio, la finitura che dopo sei mesi è da rifare.
+      Amazon, e-commerce, marketplace, cataloghi infiniti, pubblicità, venditori aggressivi.
+      Sembra comodo. Finché non arriva la sedia sbagliata, l'arredo che non regge l'uso quotidiano,
+      la finitura che dopo sei mesi è da rifare.
     </p>
     <div class="value-grid">
       <div class="value-card">
         <div class="value-icon">①</div>
         <h3>Know-how che protegge l'investimento</h3>
         <p>
-          So quali finiture reggono il lavaggio quotidiano, quali sedie sopportano 50 impilamenti al giorno,
+          So quali finiture reggono il lavaggio quotidiano, quali sedute sopportano un uso intensivo,
           quali materiali hanno le certificazioni richieste per il pubblico.
         </p>
       </div>
       <div class="value-card">
         <div class="value-icon">②</div>
-        <h3>Un solo interlocutore, mille soluzioni</h3>
+        <h3>Un solo referente, mille soluzioni</h3>
         <p>
-          Mobili, tovagliato, monouso, complementi. Tutto coordinato, tutto consegnato.
+          Arredi, tovagliato, monouso, attrezzature, complementi. Tutto coordinato, tutto consegnato.
           Smetti di gestire quindici fornitori diversi.
         </p>
       </div>
       <div class="value-card">
         <div class="value-icon">③</div>
-        <h3>Condizioni che un e-commerce non offre</h3>
+        <h3>Condizioni che il web non offre</h3>
         <p>
-          Pagamenti dilazionati fino a 90 giorni, RIBA, fatturazione su misura.
+          Pagamenti dilazionati, RIBA, fatturazione su misura, prodotti aggiornati e selezionati.
           E un nome e cognome che risponde se qualcosa non va.
         </p>
       </div>
@@ -605,27 +613,29 @@
   </div>
 </section>
 
-<!-- ABOUT FRANCO -->
+<!-- ABOUT FRANCESCO -->
 <section class="about">
   <div class="container">
     <div class="about-grid-desktop">
       <div class="about-image"></div>
       <div class="about-content">
         <span class="section-eyebrow">Chi sono</span>
-        <h2>Franco Battista,<br>il tuo <em>consulente</em> di fiducia.</h2>
+        <h2>Francesco Battista,<br>il tuo <em>referente</em> per Horeca &amp; Contract.</h2>
         <p>
-          Ho visto centinaia di sale nascere e rinnovarsi. Ho misurato dehor sotto la pioggia,
-          scelto tessuti accanto a chef stellati, risolto consegne urgenti il sabato sera.
+          Non sono un venditore di prodotti. Sono la persona che ti fa risparmiare tempo,
+          riduce il rischio di acquisti sbagliati e coordina le forniture senza che tu debba
+          gestire dieci interlocutori diversi.
         </p>
         <p>
-          Non vendo cataloghi. Ascolto cosa vuoi raccontare con il tuo locale e ti propongo
-          gli arredi che funzionano davvero. Tre opzioni giuste, non quattrocento da confrontare.
+          Lavoro con attività ricettive, locali pubblici e privati — tutto il mondo no-food.
+          Il mio vantaggio non è il magazzino: è la flessibilità di cercare, confrontare,
+          personalizzare e proporre soluzioni che funzionano davvero nello spazio reale.
         </p>
         <p>
-          Lavoro con ristoranti d'autore, hotel boutique, pasticcerie artigianali, bistrot di quartiere.
-          Ognuno ha una storia. La mia è quella di chi quella storia la mette in scena.
+          IDEAR nasce da qui: una soluzione su misura per chi non ha tempo di perdere tempo,
+          e vuole un riferimento che risponde quando serve.
         </p>
-        <div class="signature">— Franco Battista</div>
+        <div class="signature">— Francesco Battista · IDEAR</div>
       </div>
     </div>
   </div>
@@ -648,12 +658,12 @@
       <div class="adv-item">
         <div class="adv-num">02</div>
         <h4>Riduzione del rischio</h4>
-        <p>Quando spendi migliaia di euro in arredo, il rischio di sbagliare è reale. Vent'anni di esperienza lo annullano.</p>
+        <p>Quando spendi migliaia di euro in arredi e forniture, il rischio di sbagliare è reale. Esperienza diretta sul campo e selezione attenta lo riducono al minimo.</p>
       </div>
       <div class="adv-item">
         <div class="adv-num">03</div>
         <h4>Continuità nel tempo</h4>
-        <p>Tra due anni potrai integrare le stesse sedie, gli stessi tavoli. Niente sale disomogenee.</p>
+        <p>Domani potrai integrare le stesse sedute, gli stessi tavoli, gli stessi complementi. Niente sale disomogenee, niente fornitori che spariscono.</p>
       </div>
       <div class="adv-item">
         <div class="adv-num">04</div>
@@ -668,7 +678,7 @@
       <div class="adv-item">
         <div class="adv-num">06</div>
         <h4>Pagamenti su misura</h4>
-        <p>30, 60, 90 giorni, RIBA, dilazioni per chi apre. Condizioni che nessun e-commerce ti darà mai.</p>
+        <p>Dilazioni, RIBA, condizioni cucite addosso all'attività. Flessibilità che il web e i grandi magazzini non possono offrire.</p>
       </div>
     </div>
   </div>
@@ -680,54 +690,73 @@
     <span class="section-eyebrow">La gamma</span>
     <h2 class="section-title">Tutto ciò che <em>arreda</em><br>e tutto ciò che <em>serve</em>.</h2>
     <p class="section-intro">
-      Dalla sedia di design al tovagliolo coordinato.
-      Una sola fornitura per ogni esigenza del tuo locale.
+      Dieci categorie merceologiche, una sola fornitura coordinata. Arredi, riposo, attrezzature,
+      hotellerie, monouso, abbigliamento da lavoro, comunicazione, immagine aziendale, ufficio.
+      Per ogni esigenza no-food della tua attività.
     </p>
     <div class="gallery">
       <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1559329007-40df8a9345d8?w=900&q=80" alt="Ristorante elegante" loading="lazy" />
+        <img src="https://images.unsplash.com/photo-1559329007-40df8a9345d8?w=900&q=80" alt="Arredi contract e residenziali" loading="lazy" />
         <div class="gallery-caption">
-          <span>Mobili HORECA</span>
-          <h5>Tavoli, sedie, dehor</h5>
+          <span>Arredi · Contract &amp; Residenziali</span>
+          <h5>Indoor &amp; outdoor</h5>
         </div>
       </div>
       <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1578474846511-04ba529f0b88?w=800&q=80" alt="Tovagliato" loading="lazy" />
+        <img src="https://images.unsplash.com/photo-1578474846511-04ba529f0b88?w=800&q=80" alt="Hotellerie e tovagliato" loading="lazy" />
         <div class="gallery-caption">
-          <span>Tovagliato</span>
-          <h5>Lino, cotone, TNT</h5>
+          <span>Hotellerie</span>
+          <h5>Tavola e biancheria</h5>
         </div>
       </div>
       <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1592861956120-e524fc739696?w=800&q=80" alt="Hotel design" loading="lazy" />
+        <img src="https://images.unsplash.com/photo-1592861956120-e524fc739696?w=800&q=80" alt="Materassi e sistemi riposo" loading="lazy" />
         <div class="gallery-caption">
-          <span>Hospitality</span>
-          <h5>Hotel & boutique</h5>
+          <span>Riposo</span>
+          <h5>Materassi e sistemi</h5>
         </div>
       </div>
       <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=1200&q=80" alt="Bar elegante" loading="lazy" />
+        <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=1200&q=80" alt="Attrezzature ristorazione" loading="lazy" />
         <div class="gallery-caption">
-          <span>Monouso premium</span>
-          <h5>Servizio veloce</h5>
+          <span>Attrezzature</span>
+          <h5>Ristorazione &amp; commerciale</h5>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1606744837616-56c9a5c6a6eb?w=800&q=80" alt="Packaging e monouso personalizzato" loading="lazy" />
+        <div class="gallery-caption">
+          <span>Packaging</span>
+          <h5>Monouso personalizzato</h5>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80" alt="Abbigliamento da lavoro" loading="lazy" />
+        <div class="gallery-caption">
+          <span>Abbigliamento</span>
+          <h5>Da lavoro &amp; tessuti d'arredo</h5>
         </div>
       </div>
     </div>
+    <p style="margin-top:32px;font-size:14px;color:#666;font-style:italic;text-align:center">
+      Sistemi espositivi · Comunicazione area vendita · Immagine aziendale · Ufficio (cancelleria, carta, toner, consumabili)
+    </p>
   </div>
 </section>
 
-<!-- TESTIMONIAL -->
+<!-- TESTIMONIAL — RIMOSSA: la citazione era fittizia.
+     Riattivare e sostituire con una testimonianza REALE quando disponibile.
 <section class="testimonial">
   <div class="container">
     <p class="testimonial-quote">
-      Con Franco ho aperto due locali in tre anni. Il valore non è il listino:
-      è sapere che se chiamo, lui risponde, e se c'è un problema lo risolve prima che diventi mio.
+      [Testimonianza reale di un cliente IDEAR]
     </p>
     <div class="testimonial-author">
-      <strong>Lorenzo M.</strong> — Ristoratore, Milano
+      <strong>Nome Cognome</strong> — Tipologia attività, Città
     </div>
   </div>
 </section>
+-->
 
 <!-- CTA / FORM -->
 <section class="cta-section" id="contatto">
@@ -737,7 +766,7 @@
         <span class="section-eyebrow" style="color:#d4b896">Iniziamo a parlarne</span>
         <h2>Una consulenza,<br><em>zero impegno</em>.</h2>
         <p>
-          Raccontami il tuo progetto: un locale da aprire, una sala da rinnovare,
+          Raccontami il tuo progetto: un'attività da aprire, uno spazio da rinnovare,
           una fornitura da consolidare. Fissiamo un sopralluogo nel giorno e nell'orario che preferisci.
         </p>
         <ul class="cta-bullets">
@@ -765,8 +794,8 @@
           </div>
 
           <div class="form-group">
-            <label>Nome del locale <span class="req">*</span></label>
-            <input type="text" id="f-locale" placeholder="es. Ristorante La Vela" required />
+            <label>Nome dell'attività <span class="req">*</span></label>
+            <input type="text" id="f-locale" placeholder="es. Ristorante La Vela / Hotel Aurora / Studio Rossi" required />
           </div>
 
           <div class="form-row">
@@ -782,15 +811,17 @@
 
           <div class="form-row">
             <div class="form-group">
-              <label>Tipologia <span class="req">*</span></label>
+              <label>Tipologia attività <span class="req">*</span></label>
               <select id="f-tipo" required>
                 <option value="">Seleziona...</option>
-                <option>Ristorante</option>
-                <option>Hotel / B&B</option>
-                <option>Bar / Caffetteria</option>
-                <option>Pizzeria</option>
+                <option>Ristorante / Pizzeria / Bistrot</option>
+                <option>Bar / Caffetteria / Wine bar</option>
+                <option>Hotel / B&amp;B / Struttura ricettiva</option>
                 <option>Pasticceria / Gelateria</option>
-                <option>Bistrot / Wine bar</option>
+                <option>Negozio / Retail</option>
+                <option>Ufficio / Studio professionale</option>
+                <option>Comunità / Struttura sanitaria</option>
+                <option>Residenziale / Privato</option>
                 <option>Altro</option>
               </select>
             </div>
@@ -804,12 +835,18 @@
             <label>Interesse principale <span class="req">*</span></label>
             <select id="f-interesse" required>
               <option value="">Seleziona...</option>
-              <option>Arredo completo (apertura nuovo locale)</option>
+              <option>Arredo completo (nuova apertura)</option>
               <option>Rinnovo arredo esistente</option>
-              <option>Solo mobili (tavoli, sedie, dehor)</option>
-              <option>Tovagliato e biancheria</option>
-              <option>Monouso e forniture</option>
+              <option>Arredi indoor / outdoor</option>
+              <option>Materassi e sistemi riposo</option>
+              <option>Attrezzature ristorazione / commerciali</option>
+              <option>Hotellerie e complementi per la tavola</option>
+              <option>Packaging e monouso personalizzato</option>
+              <option>Abbigliamento da lavoro</option>
+              <option>Comunicazione e immagine aziendale</option>
+              <option>Ufficio (cancelleria, toner, consumabili)</option>
               <option>Fornitura completa coordinata</option>
+              <option>Altro / da definire</option>
             </select>
           </div>
 
@@ -842,7 +879,7 @@
         <div class="success-message" id="success-msg">
           <div class="success-icon">✓</div>
           <h4>Richiesta inviata</h4>
-          <p>Grazie per la fiducia. Franco ti contatterà entro 24 ore lavorative per confermare l'appuntamento.</p>
+          <p>Grazie per la fiducia. Francesco ti contatterà entro 24 ore lavorative per confermare l'appuntamento.</p>
           <div class="success-detail" id="success-detail"></div>
         </div>
       </div>
@@ -855,15 +892,16 @@
   <div class="container">
     <div class="footer-grid">
       <div>
-        <div class="footer-brand">Franco <span>Battista</span></div>
+        <img src="img/logo-idear-onDark.png" alt="IDEAR — La soluzione su misura" class="footer-logo" />
         <p class="footer-brand-desc">
-          Consulente d'arredo e fornitura per attività ricettive d'eccellenza.
-          Mobili HORECA, tovagliato, monouso premium.
+          IDEAR — La soluzione su misura. Forniture professionali per Horeca &amp; Contract,
+          attività commerciali e residenziali. Arredi, riposo, attrezzature, hotellerie,
+          packaging, abbigliamento, comunicazione, ufficio.
         </p>
       </div>
       <div class="footer-col">
         <h6>Contatti</h6>
-        <p>+39 348 000 0000<br>franco@battista-horeca.it<br>Via dell'Eccellenza 12<br>20100 Milano</p>
+        <p>Francesco Battista<br>+39 334 8611 291<br>francobattista35@gmail.com</p>
       </div>
       <div class="footer-col">
         <h6>Servizio</h6>
@@ -871,7 +909,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 Franco Battista · P.IVA 00000000000</span>
+      <span>© 2026 IDEAR · Francesco Battista · P.IVA 00000000000</span>
       <span>Privacy · Cookie · Termini</span>
     </div>
   </div>
