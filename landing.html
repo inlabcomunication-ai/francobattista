@@ -202,6 +202,58 @@
     display:flex;flex-direction:column;
     border-top:1px solid rgba(255,255,255,0.1);
   }
+
+  /* ===== EVOLUTION (concept che evolve) ===== */
+  .evolution{
+    background:#f4f0e8;padding:64px 0;
+    border-top:1px solid rgba(168,137,92,0.15);
+    border-bottom:1px solid rgba(168,137,92,0.15);
+  }
+  .evolution .container{max-width:820px}
+  .evolution-eyebrow{
+    font-size:11px;letter-spacing:0.25em;text-transform:uppercase;
+    color:#a8895c;font-weight:600;margin-bottom:18px;display:block;
+  }
+  .evolution h2{
+    font-family:'Cormorant Garamond',serif;font-weight:300;
+    font-size:30px;line-height:1.15;letter-spacing:-0.02em;
+    color:#1a1a1a;margin-bottom:24px;
+  }
+  .evolution h2 em{font-style:italic;color:#a8895c}
+  .evolution p{
+    font-size:15px;color:#3a3a3a;line-height:1.75;margin-bottom:16px;
+  }
+  .evolution .evolution-claim{
+    font-family:'Cormorant Garamond',serif;font-style:italic;
+    font-size:20px;color:#1a1a1a;margin-top:24px;
+    border-left:2px solid #d4b896;padding-left:18px;
+  }
+
+  /* ===== BUSINESS CARD ===== */
+  .card-section{
+    background:#0e0e0e;padding:72px 0;text-align:center;
+  }
+  .card-section .section-eyebrow{
+    color:#d4b896;display:block;margin-bottom:18px;
+  }
+  .card-section h3{
+    font-family:'Cormorant Garamond',serif;font-weight:300;
+    font-size:28px;line-height:1.2;color:#fff;letter-spacing:-0.01em;
+    margin-bottom:32px;
+  }
+  .card-section h3 em{font-style:italic;color:#d4b896}
+  .business-card{
+    max-width:420px;margin:0 auto;
+    box-shadow:0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(212,184,150,0.15);
+    border-radius:6px;overflow:hidden;line-height:0;
+  }
+  .business-card img{width:100%;height:auto;display:block}
+  .card-section .card-contacts{
+    margin-top:32px;font-size:14px;color:rgba(255,255,255,0.75);
+    line-height:1.9;letter-spacing:0.02em;
+  }
+  .card-section .card-contacts a{color:#d4b896;text-decoration:none}
+  .card-section .card-contacts a:hover{text-decoration:underline}
   .adv-item{
     padding:28px 0;border-bottom:1px solid rgba(255,255,255,0.1);
   }
@@ -474,6 +526,9 @@
     section{padding:80px 0}
     .adv-list{display:grid;grid-template-columns:1fr 1fr;gap:0}
     .adv-item{padding:32px;border:1px solid rgba(255,255,255,0.1);margin:-1px 0 0 -1px}
+    .adv-item.adv-item-full{grid-column:1 / -1;background:rgba(212,184,150,0.06)}
+    .evolution{padding:96px 0}
+    .evolution h2{font-size:38px}
   }
 
   /* ===== DESKTOP ===== */
@@ -498,6 +553,13 @@
     .about-image{margin-bottom:0;max-width:none}
     .about-content h2{font-size:48px;margin-bottom:28px}
     .about-content p{font-size:16px}
+    .evolution{padding:120px 0}
+    .evolution h2{font-size:44px;margin-bottom:32px}
+    .evolution p{font-size:17px}
+    .evolution .evolution-claim{font-size:24px;margin-top:32px}
+    .card-section{padding:96px 0}
+    .card-section h3{font-size:34px;margin-bottom:40px}
+    .business-card{max-width:480px}
     .gallery{
       grid-template-columns:repeat(3,1fr);
       grid-auto-rows:280px;gap:16px;
@@ -532,7 +594,7 @@
 <section class="hero">
   <div class="container">
     <div class="hero-content">
-      <span class="hero-eyebrow">Horeca &amp; Contract · La soluzione su misura</span>
+      <span class="hero-eyebrow">Horeca &amp; Contract · Dal 1998 · La soluzione su misura</span>
       <h1>L'arredo che <em>racconta</em> la tua attività.</h1>
       <p class="hero-sub">
         Arredi contract e residenziali, indoor e outdoor — più tutte le forniture professionali no-food.
@@ -604,7 +666,7 @@
         <div class="value-icon">③</div>
         <h3>Condizioni che il web non offre</h3>
         <p>
-          Pagamenti dilazionati, RIBA, fatturazione su misura, prodotti aggiornati e selezionati.
+          Pagamenti dilazionati su misura, RIBA, fatturazione adattata alle tue esigenze, prodotti aggiornati e selezionati.
           E un nome e cognome che risponde se qualcosa non va.
         </p>
       </div>
@@ -626,7 +688,7 @@
           gestire dieci interlocutori diversi.
         </p>
         <p>
-          Lavoro con attività ricettive, locali pubblici e privati — tutto il mondo no-food.
+          Dal 1998 lavoro con attività ricettive, locali pubblici e privati — tutto il mondo no-food.
           Il mio vantaggio non è il magazzino: è la flessibilità di cercare, confrontare,
           personalizzare e proporre soluzioni che funzionano davvero nello spazio reale.
         </p>
@@ -640,11 +702,26 @@
   </div>
 </section>
 
+<!-- EVOLUTION (concept che evolve nel tempo) -->
+<section class="evolution">
+  <div class="container">
+    <span class="evolution-eyebrow">Non solo la prima volta</span>
+    <h2>Il locale che apri oggi<br>non è il locale che <em>terrai aperto</em> domani.</h2>
+    <p>
+      I tempi cambiano in fretta. Estetica, materiali, abitudini dei clienti, normative: tutto si muove.
+      Non si tratta di scegliere bene una volta e basta — si tratta di avere accanto qualcuno
+      che ti accompagna anche quando è il momento di cambiare concept, rinnovare una sala,
+      ripensare il dehor, aggiornare l'immagine.
+    </p>
+    <div class="evolution-claim">Non un fornitore una tantum. Un riferimento nel tempo.</div>
+  </div>
+</section>
+
 <!-- ADVANTAGES (dark) -->
 <section class="advantages">
   <div class="container">
     <span class="section-eyebrow">Vantaggi concreti</span>
-    <h2 class="section-title">Sei motivi per chiamare<br><em>prima</em> di comprare.</h2>
+    <h2 class="section-title">Sette motivi per chiamare<br><em>prima</em> di comprare.</h2>
     <p class="section-intro">
       Quello che ottieni lavorando con me, oltre al prodotto.
     </p>
@@ -678,6 +755,11 @@
         <div class="adv-num">06</div>
         <h4>Pagamenti su misura</h4>
         <p>Dilazioni, RIBA, condizioni cucite addosso all'attività. Flessibilità che il web e i grandi magazzini non possono offrire.</p>
+      </div>
+      <div class="adv-item adv-item-full">
+        <div class="adv-num">07</div>
+        <h4>Scelta vera, non scelta da magazzino</h4>
+        <p>Non ho un deposito da smaltire. Posso davvero cercare ciò che serve a te, confrontare alternative, proporre quello che funziona — non quello che devo spingere. Questa è la differenza strutturale tra un consulente e un grossista.</p>
       </div>
     </div>
   </div>
@@ -756,6 +838,21 @@
   </div>
 </section>
 -->
+
+<!-- BUSINESS CARD -->
+<section class="card-section">
+  <div class="container">
+    <span class="section-eyebrow">Un nome, un numero, una persona</span>
+    <h3>Non un call center.<br>Non un ticket. <em>Francesco</em>.</h3>
+    <div class="business-card">
+      <img src="img/biglietto-fronte.png" alt="IDEAR — la soluzione su misura · Biglietto da visita di Francesco Battista" loading="lazy" />
+    </div>
+    <div class="card-contacts">
+      Francesco Battista<br>
+      <a href="tel:+393348611291">+39 334 8611 291</a> · <a href="mailto:francobattista35@gmail.com">francobattista35@gmail.com</a>
+    </div>
+  </div>
+</section>
 
 <!-- CTA / FORM -->
 <section class="cta-section" id="contatto">
@@ -893,7 +990,7 @@
       <div>
         <img src="img/logo-idear-onDark.png" alt="IDEAR — La soluzione su misura" class="footer-logo" />
         <p class="footer-brand-desc">
-          IDEAR — La soluzione su misura. Forniture professionali per Horeca &amp; Contract,
+          IDEAR — dal 1998, la soluzione su misura. Forniture professionali per Horeca &amp; Contract,
           attività commerciali e residenziali. Arredi, riposo, attrezzature, hotellerie,
           packaging, abbigliamento, comunicazione, ufficio.
         </p>
