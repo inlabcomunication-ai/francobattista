@@ -4,11 +4,11 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
 <meta name="theme-color" content="#1a1a1a" />
-<title>IDEAR — La soluzione su misura · Horeca & Contract · Francesco Battista</title>
+<title>IDEAR — Forniture & Soluzioni Funzionali · Horeca, Contract & Attività Commerciali</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-  import { getFirestore, collection, addDoc, doc, getDoc, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+  import { getFirestore, collection, addDoc, doc, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
   const firebaseConfig = {
     apiKey: "AIzaSyDBAMrXhF4UvS_ZLJnSzOMrKASNz8H8XGs",
     authDomain: "franco-battista.firebaseapp.com",
@@ -24,14 +24,13 @@
   window.fbCollection = collection;
   window.fbDoc = doc;
   window.fbGetDoc = getDoc;
-  window.fbGetDocs = getDocs;
   window.fbServerTimestamp = serverTimestamp;
   window.dispatchEvent(new Event('firebaseReady'));
 </script>
 <style>
   *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;font-variant-numeric:lining-nums tabular-nums}
-  body{font-feature-settings:"lnum" 1, "tnum" 1;
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
     font-family:'Inter',sans-serif;
     color:#1a1a1a;
     background:#fafaf7;
@@ -40,10 +39,10 @@
     overflow-x:hidden;
   }
   img{max-width:100%;display:block}
-  button,input,select,textarea{font-family:inherit;font-size:16px} /* 16px evita zoom iOS */
+  button,input,select,textarea{font-family:inherit;font-size:16px}
   .container{max-width:1200px;margin:0 auto;padding:0 20px}
 
-  /* ===== NAVBAR MOBILE-FIRST ===== */
+  /* ===== NAVBAR ===== */
   nav{
     position:fixed;top:0;left:0;right:0;z-index:100;
     background:rgba(250,250,247,0.95);
@@ -53,12 +52,6 @@
     padding:14px 0;
   }
   nav .container{display:flex;justify-content:space-between;align-items:center;gap:12px}
-  .logo{
-    font-family:'Cormorant Garamond',serif;
-    font-size:20px;font-weight:500;letter-spacing:-0.01em;
-    white-space:nowrap;
-  }
-  .logo span{color:#a8895c}
   .logo-img{display:flex;align-items:center;text-decoration:none}
   .logo-img img{height:34px;width:auto;display:block}
   .nav-cta{
@@ -70,7 +63,7 @@
   }
   .nav-cta:active{background:#a8895c;transform:scale(0.97)}
 
-  /* ===== HERO MOBILE-FIRST ===== */
+  /* ===== HERO ===== */
   .hero{
     min-height:100vh;min-height:100svh;
     display:flex;align-items:center;
@@ -112,22 +105,32 @@
   }
   .btn-ghost:active{background:rgba(255,255,255,0.1)}
 
-  /* ===== STATS BAR ===== */
-  .stats{
-    background:#1a1a1a;color:#fff;padding:40px 0;
+  /* ===== URGENCY BANNER (sotto hero) ===== */
+  .urgency-banner{
+    background:#a8895c;color:#fff;padding:48px 0;
   }
-  .stats-grid{
-    display:grid;grid-template-columns:1fr 1fr;gap:32px 20px;
+  .urgency-inner{
+    display:flex;flex-direction:column;gap:24px;
   }
-  .stat{text-align:center}
-  .stat-num{
-    font-family:'Cormorant Garamond',serif;font-size:44px;
-    font-weight:400;color:#d4b896;line-height:1;margin-bottom:6px;
+  .urgency-text h3{
+    font-family:'Cormorant Garamond',serif;font-weight:400;
+    font-size:26px;line-height:1.2;margin-bottom:10px;
+    letter-spacing:-0.01em;
   }
-  .stat-label{
-    font-size:10px;letter-spacing:0.12em;text-transform:uppercase;
-    color:rgba(255,255,255,0.7);
+  .urgency-text h3 em{font-style:italic;font-weight:300}
+  .urgency-text p{
+    font-size:14px;line-height:1.7;opacity:0.92;
   }
+  .urgency-cta{
+    flex-shrink:0;
+  }
+  .urgency-cta a{
+    display:inline-block;background:#fff;color:#1a1a1a;
+    padding:16px 28px;font-size:12px;font-weight:700;
+    letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;
+    transition:all 0.2s ease;white-space:nowrap;
+  }
+  .urgency-cta a:active{background:#1a1a1a;color:#d4b896}
 
   /* ===== SECTION BASE ===== */
   section{padding:64px 0}
@@ -147,9 +150,7 @@
   }
 
   /* ===== VALUE SECTION ===== */
-  .value-grid{
-    display:flex;flex-direction:column;gap:20px;
-  }
+  .value-grid{display:flex;flex-direction:column;gap:20px}
   .value-card{
     background:#fff;padding:32px 24px;
     border:1px solid rgba(0,0,0,0.06);
@@ -164,14 +165,10 @@
     font-size:22px;line-height:1.25;margin-bottom:12px;
     letter-spacing:-0.01em;
   }
-  .value-card p{
-    font-size:14px;color:#555;line-height:1.7;
-  }
+  .value-card p{font-size:14px;color:#555;line-height:1.7}
 
-  /* ===== ABOUT FRANCO ===== */
-  .about{
-    background:#f3efe6;
-  }
+  /* ===== ABOUT ===== */
+  .about{background:#f3efe6}
   .about-image{
     aspect-ratio:4/5;
     background:url('https://images.unsplash.com/photo-1590846406792-0adc7f938f1d?w=1200&q=80') center/cover;
@@ -183,18 +180,14 @@
     margin-bottom:20px;letter-spacing:-0.02em;
   }
   .about-content h2 em{font-style:italic;color:#a8895c}
-  .about-content p{
-    font-size:15px;color:#444;line-height:1.75;margin-bottom:16px;
-  }
+  .about-content p{font-size:15px;color:#444;line-height:1.75;margin-bottom:16px}
   .about-content .signature{
     font-family:'Cormorant Garamond',serif;font-style:italic;
     font-size:20px;color:#1a1a1a;margin-top:24px;
   }
 
   /* ===== ADVANTAGES (DARK) ===== */
-  .advantages{
-    background:#1a1a1a;color:#fff;
-  }
+  .advantages{background:#1a1a1a;color:#fff}
   .advantages .section-eyebrow{color:#d4b896}
   .advantages .section-title{color:#fff}
   .advantages .section-title em{color:#d4b896}
@@ -203,8 +196,18 @@
     display:flex;flex-direction:column;
     border-top:1px solid rgba(255,255,255,0.1);
   }
+  .adv-item{padding:28px 0;border-bottom:1px solid rgba(255,255,255,0.1)}
+  .adv-num{
+    font-family:'Cormorant Garamond',serif;font-size:30px;
+    color:#d4b896;margin-bottom:10px;font-weight:300;
+  }
+  .adv-item h4{
+    font-family:'Cormorant Garamond',serif;font-size:20px;
+    font-weight:500;margin-bottom:10px;letter-spacing:-0.01em;
+  }
+  .adv-item p{font-size:14px;color:rgba(255,255,255,0.7);line-height:1.7}
 
-  /* ===== EVOLUTION (concept che evolve) ===== */
+  /* ===== EVOLUTION ===== */
   .evolution{
     background:#f4f0e8;padding:64px 0;
     border-top:1px solid rgba(168,137,92,0.15);
@@ -221,9 +224,7 @@
     color:#1a1a1a;margin-bottom:24px;
   }
   .evolution h2 em{font-style:italic;color:#a8895c}
-  .evolution p{
-    font-size:15px;color:#3a3a3a;line-height:1.75;margin-bottom:16px;
-  }
+  .evolution p{font-size:15px;color:#3a3a3a;line-height:1.75;margin-bottom:16px}
   .evolution .evolution-claim{
     font-family:'Cormorant Garamond',serif;font-style:italic;
     font-size:20px;color:#1a1a1a;margin-top:24px;
@@ -231,12 +232,8 @@
   }
 
   /* ===== BUSINESS CARD ===== */
-  .card-section{
-    background:#0e0e0e;padding:72px 0;text-align:center;
-  }
-  .card-section .section-eyebrow{
-    color:#d4b896;display:block;margin-bottom:18px;
-  }
+  .card-section{background:#0e0e0e;padding:72px 0;text-align:center}
+  .card-section .section-eyebrow{color:#d4b896;display:block;margin-bottom:18px}
   .card-section h3{
     font-family:'Cormorant Garamond',serif;font-weight:300;
     font-size:28px;line-height:1.2;color:#fff;letter-spacing:-0.01em;
@@ -255,34 +252,15 @@
   }
   .card-section .card-contacts a{color:#d4b896;text-decoration:none}
   .card-section .card-contacts a:hover{text-decoration:underline}
-  .adv-item{
-    padding:28px 0;border-bottom:1px solid rgba(255,255,255,0.1);
-  }
-  .adv-num{
-    font-family:'Cormorant Garamond',serif;font-size:30px;
-    color:#d4b896;margin-bottom:10px;font-weight:300;
-  }
-  .adv-item h4{
-    font-family:'Cormorant Garamond',serif;font-size:20px;
-    font-weight:500;margin-bottom:10px;letter-spacing:-0.01em;
-  }
-  .adv-item p{
-    font-size:14px;color:rgba(255,255,255,0.7);line-height:1.7;
-  }
 
   /* ===== PRODUCTS / GALLERY ===== */
   .products{background:#fafaf7}
-  .gallery{
-    display:flex;flex-direction:column;gap:12px;
-  }
+  .gallery{display:flex;flex-direction:column;gap:12px}
   .gallery-item{
     position:relative;overflow:hidden;background:#1a1a1a;
     aspect-ratio:16/10;
   }
-  .gallery-item img{
-    width:100%;height:100%;object-fit:cover;
-    opacity:0.92;
-  }
+  .gallery-item img{width:100%;height:100%;object-fit:cover;opacity:0.92}
   .gallery-caption{
     position:absolute;bottom:18px;left:20px;right:20px;color:#fff;z-index:2;
   }
@@ -290,28 +268,7 @@
     font-size:10px;letter-spacing:0.18em;text-transform:uppercase;
     color:#d4b896;display:block;margin-bottom:4px;
   }
-  .gallery-caption h5{
-    font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;
-  }
-
-  /* ===== TESTIMONIAL ===== */
-  .testimonial{
-    background:#f3efe6;text-align:center;padding:80px 0;
-  }
-  .testimonial-quote{
-    font-family:'Cormorant Garamond',serif;font-weight:300;
-    font-size:24px;line-height:1.35;
-    letter-spacing:-0.01em;margin-bottom:28px;
-    color:#1a1a1a;font-style:italic;
-  }
-  .testimonial-quote::before,.testimonial-quote::after{
-    content:'"';color:#a8895c;font-size:1.2em;
-  }
-  .testimonial-author{
-    font-size:11px;letter-spacing:0.18em;text-transform:uppercase;
-    color:#666;
-  }
-  .testimonial-author strong{color:#1a1a1a;font-weight:600}
+  .gallery-caption h5{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500}
 
   /* ===== CTA / FORM ===== */
   .cta-section{
@@ -336,9 +293,7 @@
     font-size:14px;color:rgba(255,255,255,0.9);
     display:flex;align-items:center;gap:12px;
   }
-  .cta-bullets li::before{
-    content:'';width:18px;height:1px;background:#d4b896;flex-shrink:0;
-  }
+  .cta-bullets li::before{content:'';width:18px;height:1px;background:#d4b896;flex-shrink:0}
 
   /* FORM */
   .form-card{
@@ -349,9 +304,7 @@
     font-family:'Cormorant Garamond',serif;font-weight:500;
     font-size:26px;margin-bottom:6px;letter-spacing:-0.01em;
   }
-  .form-card .form-sub{
-    font-size:13px;color:#666;margin-bottom:24px;
-  }
+  .form-card .form-sub{font-size:13px;color:#666;margin-bottom:24px}
   .form-group{margin-bottom:16px}
   .form-row{display:flex;flex-direction:column;gap:0}
   .form-row .form-group{margin-bottom:16px}
@@ -377,29 +330,21 @@
     outline:none;border-color:#a8895c;
   }
 
-  /* CALENDARIO MOBILE */
+  /* CALENDARIO */
   .calendar-section{
     margin:24px 0;padding:20px 16px;background:#fff;
     border:1px solid rgba(0,0,0,0.1);
   }
-  .cal-header{
-    display:flex;justify-content:space-between;align-items:center;
-    margin-bottom:16px;
-  }
-  .cal-title{
-    font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:500;
-  }
+  .cal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+  .cal-title{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:500}
   .cal-nav{display:flex;gap:6px}
   .cal-nav button{
     width:38px;height:38px;border:1px solid rgba(0,0,0,0.15);
     background:#fff;cursor:pointer;display:flex;align-items:center;
-    justify-content:center;color:#666;transition:all 0.2s ease;
-    font-size:18px;
+    justify-content:center;color:#666;transition:all 0.2s ease;font-size:18px;
   }
   .cal-nav button:active{background:#a8895c;color:#fff;border-color:#a8895c}
-  .cal-grid{
-    display:grid;grid-template-columns:repeat(7,1fr);gap:3px;
-  }
+  .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
   .cal-day-label{
     text-align:center;font-size:10px;letter-spacing:0.08em;
     text-transform:uppercase;color:#999;padding:6px 0;font-weight:600;
@@ -415,18 +360,13 @@
   .cal-day.available:active{background:#a8895c;color:#fff}
   .cal-day.selected{background:#1a1a1a;color:#d4b896;font-weight:600}
   .cal-day.today{border-color:#a8895c}
-
-  .time-slots{
-    margin-top:20px;display:none;
-  }
+  .time-slots{margin-top:20px;display:none}
   .time-slots.visible{display:block}
   .time-slots-label{
     font-size:10px;letter-spacing:0.15em;text-transform:uppercase;
     color:#666;margin-bottom:10px;font-weight:600;
   }
-  .time-grid{
-    display:grid;grid-template-columns:repeat(3,1fr);gap:8px;
-  }
+  .time-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
   .time-slot{
     padding:14px 8px;text-align:center;border:1px solid rgba(0,0,0,0.15);
     background:#fff;font-size:14px;cursor:pointer;transition:all 0.15s ease;
@@ -444,46 +384,24 @@
   .form-submit:active{background:#a8895c;color:#fff;transform:scale(0.98)}
   .form-submit:disabled{background:#666;cursor:not-allowed;color:#aaa}
 
-  .success-message{
-    display:none;text-align:center;padding:32px 16px;
-  }
+  .success-message{display:none;text-align:center;padding:32px 16px}
   .success-message.visible{display:block}
   .success-icon{
     width:60px;height:60px;border:1px solid #a8895c;border-radius:50%;
     display:flex;align-items:center;justify-content:center;
     margin:0 auto 20px;color:#a8895c;font-size:26px;
   }
-  .success-message h4{
-    font-family:'Cormorant Garamond',serif;font-size:24px;
-    font-weight:500;margin-bottom:10px;
-  }
+  .success-message h4{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:500;margin-bottom:10px}
   .success-message p{color:#666;font-size:14px;line-height:1.7}
-  .success-detail{
-    margin-top:20px;padding:16px;background:#f3efe6;
-    border-left:3px solid #a8895c;text-align:left;
-  }
-  .success-detail strong{display:block;font-size:10px;letter-spacing:0.15em;
-    text-transform:uppercase;color:#a8895c;margin-bottom:4px;}
+  .success-detail{margin-top:20px;padding:16px;background:#f3efe6;border-left:3px solid #a8895c;text-align:left}
+  .success-detail strong{display:block;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:#a8895c;margin-bottom:4px}
 
   /* ===== FOOTER ===== */
-  footer{
-    background:#0f0f0f;color:rgba(255,255,255,0.6);
-    padding:48px 0 24px;
-  }
-  .footer-grid{
-    display:flex;flex-direction:column;gap:32px;margin-bottom:32px;
-  }
-  .footer-brand{
-    font-family:'Cormorant Garamond',serif;font-size:24px;
-    color:#fff;margin-bottom:12px;
-  }
-  .footer-brand span{color:#a8895c}
+  footer{background:#0f0f0f;color:rgba(255,255,255,0.6);padding:48px 0 24px}
+  .footer-grid{display:flex;flex-direction:column;gap:32px;margin-bottom:32px}
   .footer-logo{height:90px;width:auto;display:block;margin-bottom:16px}
   .footer-brand-desc{font-size:13px;line-height:1.7}
-  .footer-col h6{
-    font-size:10px;letter-spacing:0.2em;text-transform:uppercase;
-    color:#fff;margin-bottom:14px;font-weight:600;
-  }
+  .footer-col h6{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#fff;margin-bottom:14px;font-weight:600}
   .footer-col p{font-size:13px;line-height:1.9;margin:0}
   .footer-bottom{
     border-top:1px solid rgba(255,255,255,0.1);padding-top:20px;
@@ -495,51 +413,38 @@
     position:fixed;bottom:0;left:0;right:0;z-index:90;
     background:rgba(26,26,26,0.96);backdrop-filter:blur(20px);
     -webkit-backdrop-filter:blur(20px);
-    padding:12px 16px;
-    border-top:1px solid rgba(212,184,150,0.3);
-    display:none;
+    padding:12px 16px;border-top:1px solid rgba(212,184,150,0.3);display:none;
   }
   .mobile-sticky a{
     display:block;background:#d4b896;color:#1a1a1a;
     padding:14px;text-align:center;text-decoration:none;
-    font-size:13px;font-weight:600;letter-spacing:0.1em;
-    text-transform:uppercase;
+    font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;
   }
   .mobile-sticky.visible{display:block}
 
-  /* ===== WHATSAPP FLOATING BUTTON ===== */
+  /* ===== WHATSAPP ===== */
   .wa-float{
-    position:fixed;
-    right:18px;bottom:80px;
-    width:58px;height:58px;
-    border-radius:50%;
+    position:fixed;right:18px;bottom:80px;
+    width:58px;height:58px;border-radius:50%;
     background:#25D366;
     box-shadow:0 6px 24px rgba(37,211,102,0.45), 0 2px 6px rgba(0,0,0,0.25);
     display:flex;align-items:center;justify-content:center;
-    z-index:95;
-    text-decoration:none;
+    z-index:95;text-decoration:none;
     transition:transform 0.2s ease, box-shadow 0.2s ease;
   }
-  .wa-float:hover, .wa-float:focus{
+  .wa-float:hover,.wa-float:focus{
     transform:scale(1.06);
     box-shadow:0 8px 30px rgba(37,211,102,0.55), 0 2px 6px rgba(0,0,0,0.3);
   }
-  .wa-float svg{
-    width:30px;height:30px;fill:#fff;display:block;
-  }
+  .wa-float svg{width:30px;height:30px;fill:#fff;display:block}
   .wa-float .wa-label{
-    position:absolute;right:70px;
-    background:#1a1a1a;color:#fff;
-    padding:8px 14px;border-radius:20px;
-    font-size:13px;font-weight:500;white-space:nowrap;
-    opacity:0;pointer-events:none;
+    position:absolute;right:70px;background:#1a1a1a;color:#fff;
+    padding:8px 14px;border-radius:20px;font-size:13px;font-weight:500;
+    white-space:nowrap;opacity:0;pointer-events:none;
     transition:opacity 0.2s ease, transform 0.2s ease;
-    transform:translateX(8px);
-    box-shadow:0 4px 12px rgba(0,0,0,0.25);
+    transform:translateX(8px);box-shadow:0 4px 12px rgba(0,0,0,0.25);
   }
-  .wa-float:hover .wa-label, .wa-float:focus .wa-label{
-    opacity:1;transform:translateX(0);
-  }
+  .wa-float:hover .wa-label,.wa-float:focus .wa-label{opacity:1;transform:translateX(0)}
   @media (max-width:599px){
     .wa-float .wa-label{display:none}
     .wa-float{right:14px;bottom:88px;width:54px;height:54px}
@@ -552,10 +457,10 @@
     .hero h1{font-size:56px}
     .hero-sub{font-size:18px}
     .hero-ctas{flex-direction:row}
-    .stats-grid{grid-template-columns:repeat(4,1fr)}
-    .stat-num{font-size:52px}
     .section-title{font-size:42px}
     .section-intro{font-size:17px}
+    .urgency-inner{flex-direction:row;align-items:center;justify-content:space-between}
+    .urgency-text h3{font-size:30px}
     .value-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
     .gallery{display:grid;grid-template-columns:1fr 1fr;gap:14px}
     .time-grid{grid-template-columns:repeat(4,1fr)}
@@ -574,7 +479,6 @@
   /* ===== DESKTOP ===== */
   @media (min-width:1000px){
     nav{padding:18px 0}
-    .logo{font-size:24px}
     .logo-img img{height:40px}
     .nav-cta{padding:11px 22px;font-size:13px}
     .hero{padding:120px 0 80px}
@@ -585,6 +489,8 @@
     .section-eyebrow{font-size:11px}
     .section-title{font-size:52px;margin-bottom:24px}
     .section-intro{font-size:18px;max-width:680px;margin-bottom:64px}
+    .urgency-text h3{font-size:34px}
+    .urgency-text p{font-size:16px}
     .value-grid{grid-template-columns:repeat(3,1fr);gap:40px}
     .value-card{padding:48px 36px}
     .value-card h3{font-size:26px}
@@ -600,21 +506,14 @@
     .card-section{padding:96px 0}
     .card-section h3{font-size:34px;margin-bottom:40px}
     .business-card{max-width:480px}
-    .gallery{
-      grid-template-columns:repeat(3,1fr);
-      grid-auto-rows:280px;gap:16px;
-    }
+    .gallery{grid-template-columns:repeat(3,1fr);grid-auto-rows:280px;gap:16px}
     .gallery-item{aspect-ratio:auto}
-    .testimonial{padding:140px 0}
-    .testimonial-quote{font-size:42px}
     .cta-grid-desktop{display:grid;grid-template-columns:1fr 1.2fr;gap:80px;align-items:start}
     .cta-left{margin-bottom:0}
     .cta-left h2{font-size:52px;margin-bottom:28px}
     .cta-left p{font-size:17px}
     .form-card{padding:48px}
     .form-card h3{font-size:30px}
-    .stats{padding:60px 0}
-    .stat-num{font-size:56px}
   }
 </style>
 </head>
@@ -626,7 +525,7 @@
     <a href="#" class="logo-img" aria-label="IDEAR — La soluzione su misura">
       <img src="img/logo-idear-onLight.png" alt="IDEAR" />
     </a>
-    <a href="#contatto" class="nav-cta">Prenota</a>
+    <a href="#contatto" class="nav-cta">Parliamoci</a>
   </div>
 </nav>
 
@@ -634,124 +533,110 @@
 <section class="hero">
   <div class="container">
     <div class="hero-content">
-      <span class="hero-eyebrow">Horeca &amp; Contract · Dal 1998 · La soluzione su misura</span>
-      <h1>L'arredo che <em>racconta</em> la tua attività.</h1>
+      <span class="hero-eyebrow">Horeca &amp; Contract · La soluzione su misura</span>
+      <h1>Tutto ciò che rende la tua attività <em>più funzionale</em>.</h1>
       <p class="hero-sub">
-        Arredi contract e residenziali, indoor e outdoor — più tutte le forniture professionali no-food.
-        Un solo referente che ti fa acquistare meglio, perdere meno tempo, commettere meno errori.
+        Arredi, attrezzature, utensili, forniture operative e tutto quello che serve davvero per lavorare bene — coordinato in un'unica soluzione, con un unico punto di riferimento fidato.
+        Che tu stia aprendo, rinnovando o cercando di migliorare quello che hai già.
       </p>
       <div class="hero-ctas">
-        <a href="#contatto" class="btn-primary">Consulenza gratuita</a>
+        <a href="#contatto" class="btn-primary">Parliamoci — è gratuito</a>
         <a href="#valore" class="btn-ghost">Scopri di più</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- STATS — RIMOSSA su richiesta (la barra 25+/800+/1/90gg non rispecchia il posizionamento).
-     Se in futuro si vorranno reintrodurre numeri concreti, riattivare e ripopolare.
-<section class="stats">
+<!-- URGENCY BANNER -->
+<div class="urgency-banner">
   <div class="container">
-    <div class="stats-grid">
-      <div class="stat">
-        <div class="stat-num">25+</div>
-        <div class="stat-label">Anni esperienza</div>
+    <div class="urgency-inner">
+      <div class="urgency-text">
+        <h3>L'estate si avvicina — <em>è il momento di prepararsi bene.</em></h3>
+        <p>
+          La stagione estiva è la più intensa dell'anno. Utensili, attrezzature, allestimenti — ogni dettaglio fa la differenza quando si lavora a pieno ritmo.
+          Prenota ora una chiacchierata: valutiamo insieme cosa serve davvero, prima che la stagione entri nel vivo.
+        </p>
       </div>
-      <div class="stat">
-        <div class="stat-num">800+</div>
-        <div class="stat-label">Locali arredati</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">1</div>
-        <div class="stat-label">Unico fornitore</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">90gg</div>
-        <div class="stat-label">Dilazione</div>
+      <div class="urgency-cta">
+        <a href="#contatto">Prenota adesso →</a>
       </div>
     </div>
   </div>
-</section>
--->
-
+</div>
 
 <!-- VALUE -->
 <section id="valore" class="value">
   <div class="container">
-    <span class="section-eyebrow">Perché scegliere un consulente</span>
+    <span class="section-eyebrow">Perché affidarsi a un punto di riferimento</span>
     <h2 class="section-title">Tre cose che il web<br>non potrà <em>mai darti</em>.</h2>
     <p class="section-intro">
-      Amazon, e-commerce, marketplace, cataloghi infiniti, pubblicità, venditori aggressivi.
-      Sembra comodo. Finché non arriva la sedia sbagliata, l'arredo che non regge l'uso quotidiano,
-      la finitura che dopo sei mesi è da rifare.
+      Amazon, e-commerce, marketplace, cataloghi infiniti, venditori aggressivi.
+      Sembra comodo. Finché non arriva la sedia sbagliata, l'attrezzatura che non regge l'uso quotidiano,
+      la fornitura che dopo sei mesi è da rifare. La consulenza non si paga: si risparmia grazie ad essa.
     </p>
     <div class="value-grid">
       <div class="value-card">
         <div class="value-icon">①</div>
-        <h3>Know-how che protegge l'investimento</h3>
+        <h3>Prima ascoltiamo, poi proponiamo</h3>
         <p>
-          So quali finiture reggono il lavaggio quotidiano, quali sedute sopportano un uso intensivo,
-          quali materiali hanno le certificazioni richieste per il pubblico.
+          Partiamo dal tuo problema, dalla tua necessità, dallo spazio in cui lavori ogni giorno. Non ti presentiamo un catalogo: capiamo cosa ti serve davvero, poi cerchiamo insieme la risposta giusta — anche quella che non sapevi di poter avere.
         </p>
       </div>
       <div class="value-card">
         <div class="value-icon">②</div>
-        <h3>Un solo referente, mille soluzioni</h3>
+        <h3>Un solo riferimento, tutto incluso</h3>
         <p>
-          Arredi, tovagliato, monouso, attrezzature, complementi. Tutto coordinato, tutto consegnato.
-          Smetti di gestire quindici fornitori diversi.
+          Arredi, tavola, bicchieri, piatti, utensili, attrezzature, scaffalature, complementi e molto altro. Non solo arredo: tutto coordinato, tutto gestito da un'unica persona di fiducia — qualunque sia la tua attività.
         </p>
       </div>
       <div class="value-card">
         <div class="value-icon">③</div>
-        <h3>Condizioni che il web non offre</h3>
+        <h3>Condizioni che altrove non trovi</h3>
         <p>
-          Pagamenti dilazionati su misura, RIBA, fatturazione adattata alle tue esigenze, prodotti aggiornati e selezionati.
-          E un nome e cognome che risponde se qualcosa non va.
+          Pagamenti flessibili adattati alla tua attività, fatturazione su misura, prodotti selezionati e aggiornati. E un riferimento reale che risponde quando serve — non un numero verde, non un chatbot.
         </p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ABOUT FRANCESCO -->
+<!-- CHI SIAMO -->
 <section class="about">
   <div class="container">
     <div class="about-grid-desktop">
       <div class="about-image"></div>
       <div class="about-content">
-        <span class="section-eyebrow">Chi sono</span>
-        <h2>Francesco Battista,<br>il tuo <em>referente</em> per Horeca &amp; Contract.</h2>
+        <span class="section-eyebrow">Chi siamo</span>
+        <h2>IDEAR: il tuo <em>punto di riferimento</em> per ogni esigenza della tua attività.</h2>
         <p>
-          Non sono un venditore di prodotti. Sono la persona che ti fa risparmiare tempo,
-          riduce il rischio di acquisti sbagliati e coordina le forniture senza che tu debba
-          gestire dieci interlocutori diversi.
+          Non siamo un sito di e-commerce. Non siamo un call center. Siamo la realtà che ti aiuta a fare acquisti migliori — che tu gestisca un ristorante, un bar, un hotel, una tabaccheria, un negozio, uno studio o qualsiasi altra attività commerciale.
         </p>
         <p>
-          Dal 1998 lavoro con attività ricettive, locali pubblici e privati — tutto il mondo no-food.
-          Il mio vantaggio non è il magazzino: è la flessibilità di cercare, confrontare,
-          personalizzare e proporre soluzioni che funzionano davvero nello spazio reale.
+          Lavoriamo con chi ha bisogno di qualcuno che capisca davvero le sue esigenze, le affronti come se fossero le proprie e proponga soluzioni concrete. Non il prodotto da spingere — quello che funziona. Come farebbe un amico del settore: diretto, competente, senza secondi fini.
         </p>
         <p>
-          IDEAR nasce da qui: una soluzione su misura per chi non ha tempo di perdere tempo,
-          e vuole un riferimento che risponde quando serve.
+          Il nostro vantaggio non è il magazzino: è la capacità di cercare, confrontare, personalizzare e trovare ciò che serve davvero. E la consulenza non è un costo in più — è lo strumento con cui si risparmia.
         </p>
-        <div class="signature">— Francesco Battista · IDEAR</div>
+        <div class="signature">— IDEAR · La soluzione su misura</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- EVOLUTION (concept che evolve nel tempo) -->
+<!-- EVOLUTION -->
 <section class="evolution">
   <div class="container">
-    <span class="evolution-eyebrow">Non solo la prima volta</span>
-    <h2>Il locale che apri oggi<br>non è il locale che <em>terrai aperto</em> domani.</h2>
+    <span class="evolution-eyebrow">Concept &amp; continuità</span>
+    <h2>Che tu abbia aperto ieri o<br>da vent'anni: <em>c'è sempre margine di miglioramento.</em></h2>
     <p>
-      I tempi cambiano in fretta. Estetica, materiali, abitudini dei clienti, normative: tutto si muove.
-      Non si tratta di scegliere bene una volta e basta — si tratta di avere accanto qualcuno
-      che ti accompagna anche quando è il momento di cambiare concept, rinnovare una sala,
-      ripensare il dehor, aggiornare l'immagine.
+      Un'attività non è mai davvero finita. I gusti cambiano, i materiali si aggiornano, le normative evolvono, i clienti si aspettano qualcosa di diverso rispetto a cinque anni fa. Il "concept" non è solo uno stile estetico — è il modo in cui il tuo spazio comunica chi sei, come lavori, cosa offri. E come ogni comunicazione, ha bisogno di essere aggiornato.
+    </p>
+    <p>
+      Rinnovare il concept non significa sempre rifare tutto da capo. A volte basta cambiare i complementi, aggiornare l'illuminazione, integrare nuovi elementi che danno freschezza a quello che c'è già. Avere accanto qualcuno che ti aiuta a capire cosa vale la pena tenere, cosa modificare e cosa sostituire — è la differenza tra una spesa e un investimento.
+    </p>
+    <p>
+      Che si tratti di ripensare il dehor, rinnovare una sala, aggiorare l'immagine o semplicemente adeguarsi a quello che il mercato chiede: l'approccio è sempre lo stesso — partire dalla tua realtà, non da un catalogo.
     </p>
     <div class="evolution-claim">Non un fornitore una tantum. Un riferimento nel tempo.</div>
   </div>
@@ -761,45 +646,50 @@
 <section class="advantages">
   <div class="container">
     <span class="section-eyebrow">Vantaggi concreti</span>
-    <h2 class="section-title">Sette motivi per chiamare<br><em>prima</em> di comprare.</h2>
+    <h2 class="section-title">Otto buoni motivi per parlarne<br><em>prima</em> di acquistare.</h2>
     <p class="section-intro">
-      Quello che ottieni lavorando con me, oltre al prodotto.
+      Quello che ottieni scegliendo un punto di riferimento, oltre al prodotto.
     </p>
     <div class="adv-list">
       <div class="adv-item">
         <div class="adv-num">01</div>
-        <h4>Sopralluogo gratuito</h4>
-        <p>Vengo io da te. Misuro, fotografo, ascolto. Ti propongo soluzioni che funzionano nel tuo spazio reale.</p>
+        <h4>Partiamo da te: ascoltiamo, poi proponiamo</h4>
+        <p>Cominciamo dal tuo problema reale, dalla tua necessità, dallo spazio in cui lavori. Sopralluogo gratuito, ascolto attivo, proposta costruita su misura — non quello che abbiamo da smaltire. Ti rendiamo parte del processo: la soluzione la troviamo insieme.</p>
       </div>
       <div class="adv-item">
         <div class="adv-num">02</div>
-        <h4>Riduzione del rischio</h4>
-        <p>Quando spendi migliaia di euro in arredi e forniture, il rischio di sbagliare è reale. Esperienza diretta sul campo e selezione attenta lo riducono al minimo.</p>
+        <h4>Non solo arredo — tutto quello che serve</h4>
+        <p>Dall'arredo alle scaffalature, dagli utensili alle attrezzature, dalla tavola alla comunicazione visiva: copriamo ogni esigenza dell'attività. Un solo riferimento per cose diverse — meno tempo perso, più coerenza nel risultato. Funziona per un ristorante come per una tabaccheria, un salone o uno studio.</p>
       </div>
       <div class="adv-item">
         <div class="adv-num">03</div>
         <h4>Continuità nel tempo</h4>
-        <p>Domani potrai integrare le stesse sedute, gli stessi tavoli, gli stessi complementi. Niente sale disomogenee, niente fornitori che spariscono.</p>
+        <p>Domani potrai integrare gli stessi tavoli, le stesse sedie, gli stessi complementi — gli stessi bicchieri, le stesse stoviglie. Niente spazi disomogenei, niente riferimenti che spariscono. La coerenza si costruisce nel tempo, con chi rimane.</p>
       </div>
       <div class="adv-item">
         <div class="adv-num">04</div>
-        <h4>Conoscenza normativa</h4>
-        <p>Certificazioni ignifughe, dehors comunali, HACCP. Compri tranquillo, senza scoprire dopo che non puoi usarlo.</p>
+        <h4>Attenzione alle normative — ci pensiamo noi</h4>
+        <p>Certificazioni ignifughe, dehors comunali, HACCP, accessibilità. Non ti chiediamo di sapere tutto: siamo noi a verificare, segnalare e guidarti prima dell'acquisto. Nessuna sorpresa dopo la consegna.</p>
       </div>
       <div class="adv-item">
         <div class="adv-num">05</div>
-        <h4>Post-vendita gestito</h4>
-        <p>Pezzi di ricambio, riparazioni, sostituzioni. Se ne occupa una persona, non un ticket numerato.</p>
+        <h4>Sempre vicini — anche dopo</h4>
+        <p>Ricambi, assistenza, gestione di eventuali contestazioni, supporto su integrazioni future. Non un ticket, non un call center irraggiungibile — una persona presente, concreta, che conosce già la tua situazione e sa come intervenire.</p>
       </div>
       <div class="adv-item">
         <div class="adv-num">06</div>
-        <h4>Pagamenti su misura</h4>
-        <p>Dilazioni, RIBA, condizioni cucite addosso all'attività. Flessibilità che il web e i grandi magazzini non possono offrire.</p>
+        <h4>Acquisto consapevole, zero sorprese</h4>
+        <p>Ci mettiamo la faccia su quello che proponiamo. Ti supportiamo nella gestione dei pagamenti, nelle dilazioni, nella valutazione dell'ammortamento nel tempo — con l'esperienza di chi ha visto centinaia di situazioni diverse. Sai esattamente cosa stai acquistando e cosa ti costerà davvero.</p>
+      </div>
+      <div class="adv-item">
+        <div class="adv-num">07</div>
+        <h4>Su misura — anche letteralmente</h4>
+        <p>Non hai trovato quello che cerchi? Si può fare. Produzione personalizzata, finiture specifiche, soluzioni costruite per il tuo spazio. Non siamo vincolati a un catalogo fisso — siamo liberi di cercare quello che funziona per te, o di farlo produrre.</p>
       </div>
       <div class="adv-item adv-item-full">
-        <div class="adv-num">07</div>
-        <h4>Scelta vera, non scelta da magazzino</h4>
-        <p>Non ho un deposito da smaltire. Posso davvero cercare ciò che serve a te, confrontare alternative, proporre quello che funziona — non quello che devo spingere. Questa è la differenza strutturale tra un consulente e un grossista.</p>
+        <div class="adv-num">08</div>
+        <h4>Restyling e integrazione: sei sicuro di dover rifare tutto?</h4>
+        <p>A volte basta rinnovare quello che c'è. Valutiamo insieme gli elementi esistenti, proponiamo integrazioni mirate, modifiche coerenti, aggiornamenti parziali. Non è sempre necessario ripartire da zero — e spesso si risparmia molto di più lavorando su quello che già funziona.</p>
       </div>
     </div>
   </div>
@@ -809,11 +699,9 @@
 <section class="products">
   <div class="container">
     <span class="section-eyebrow">La gamma</span>
-    <h2 class="section-title">Tutto ciò che <em>arreda</em><br>e tutto ciò che <em>serve</em>.</h2>
+    <h2 class="section-title">Tutto ciò che <em>serve</em><br>e tutto ciò che <em>arreda</em>.</h2>
     <p class="section-intro">
-      Dieci categorie merceologiche, una sola fornitura coordinata. Arredi, riposo, attrezzature,
-      hotellerie, monouso, abbigliamento da lavoro, comunicazione, immagine aziendale, ufficio.
-      Per ogni esigenza no-food della tua attività.
+      Tante categorie merceologiche, un unico riferimento di fiducia. Arredi indoor e outdoor, hotellerie, sistemi riposo, attrezzature, stoviglie, bicchieri, monouso personalizzato, comunicazione e immagine aziendale — per qualsiasi tipo di attività commerciale.
     </p>
     <div class="gallery">
       <div class="gallery-item">
@@ -831,10 +719,10 @@
         </div>
       </div>
       <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1592861956120-e524fc739696?w=800&q=80" alt="Materassi e sistemi riposo" loading="lazy" />
+        <img src="https://images.unsplash.com/photo-1592861956120-e524fc739696?w=800&q=80" alt="Sistemi riposo" loading="lazy" />
         <div class="gallery-caption">
-          <span>Riposo</span>
-          <h5>Materassi e sistemi</h5>
+          <span>Sistemi riposo</span>
+          <h5>Comfort &amp; qualità del sonno</h5>
         </div>
       </div>
       <div class="gallery-item">
@@ -845,50 +733,36 @@
         </div>
       </div>
       <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1606744837616-56c9a5c6a6eb?w=800&q=80" alt="Packaging e monouso personalizzato" loading="lazy" />
+        <img src="https://images.unsplash.com/photo-1606744837616-56c9a5c6a6eb?w=800&q=80" alt="Monouso personalizzato" loading="lazy" />
         <div class="gallery-caption">
           <span>Packaging</span>
           <h5>Monouso personalizzato</h5>
         </div>
       </div>
       <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80" alt="Abbigliamento da lavoro" loading="lazy" />
+        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80" alt="Area innovazione — utensili, tecnologia, accessori" loading="lazy" />
         <div class="gallery-caption">
-          <span>Abbigliamento</span>
-          <h5>Da lavoro &amp; tessuti d'arredo</h5>
+          <span>Area Innovazione</span>
+          <h5>Utensili, tecnologia &amp; aggiornamenti</h5>
         </div>
       </div>
     </div>
     <p style="margin-top:32px;font-size:14px;color:#666;font-style:italic;text-align:center">
-      Sistemi espositivi · Utensili e accessori per alimenti · Comunicazione area vendita · Immagine aziendale · Ufficio (cancelleria, carta, toner, consumabili)
+      Sistemi espositivi · Complementi d'arredo · Stoviglie e bicchieri · Scaffalature e mensole · Comunicazione area vendita · Immagine aziendale · Area innovazione
     </p>
   </div>
 </section>
 
-<!-- TESTIMONIAL — RIMOSSA: la citazione era fittizia.
-     Riattivare e sostituire con una testimonianza REALE quando disponibile.
-<section class="testimonial">
-  <div class="container">
-    <p class="testimonial-quote">
-      [Testimonianza reale di un cliente IDEAR]
-    </p>
-    <div class="testimonial-author">
-      <strong>Nome Cognome</strong> — Tipologia attività, Città
-    </div>
-  </div>
-</section>
--->
-
-<!-- BUSINESS CARD -->
+<!-- IDENTITÀ AZIENDALE -->
 <section class="card-section">
   <div class="container">
-    <span class="section-eyebrow">Un nome, un numero, una persona</span>
-    <h3>Non un call center.<br>Non un ticket. <em>Francesco</em>.</h3>
+    <span class="section-eyebrow">Un riferimento, non un call center</span>
+    <h3>Non un numero verde.<br>Non un ticket. <em>Una persona vera</em>.</h3>
     <div class="business-card">
-      <img src="img/biglietto-fronte.png" alt="IDEAR — la soluzione su misura · Biglietto da visita di Francesco Battista" loading="lazy" />
+      <img src="img/biglietto-fronte.png" alt="IDEAR — la soluzione su misura · Biglietto da visita" loading="lazy" />
     </div>
     <div class="card-contacts">
-      Francesco Battista<br>
+      IDEAR · La soluzione su misura<br>
       <a href="tel:+393348611291">+39 334 8611 291</a> · <a href="mailto:francobattista35@gmail.com">francobattista35@gmail.com</a>
     </div>
   </div>
@@ -899,24 +773,24 @@
   <div class="container">
     <div class="cta-grid-desktop">
       <div class="cta-left">
-        <span class="section-eyebrow" style="color:#d4b896">Iniziamo a parlarne</span>
-        <h2>Una consulenza,<br><em>zero impegno</em>.</h2>
+        <span class="section-eyebrow" style="color:#d4b896">Iniziamo a chiacchierare</span>
+        <h2>Una chiacchierata,<br><em>zero impegno</em>.</h2>
         <p>
-          Raccontami il tuo progetto: un'attività da aprire, uno spazio da rinnovare,
-          una fornitura da consolidare. Fissiamo un sopralluogo nel giorno e nell'orario che preferisci.
+          Raccontaci la tua situazione: un'attività da aprire, uno spazio da rinnovare, una fornitura che non ti convince più o semplicemente un'idea da esplorare. Nessuna fretta, nessuna pressione.
         </p>
         <ul class="cta-bullets">
-          <li>Sopralluogo e preventivo gratuiti</li>
+          <li>Sopralluogo e valutazione gratuiti</li>
           <li>Risposta entro 24 ore lavorative</li>
           <li>Riservatezza assoluta</li>
-          <li>Nessuna pressione commerciale</li>
+          <li>Nessuna pressione, nessun obbligo</li>
+          <li>La consulenza non si paga: si risparmia</li>
         </ul>
       </div>
 
       <div class="form-card">
         <div id="form-content">
-          <h3>Prenota la tua consulenza</h3>
-          <p class="form-sub">Compila i dati e scegli il giorno.</p>
+          <h3>Parliamoci senza impegno</h3>
+          <p class="form-sub">Lasciaci i tuoi dati e scegli il momento più comodo.</p>
 
           <div class="form-row">
             <div class="form-group">
@@ -931,7 +805,7 @@
 
           <div class="form-group">
             <label>Nome dell'attività <span class="req">*</span></label>
-            <input type="text" id="f-locale" placeholder="es. Ristorante La Vela / Hotel Aurora / Studio Rossi" required />
+            <input type="text" id="f-locale" placeholder="es. Ristorante La Vela / Hotel Aurora / Tabaccheria Rossi" required />
           </div>
 
           <div class="form-row">
@@ -953,10 +827,19 @@
                 <option>Ristorante / Pizzeria / Bistrot</option>
                 <option>Bar / Caffetteria / Wine bar</option>
                 <option>Hotel / B&amp;B / Struttura ricettiva</option>
-                <option>Pasticceria / Gelateria</option>
-                <option>Negozio / Retail</option>
-                <option>Ufficio / Studio professionale</option>
-                <option>Comunità / Struttura sanitaria</option>
+                <option>Pasticceria / Gelateria / Panetteria</option>
+                <option>Pub / Birreria / Cocktail bar</option>
+                <option>Stabilimento balneare / Chiosco</option>
+                <option>Agriturismo / Locanda</option>
+                <option>Mensa / Catering / Ristorazione collettiva</option>
+                <option>Negozio alimentare / Gastronomia / Salumeria</option>
+                <option>Macelleria / Pescheria / Ortofrutta</option>
+                <option>Tabaccheria / Edicola / Cartolibreria</option>
+                <option>Farmacia / Parafarmacia</option>
+                <option>Negozio / Retail generico</option>
+                <option>Salone / Centro estetico / SPA</option>
+                <option>Studio professionale / Ufficio</option>
+                <option>Struttura sanitaria / RSA / Comunità</option>
                 <option>Residenziale / Privato</option>
                 <option>Altro</option>
               </select>
@@ -972,15 +855,16 @@
             <select id="f-interesse" required>
               <option value="">Seleziona...</option>
               <option>Arredo completo (nuova apertura)</option>
-              <option>Rinnovo arredo esistente</option>
+              <option>Rinnovo o restyling arredo esistente</option>
+              <option>Integrazione arredi su esistente</option>
               <option>Arredi indoor / outdoor</option>
-              <option>Materassi e sistemi riposo</option>
+              <option>Sistemi riposo</option>
               <option>Attrezzature ristorazione / commerciali</option>
-              <option>Hotellerie e complementi per la tavola</option>
-              <option>Packaging e monouso personalizzato</option>
-              <option>Abbigliamento da lavoro e tessuti d'arredo</option>
+              <option>Hotellerie — stoviglie, bicchieri, biancheria</option>
+              <option>Monouso personalizzato</option>
+              <option>Scaffalature, mensole e sistemi espositivi</option>
               <option>Comunicazione e immagine aziendale</option>
-              <option>Ufficio (cancelleria, toner, consumabili)</option>
+              <option>Area innovazione — utensili e accessori</option>
               <option>Fornitura completa coordinata</option>
               <option>Altro / da definire</option>
             </select>
@@ -988,7 +872,7 @@
 
           <div class="form-group">
             <label>Note (opzionale)</label>
-            <textarea id="f-note" placeholder="Raccontami brevemente il tuo progetto..."></textarea>
+            <textarea id="f-note" placeholder="Raccontaci brevemente la tua situazione o cosa stai cercando..."></textarea>
           </div>
 
           <!-- CALENDARIO -->
@@ -1008,14 +892,14 @@
           </div>
 
           <button class="form-submit" id="submit-btn" onclick="submitForm()">
-            Prenota la consulenza
+            Parliamoci — è gratuito
           </button>
         </div>
 
         <div class="success-message" id="success-msg">
           <div class="success-icon">✓</div>
           <h4>Richiesta inviata</h4>
-          <p>Grazie per la fiducia. Francesco ti contatterà entro 24 ore lavorative per confermare l'appuntamento.</p>
+          <p>Grazie per la fiducia. Ti contatteremo entro 24 ore lavorative per confermare l'appuntamento.</p>
           <div class="success-detail" id="success-detail"></div>
         </div>
       </div>
@@ -1030,14 +914,14 @@
       <div>
         <img src="img/logo-idear-onDark.png" alt="IDEAR — La soluzione su misura" class="footer-logo" />
         <p class="footer-brand-desc">
-          IDEAR — dal 1998, la soluzione su misura. Forniture professionali per Horeca &amp; Contract,
-          attività commerciali e residenziali. Arredi, riposo, attrezzature, hotellerie,
-          packaging, abbigliamento, comunicazione, ufficio.
+          IDEAR — la soluzione su misura. Forniture professionali per Horeca &amp; Contract,
+          attività commerciali e residenziali. Arredi, sistemi riposo, attrezzature, hotellerie,
+          monouso personalizzato, comunicazione e area innovazione.
         </p>
       </div>
       <div class="footer-col">
         <h6>Contatti</h6>
-        <p>Francesco Battista<br>+39 334 8611 291<br>francobattista35@gmail.com</p>
+        <p>IDEAR · La soluzione su misura<br>+39 334 8611 291<br>francobattista35@gmail.com</p>
       </div>
       <div class="footer-col">
         <h6>Servizio</h6>
@@ -1045,15 +929,15 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 IDEAR · Francesco Battista · P.IVA 00000000000</span>
+      <span>© 2026 IDEAR · P.IVA 00000000000</span>
       <span>Privacy · Cookie · Termini</span>
     </div>
   </div>
 </footer>
 
 <!-- WHATSAPP FLOATING -->
-<a class="wa-float" href="https://wa.me/393348611291?text=Ciao%20Francesco%2C%20ti%20scrivo%20dal%20sito%20IDEAR." target="_blank" rel="noopener" aria-label="Scrivimi su WhatsApp">
-  <span class="wa-label">Scrivimi su WhatsApp</span>
+<a class="wa-float" href="https://wa.me/393348611291?text=Ciao%2C%20ti%20scrivo%20dal%20sito%20IDEAR." target="_blank" rel="noopener" aria-label="Scrivici su WhatsApp">
+  <span class="wa-label">Scrivici su WhatsApp</span>
   <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <path d="M16.003 3C9.376 3 4 8.376 4 15.003c0 2.122.555 4.193 1.61 6.013L4 28l7.18-1.59a11.95 11.95 0 0 0 4.823 1.013h.005c6.626 0 12.002-5.376 12.002-12.003C28.01 8.376 22.63 3 16.003 3zm0 22.012a9.91 9.91 0 0 1-5.05-1.378l-.362-.214-4.265.944.91-4.16-.236-.382a9.949 9.949 0 0 1-1.516-5.317c0-5.508 4.482-9.99 9.99-9.99 2.667 0 5.175 1.04 7.062 2.928a9.92 9.92 0 0 1 2.927 7.062c.002 5.508-4.48 9.99-9.96 9.99v.517h.5zm5.474-7.474c-.3-.15-1.774-.875-2.05-.974-.276-.1-.475-.15-.675.15-.2.3-.775.973-.95 1.173-.175.2-.35.225-.65.075-.3-.15-1.267-.467-2.413-1.488-.892-.795-1.494-1.778-1.669-2.078-.175-.3-.018-.462.132-.612.135-.135.3-.35.45-.525.15-.176.2-.3.3-.5.1-.2.05-.376-.025-.526-.075-.15-.674-1.625-.924-2.225-.244-.585-.49-.505-.674-.515l-.575-.01a1.1 1.1 0 0 0-.8.376c-.275.3-1.05 1.025-1.05 2.5s1.075 2.9 1.225 3.1c.15.2 2.12 3.237 5.137 4.538.717.31 1.277.495 1.713.633.72.229 1.375.197 1.893.12.578-.086 1.774-.725 2.025-1.425.25-.7.25-1.3.175-1.425-.075-.125-.275-.2-.575-.35z"/>
   </svg>
@@ -1061,11 +945,10 @@
 
 <!-- STICKY MOBILE CTA -->
 <div class="mobile-sticky" id="mobile-sticky">
-  <a href="#contatto">Prenota consulenza gratuita</a>
+  <a href="#contatto">Parliamoci — è gratuito</a>
 </div>
 
 <script>
-  // ===== CALENDARIO LOGIC =====
   const MONTHS_IT = ['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'];
   const DAYS_IT = ['L','M','M','G','V','S','D'];
   const TIME_SLOTS = ['09:00','10:00','11:00','12:00','14:30','15:30','16:30','17:30'];
@@ -1075,40 +958,21 @@
   let selectedDate = null;
   let selectedTime = null;
   let availableDays = {};
-  let blockedSlots = {}; // { 'YYYY-MM-DD': ['09:00','10:00'] } - slot bloccati da Franco
-  let bookedSlots = {};  // { 'YYYY-MM-DD': ['09:00','10:00'] } - slot già prenotati
 
   async function loadAvailability() {
     try {
-      // 1. Disponibilità giorni
       const docRef = window.fbDoc(window.fbDb, 'config', 'availability');
       const snap = await window.fbGetDoc(docRef);
       if (snap.exists() && snap.data().days) {
         availableDays = snap.data().days;
-        blockedSlots = snap.data().blockedSlots || {};
       } else {
         defaultAvailability();
       }
-
-      // 2. Slot già prenotati (da collezione contacts)
-      bookedSlots = {};
-      try {
-        const contactsSnap = await window.fbGetDocs(window.fbCollection(window.fbDb, 'contacts'));
-        contactsSnap.forEach(d => {
-          const data = d.data();
-          if (data.data && data.ora) {
-            if (!bookedSlots[data.data]) bookedSlots[data.data] = [];
-            bookedSlots[data.data].push(data.ora);
-          }
-        });
-      } catch(e) { console.warn('Impossibile caricare prenotazioni:', e); }
-
     } catch(e) {
       console.warn('Errore caricamento disponibilità, uso default:', e);
       defaultAvailability();
     }
     renderCalendar();
-    if (selectedDate) renderTimeSlots();
   }
 
   function defaultAvailability() {
@@ -1174,7 +1038,6 @@
     selectedTime = null;
     renderCalendar();
     renderTimeSlots();
-    // scroll to time slots su mobile
     setTimeout(() => {
       const ts = document.getElementById('time-slots');
       if (ts.classList.contains('visible')) {
@@ -1188,18 +1051,7 @@
     const grid = document.getElementById('time-grid');
     if (!selectedDate) { section.classList.remove('visible'); return; }
     section.classList.add('visible');
-
-    const blocked = blockedSlots[selectedDate] || [];
-    const booked = bookedSlots[selectedDate] || [];
-
-    const availableSlots = TIME_SLOTS.filter(t => !blocked.includes(t) && !booked.includes(t));
-
-    if (availableSlots.length === 0) {
-      grid.innerHTML = `<div style="grid-column:1/-1;padding:20px;text-align:center;color:#888;font-size:13px;background:#fafaf7;border:1px dashed rgba(0,0,0,0.1)">Nessun orario disponibile per questa data. Scegli un altro giorno.</div>`;
-      return;
-    }
-
-    grid.innerHTML = availableSlots.map(t =>
+    grid.innerHTML = TIME_SLOTS.map(t =>
       `<div class="time-slot ${selectedTime === t ? 'selected' : ''}" onclick="selectTime('${t}')">${t}</div>`
     ).join('');
   }
@@ -1209,7 +1061,6 @@
     renderTimeSlots();
   }
 
-  // ===== SUBMIT FORM =====
   async function submitForm() {
     const nome = document.getElementById('f-nome').value.trim();
     const cognome = document.getElementById('f-cognome').value.trim();
@@ -1232,27 +1083,6 @@
 
     const btn = document.getElementById('submit-btn');
     btn.disabled = true;
-    btn.textContent = 'Verifica disponibilità...';
-
-    // Doppio check: ricarica i prenotati e verifica che lo slot sia ancora libero
-    try {
-      const contactsSnap = await window.fbGetDocs(window.fbCollection(window.fbDb, 'contacts'));
-      let alreadyBooked = false;
-      contactsSnap.forEach(d => {
-        const data = d.data();
-        if (data.data === selectedDate && data.ora === selectedTime) alreadyBooked = true;
-      });
-      if (alreadyBooked) {
-        alert('Questo orario è stato appena prenotato da qualcun altro. Scegli un altro slot.');
-        await loadAvailability();
-        selectedTime = null;
-        renderTimeSlots();
-        btn.disabled = false;
-        btn.textContent = 'Prenota la consulenza';
-        return;
-      }
-    } catch(e) { console.warn(e); }
-
     btn.textContent = 'Invio in corso...';
 
     const contact = {
@@ -1279,20 +1109,17 @@
         <span style="color:#666;font-size:13px">Riceverai conferma via email a ${email}</span>
       `;
       window.scrollTo({ top: successMsg.getBoundingClientRect().top + window.scrollY - 100, behavior: 'smooth' });
-
-      // nascondi sticky CTA dopo invio
       document.getElementById('mobile-sticky').style.display = 'none';
     } catch(e) {
       btn.disabled = false;
-      btn.textContent = 'Prenota la consulenza';
+      btn.textContent = 'Parliamoci — è gratuito';
       alert('Errore nell\'invio. Riprova tra qualche istante.');
       console.error(e);
     }
   }
 
-  // ===== STICKY CTA MOBILE =====
   function handleScroll() {
-    if (window.innerWidth >= 1000) return; // solo mobile/tablet
+    if (window.innerWidth >= 1000) return;
     const sticky = document.getElementById('mobile-sticky');
     const contactSection = document.getElementById('contatto');
     const heroBottom = window.innerHeight * 0.7;
@@ -1306,7 +1133,6 @@
   }
   window.addEventListener('scroll', handleScroll, {passive:true});
 
-  // Init - attende che Firebase sia pronto
   if (window.fbDb) {
     loadAvailability();
   } else {
