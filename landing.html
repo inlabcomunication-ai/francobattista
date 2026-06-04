@@ -419,6 +419,10 @@
     display:inline-block;
     transition:opacity 0.4s ease, transform 0.4s ease;
   }
+  #rotating-word{
+    display:inline-block;
+    transition:opacity 0.4s ease, transform 0.4s ease;
+  }
   .mobile-sticky a{
     display:block;background:#d4b896;color:#1a1a1a;
     padding:14px;text-align:center;text-decoration:none;
@@ -551,24 +555,6 @@
   </div>
 </section>
 
-<!-- URGENCY BANNER -->
-<div class="urgency-banner">
-  <div class="container">
-    <div class="urgency-inner">
-      <div class="urgency-text">
-        <h3>L'estate si avvicina — <em>è il momento di prepararsi bene.</em></h3>
-        <p>
-          La stagione estiva è la più intensa dell'anno. Utensili, attrezzature, allestimenti — ogni dettaglio fa la differenza quando si lavora a pieno ritmo.
-          Prenota ora una chiacchierata: valutiamo insieme cosa serve davvero, prima che la stagione entri nel vivo.
-        </p>
-      </div>
-      <div class="urgency-cta">
-        <a href="#contatto">Prenota adesso →</a>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- VALUE -->
 <section id="valore" class="value">
   <div class="container">
@@ -658,7 +644,7 @@
       <div class="adv-item">
         <div class="adv-num">01</div>
         <h4>Partiamo da te: ascoltiamo, poi proponiamo</h4>
-        <p>Cominciamo dal tuo problema reale, dalla tua necessità, dallo spazio in cui lavori. Sopralluogo gratuito, ascolto attivo, proposta costruita su misura — non quello che abbiamo da smaltire. Ti rendiamo parte del processo: la soluzione la troviamo insieme.</p>
+        <p>Cominciamo dal tuo problema reale, dalla tua necessità, dallo spazio in cui lavori. Ascolto attivo e proposta costruita su misura — non quello che abbiamo da smaltire. Ti rendiamo parte del processo: la soluzione la troviamo insieme.</p>
       </div>
       <div class="adv-item">
         <div class="adv-num">02</div>
@@ -1147,6 +1133,25 @@
 
 <script>
   // ROTATING WORD — script isolato
+  document.addEventListener('DOMContentLoaded', function() {
+    const words = ['più funzionale', 'più riconoscibile', 'più efficiente', 'più attrattiva'];
+    let wordIndex = 0;
+    const el = document.getElementById('rotating-word');
+    if (!el) return;
+    setInterval(function() {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(-8px)';
+      setTimeout(function() {
+        wordIndex = (wordIndex + 1) % words.length;
+        el.textContent = words[wordIndex];
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+      }, 400);
+    }, 2800);
+  });
+</script>
+
+<script>
   document.addEventListener('DOMContentLoaded', function() {
     const words = ['più funzionale', 'più riconoscibile', 'più efficiente', 'più attrattiva'];
     let wordIndex = 0;
