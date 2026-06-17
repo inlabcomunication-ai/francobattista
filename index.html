@@ -4,7 +4,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
 <meta name="theme-color" content="#1a1a1a" />
-<title>IDEAR — Forniture & Soluzioni Funzionali · Horeca, Contract & Attività Commerciali</title>
+<title>IDEAR - Partner per Soluzioni & Forniture no-food – Horeca, Contract & Strutture professionali</title>
+<meta name="description" content="IDEAR affianca attività commerciali, horeca, hospitality e contract nella scelta di arredi, attrezzature e forniture no-food. Un solo referente, proposta coordinata, consulenza gratuita." />
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
@@ -53,7 +54,7 @@
   }
   nav .container{display:flex;justify-content:space-between;align-items:center;gap:12px}
   .logo-img{display:flex;align-items:center;text-decoration:none}
-  .logo-img img{height:51px;width:auto;display:block}
+  .logo-img img{height:62px;width:auto;display:block}
   .nav-cta{
     background:#1a1a1a;color:#fff;padding:10px 16px;
     border:none;border-radius:2px;font-size:11px;font-weight:600;
@@ -207,6 +208,56 @@
     font-weight:500;margin-bottom:10px;letter-spacing:-0.01em;
   }
   .adv-item p{font-size:14px;color:rgba(255,255,255,0.7);line-height:1.7}
+
+  /* ===== PROBLEM SOLVING ===== */
+  .problem-solving-section{
+    background:#1a1a1a;padding:80px 0;text-align:center;
+  }
+  .problem-solving-section .section-eyebrow{color:#d4b896;display:block;margin-bottom:14px}
+  .problem-solving-section .section-title{color:#fff}
+  .problem-solving-section .section-title em{color:#d4b896}
+  .problem-solving-section .section-intro{
+    max-width:680px;margin:0 auto;color:rgba(255,255,255,0.75);font-size:16px;line-height:1.8;
+  }
+
+  /* ===== EXPERIENTIAL ===== */
+  .experiential-section{
+    background:#f9f6f0;padding:80px 0;text-align:center;
+    border-top:1px solid rgba(168,137,92,0.15);
+  }
+  .experiential-section .section-eyebrow{color:#a8895c;display:block;margin-bottom:14px}
+  .experiential-section .section-title em{color:#a8895c}
+  .experiential-section .section-intro{
+    max-width:680px;margin:0 auto;color:#3a3a3a;font-size:16px;line-height:1.8;
+  }
+
+  /* ===== DUBBI + FIDUCIA ===== */
+  .doubts-section{
+    background:#fff;padding:80px 0;
+    border-top:1px solid rgba(168,137,92,0.12);
+    border-bottom:1px solid rgba(168,137,92,0.12);
+  }
+  .doubts-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;
+  }
+  .doubts-content .section-eyebrow,
+  .doubts-trust .section-eyebrow{color:#a8895c;display:block;margin-bottom:14px}
+  .doubts-content .section-title{text-align:left;margin-bottom:20px;font-size:28px}
+  .doubts-content .section-title em{color:#a8895c}
+  .doubts-content p{font-size:15px;color:#3a3a3a;line-height:1.75}
+  .doubts-trust h3{
+    font-family:'Cormorant Garamond',serif;font-weight:300;
+    font-size:26px;color:#1a1a1a;margin-bottom:14px;line-height:1.2;
+  }
+  .doubts-trust p{font-size:15px;color:#3a3a3a;line-height:1.75;margin-bottom:24px}
+  .trust-placeholder{display:flex;flex-direction:column;gap:14px}
+  .trust-item{
+    display:flex;flex-direction:column;gap:4px;
+    padding:14px 18px;border-left:2px solid #d4b896;
+    background:#f9f6f0;border-radius:0 4px 4px 0;
+  }
+  .trust-label{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:#a8895c;font-weight:600}
+  .trust-desc{font-size:14px;color:#1a1a1a;line-height:1.5}
 
   /* ===== EVOLUTION ===== */
   .evolution{
@@ -463,6 +514,11 @@
     .wa-float .wa-label{display:none}
     .wa-float{right:14px;bottom:88px;width:54px;height:54px}
     .wa-float svg{width:28px;height:28px}
+    .problem-solving-section{padding:56px 0}
+    .experiential-section{padding:56px 0}
+    .doubts-section{padding:56px 0}
+    .doubts-grid{grid-template-columns:1fr;gap:40px}
+    .doubts-content .section-title{font-size:24px}
   }
 
   /* ===== TABLET ===== */
@@ -493,7 +549,7 @@
   /* ===== DESKTOP ===== */
   @media (min-width:1000px){
     nav{padding:18px 0}
-    .logo-img img{height:60px}
+    .logo-img img{height:72px}
     .nav-cta{padding:11px 22px;font-size:13px}
     .hero{padding:120px 0 80px}
     .hero-eyebrow{font-size:13px}
@@ -566,7 +622,7 @@
     <span class="section-eyebrow">Perché scegliere un partner di riferimento</span>
     <h2 class="section-title">Non solo prodotti. Una visione<br>più completa per <em>la tua attività</em>.</h2>
     <p class="section-intro">
-      Ogni acquisto comunica qualcosa: al cliente, al personale, allo spazio e al modo in cui lavori ogni giorno. Per questo IDEAR non parte da un catalogo, ma dalla tua attività: osserviamo esigenze, obiettivi, stile, budget e possibilità di crescita, per costruire una soluzione coerente e sostenibile.
+      Acquistare online può sembrare semplice. Ma quando parliamo di spazi professionali, immagine, materiali, continuità e uso quotidiano, avere un partner accanto ti permette di scegliere con più visione, coerenza e sicurezza.
     </p>
     <div class="value-grid">
       <div class="value-card">
@@ -585,16 +641,63 @@
       </div>
       <div class="value-card">
         <div class="value-icon">③</div>
-        <h3>Condizioni vantaggiose e soluzioni flessibili</h3>
+        <h3>Condizioni vantaggiose, sempre</h3>
         <p>
-          Prodotti selezionati, prezzi competitivi, pagamenti personalizzabili e possibilità di costruire proposte su misura in base al progetto, al momento e agli obiettivi della tua attività.
+          Prodotti selezionati e aggiornati, prezzi competitivi e pagamenti personalizzabili.
         </p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CHI SIAMO -->
+<!-- PROBLEM SOLVING -->
+<section class="problem-solving-section">
+  <div class="container">
+    <span class="section-eyebrow">Il nostro approccio</span>
+    <h2 class="section-title">Problem solving,<br>ma con <em>visione</em>.</h2>
+    <p class="section-intro">
+      Non ci limitiamo a trovare un prodotto. Ti aiutiamo a individuare la soluzione più coerente per spazio, budget, immagine, funzionalità e obiettivi. Il nostro lavoro è trasformare dubbi, idee e possibilità in scelte concrete, sostenibili e coordinate.
+    </p>
+  </div>
+</section>
+
+<!-- MARKETING ESPERIENZIALE -->
+<section class="experiential-section">
+  <div class="container">
+    <span class="section-eyebrow">Immagine & percezione</span>
+    <h2 class="section-title">Ogni spazio comunica<br>qualcosa ai tuoi <em>clienti</em>.</h2>
+    <p class="section-intro">
+      Un arredo, una mise en place, un packaging, un banco o un dettaglio visivo non sono solo forniture: costruiscono l'esperienza che il cliente vive nella tua attività. IDEAR ti aiuta a scegliere soluzioni coerenti con ciò che vuoi trasmettere: cura, ordine, qualità, accoglienza e solidità.
+    </p>
+  </div>
+</section>
+
+<!-- DUBBI CLIENTE -->
+<section class="doubts-section">
+  <div class="container">
+    <div class="doubts-grid">
+      <div class="doubts-content">
+        <span class="section-eyebrow">Hai già un'idea?</span>
+        <h2 class="section-title">Hai già un'idea,<br>ma vuoi capire se è <em>quella giusta</em>?</h2>
+        <p>
+          Molti clienti arrivano con un'idea già chiara. Il nostro lavoro non è sostituirci a te, ma aiutarti a valutare alternative, materiali, costi, tempi, resa estetica e funzionalità prima di investire.
+        </p>
+      </div>
+      <div class="doubts-trust">
+        <span class="section-eyebrow">Esperienza concreta</span>
+        <h3>Soluzioni misurabili.</h3>
+        <p>
+          IDEAR affianca attività commerciali, horeca, contract e strutture professionali nella scelta di arredi, attrezzature e forniture no-food. Ogni proposta nasce da un confronto reale, da una selezione mirata dei prodotti e da una visione complessiva dello spazio, dell'immagine e dell'operatività.
+        </p>
+        <div class="trust-placeholder">
+          <div class="trust-item"><span class="trust-label">Settori serviti</span><span class="trust-desc">Horeca · Contract · Retail · Hospitality</span></div>
+          <div class="trust-item"><span class="trust-label">Un solo referente</span><span class="trust-desc">Dalla consulenza alla consegna</span></div>
+          <div class="trust-item"><span class="trust-label">Consulenza gratuita</span><span class="trust-desc">Prima analisi senza impegno</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 <section class="about">
   <div class="container">
     <div class="about-grid-desktop">
@@ -603,13 +706,13 @@
         <span class="section-eyebrow">Chi siamo</span>
         <h2>IDEAR: il tuo <em>punto di riferimento</em> per ogni esigenza della tua attività.</h2>
         <p>
-          Non siamo un sito di e-commerce. Non siamo un call center. Siamo la realtà che ti aiuta a fare acquisti migliori — che tu gestisca un ristorante, un bar, un hotel, una tabaccheria, un negozio, uno studio o qualsiasi altra attività commerciale.
+          Non siamo un sito di e-commerce. Non siamo un call center. Siamo il partner che affianca attività commerciali, horeca e strutture professionali nella scelta di arredi, attrezzature e forniture no-food — con una visione complessiva su spazio, immagine e operatività.
         </p>
         <p>
-          Siamo al fianco di chi ha bisogno di un partner che capisca davvero le sue esigenze, le affronti come se fossero le proprie e proponga soluzioni concrete. Non il prodotto da spingere — quello che funziona. Come farebbe un amico del settore: diretto e competente.
+          Siamo al fianco di chi vuole fare scelte più consapevoli, costruire una proposta coerente e investire in modo più mirato. Non portiamo un catalogo: portiamo competenza, ascolto e una proposta pensata per la tua attività specifica.
         </p>
         <p>
-          Il nostro vantaggio non è il magazzino: è la capacità di cercare, confrontare, personalizzare e trovare ciò che serve davvero in pochissimo tempo. E la consulenza non è un costo in più — è lo strumento con cui si risparmia.
+          Il nostro vantaggio non è il magazzino: è la capacità di cercare, confrontare, personalizzare e trovare la soluzione giusta in poco tempo. La consulenza non è un costo in più — è lo strumento con cui si sceglie meglio e si investe con più efficacia.
         </p>
         <div class="signature">— IDEAR · La soluzione su misura</div>
       </div>
@@ -646,43 +749,43 @@
     <div class="adv-list">
       <div class="adv-item">
         <div class="adv-num">01</div>
-        <h4>Prima parliamo, poi proponiamo</h4>
-        <p>Partiamo dalla tua attività, dal tuo spazio e dal tuo modo di lavorare ogni giorno. Sei tu il protagonista del processo: capiamo insieme come valorizzare e migliorare la tua attività, poi cerchiamo la risposta giusta — anche quella che non sapevi di poter avere.</p>
+        <h4>Ascolto prima della proposta</h4>
+        <p>Prima capiamo la tua attività, il tuo spazio, il tuo modo di lavorare e ciò che vuoi ottenere. Poi costruiamo una proposta coerente.</p>
       </div>
       <div class="adv-item">
         <div class="adv-num">02</div>
-        <h4>Soluzioni pensate per la tua attività</h4>
-        <p>Non hai trovato quello che cerchi? Si può fare. Produzione personalizzata, finiture specifiche, soluzioni costruite su misura per le tue esigenze. Non siamo vincolati a un catalogo fisso — siamo liberi di cercare quello che funziona per te, o di farlo produrre.</p>
+        <h4>Nessuna sorpresa</h4>
+        <p>Costi, tempi, condizioni e possibilità vengono chiariti prima di procedere, così puoi scegliere con tranquillità.</p>
       </div>
       <div class="adv-item">
         <div class="adv-num">03</div>
-        <h4>Integrazione completa tra arredi, attrezzature e forniture</h4>
-        <p>Dall'arredamento alle scaffalature, dagli utensili alle attrezzature, dalla tavola alla comunicazione visiva: copriamo ogni esigenza. Un solo partner per tutto — meno tempo perso, più coerenza nel risultato, migliore spesa. Funziona per un ristorante, come per una tabaccheria, un salone o uno studio.</p>
+        <h4>Attenzione alle normative</h4>
+        <p>Ti aiutiamo a valutare conformità, sicurezza, materiali, ignifugo e requisiti specifici quando il progetto lo richiede.</p>
       </div>
       <div class="adv-item">
         <div class="adv-num">04</div>
-        <h4>Conformità e sicurezza garantite</h4>
-        <p>Ti informiamo delle certificazioni igienico-sanitarie / HACCP, sicurezza, ignifughe e ambientali dei prodotti, eventuali autorizzazioni comunali dehors. Siamo noi a verificare, segnalare e guidarti prima dell'acquisto — così procedi con certezza.</p>
+        <h4>Soluzioni su misura</h4>
+        <p>Dopo aver compreso obiettivi, vincoli e possibilità, selezioniamo soluzioni pensate per la tua attività.</p>
       </div>
       <div class="adv-item">
         <div class="adv-num">05</div>
-        <h4>Supporto continuo, anche dopo l'acquisto</h4>
-        <p>Domani potrai integrare gli stessi tavoli, le stesse sedie, gli stessi complementi — gli stessi bicchieri, le stesse stoviglie. Niente spazi disomogenei, niente riferimenti che spariscono. La coerenza si costruisce nel tempo, con chi rimane.</p>
+        <h4>Copertura di tutte le esigenze</h4>
+        <p>Arredi, attrezzature, forniture no-food, comunicazione, packaging e supporto marketing: tutto integrato in una visione unica.</p>
       </div>
       <div class="adv-item">
         <div class="adv-num">06</div>
-        <h4>Chiarezza su costi, tempi e condizioni</h4>
-        <p>Ci mettiamo la faccia su quello che proponiamo. Ti supportiamo nella gestione dei pagamenti, nelle dilazioni, nella valutazione dell'ammortamento nel tempo — con l'esperienza di chi ha gestito tante situazioni diverse.</p>
+        <h4>Continuità nel tempo</h4>
+        <p>Non siamo presenti solo al momento dell'acquisto: possiamo accompagnarti anche negli sviluppi successivi della tua attività.</p>
       </div>
       <div class="adv-item">
         <div class="adv-num">07</div>
-        <h4>Possibilità di soluzioni personalizzate</h4>
-        <p>Gestione di eventuali contestazioni con aziende fornitrici, ricambi, assistenza, supporto su integrazioni future. Non un ticket, non un call center irraggiungibile — una persona presente, concreta, che conosce già la tua situazione e sa come intervenire.</p>
+        <h4>Assistenza post-acquisto</h4>
+        <p>Restiamo un riferimento anche dopo la scelta, per installazioni, chiarimenti, necessità operative o integrazioni future.</p>
       </div>
       <div class="adv-item">
         <div class="adv-num">08</div>
-        <h4>Ottimizzazione degli investimenti, anche con restyling mirati</h4>
-        <p>Spesso basta sostituire qualche anta, un top, un tessuto o un accessorio per risparmiare fino al 70–80% rispetto a un rifacimento totale — con materiali certificati, tempi rapidi e un risultato che sembra completamente nuovo.</p>
+        <h4>Restyling intelligente</h4>
+        <p>Quando non serve rifare tutto, ti aiutiamo a capire cosa mantenere, cosa aggiornare e dove investire meglio. In alcuni casi puoi salvare fino al 70–80% dell'investimento.</p>
       </div>
     </div>
   </div>
@@ -753,11 +856,8 @@
   <div class="container">
     <span class="section-eyebrow">Un riferimento, non un call center</span>
     <h3>Non un numero verde.<br>Non un ticket. <em>Una persona vera</em>.</h3>
-    <div class="business-card">
-      <img src="img/logo-nuovo.png" alt="IDEAR — logo" loading="lazy" />
-    </div>
     <div class="card-contacts">
-      IDEAR · La soluzione su misura<br>
+      IDEAR · Partner per attività commerciali, horeca e contract<br>
       <a href="tel:+393348611291">+39 334 8611 291</a> · <a href="mailto:francobattista35@gmail.com">francobattista35@gmail.com</a>
     </div>
   </div>
