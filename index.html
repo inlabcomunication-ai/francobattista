@@ -896,14 +896,13 @@
           <li>Risposta entro 24 ore lavorative</li>
           <li>Riservatezza assoluta</li>
           <li>Nessuna pressione, nessun obbligo</li>
-          <li>🎁 Mini-guida HORECA in omaggio (14 pagine PDF)</li>
         </ul>
       </div>
 
       <div class="form-card">
         <div id="form-content">
           <h3>Parliamone senza impegno</h3>
-          <p class="form-sub">Raccontaci la tua attività: che tu stia aprendo, rinnovando, ampliando o semplicemente valutando come migliorare spazi, forniture o immagine, possiamo aiutarti a capire quali soluzioni hanno più senso per te. <strong>Dopo la prenotazione ricevi in omaggio la mini-guida IDEAR per attività HORECA</strong> — 14 pagine su normative, igiene, spazio, marketing e forniture.</p>
+          <p class="form-sub">Raccontaci la tua attività: che tu stia aprendo, rinnovando, ampliando o semplicemente valutando come migliorare spazi, forniture o immagine, possiamo aiutarti a capire quali soluzioni hanno più senso per te.</p>
 
           <div class="form-row">
             <div class="form-group">
@@ -1004,14 +1003,6 @@
             </div>
           </div>
 
-          <div class="pdf-incentive">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-            <div>
-              <strong>🎁 In omaggio dopo la prenotazione</strong><br>
-              Ricevi gratuitamente la mini-guida IDEAR <em>"Normative, igiene, processi e marketing per attività HORECA"</em> — 14 pagine con checklist, aree di analisi e consigli pratici per scegliere meglio prima di acquistare o rinnovare.
-            </div>
-          </div>
-
           <button class="form-submit" id="submit-btn" onclick="submitForm()">
             Prendiamo un appuntamento
           </button>
@@ -1022,21 +1013,6 @@
           <h4>Richiesta inviata</h4>
           <p>Grazie per la fiducia. Ti contatteremo entro 24 ore lavorative per confermare l'appuntamento.</p>
           <div class="success-detail" id="success-detail"></div>
-          <div id="pdf-download-area" style="display:none;margin-top:24px">
-            <p style="font-size:14px;color:#3a3a3a;margin-bottom:6px;font-weight:500">
-              🎁 Il tuo omaggio è pronto:
-            </p>
-            <p style="font-size:13px;color:#666;margin-bottom:14px;line-height:1.6">
-              <strong>Mini-guida IDEAR per attività HORECA</strong> — normative, igiene, processi, marketing e forniture in 14 pagine. Una mappa pratica per scegliere meglio prima di acquistare o rinnovare.
-            </p>
-            <a id="pdf-download-btn" href="#" target="_blank" rel="noopener"
-               style="display:inline-flex;align-items:center;gap:10px;background:#a8895c;color:#fff;
-                      padding:13px 24px;border-radius:4px;text-decoration:none;font-size:14px;
-                      font-weight:500;letter-spacing:0.03em;transition:background 0.2s">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              Scarica la mini-guida gratuita (PDF)
-            </a>
-          </div>
         </div>
       </div>
     </div>
@@ -1242,21 +1218,6 @@
         ${dataFormatted} alle ${selectedTime}<br>
         <span style="color:#666;font-size:13px">Riceverai conferma via email a ${email}</span>
       `;
-
-      // Carica PDF lead magnet da Firestore
-      try {
-        const pdfDoc = await window.fbGetDoc(window.fbDoc(window.fbDb, 'config', 'leadmagnet'));
-        if (pdfDoc.exists()) {
-          const data = pdfDoc.data();
-          const pdfArea = document.getElementById('pdf-download-area');
-          const pdfBtn = document.getElementById('pdf-download-btn');
-          if (data.url) {
-            pdfBtn.href = data.url;
-            if (data.label) pdfBtn.childNodes[pdfBtn.childNodes.length - 1].textContent = ' ' + data.label;
-            pdfArea.style.display = 'block';
-          }
-        }
-      } catch(pdfErr) { /* PDF non configurato, non mostrare nulla */ }
 
       window.scrollTo({ top: successMsg.getBoundingClientRect().top + window.scrollY - 100, behavior: 'smooth' });
       document.getElementById('mobile-sticky').style.display = 'none';
